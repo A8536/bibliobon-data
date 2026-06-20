@@ -1,0 +1,102 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Создать · Bibliobon editor{% endblock %}
+
+{% block content %}
+<h1>Создать</h1>
+
+<datalist id="author-options">
+  {% for author in authors %}
+    <option value="{{ author.author_id }}">{{ author.display_name }}</option>
+  {% endfor %}
+</datalist>
+
+<datalist id="journal-options">
+  {% for journal in journals %}
+    <option value="{{ journal.journal_id }}">{{ journal.title }}</option>
+  {% endfor %}
+</datalist>
+
+<div class="create-grid">
+  <section class="panel create-panel">
+    <h2>Автор</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="author">
+      <label>
+        Имя
+        <input type="text" name="author_name" required autofocus>
+      </label>
+      <button type="submit">Создать автора</button>
+    </form>
+  </section>
+
+  <section class="panel create-panel">
+    <h2>Книга</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="book">
+      <label>
+        Название
+        <input type="text" name="work_title" required>
+      </label>
+      <label>
+        Автор
+        <input type="text" name="work_author_id" list="author-options" placeholder="author-...">
+      </label>
+      <button type="submit">Создать книгу</button>
+    </form>
+  </section>
+
+  <section class="panel create-panel">
+    <h2>Сборник</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="container">
+      <label>
+        Название
+        <input type="text" name="work_title" required>
+      </label>
+      <label>
+        Автор / редактор
+        <input type="text" name="work_author_id" list="author-options" placeholder="author-...">
+      </label>
+      <button type="submit">Создать сборник</button>
+    </form>
+  </section>
+
+  <section class="panel create-panel">
+    <h2>Журнал</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="journal">
+      <label>
+        Название
+        <input type="text" name="journal_title" required>
+      </label>
+      <button type="submit">Создать журнал</button>
+    </form>
+  </section>
+
+  <section class="panel create-panel">
+    <h2>Выпуск журнала</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="journal_issue">
+      <label>
+        Журнал
+        <input type="text" name="issue_journal_id" list="journal-options" placeholder="journal-..." required>
+      </label>
+      <label>
+        Год
+        <input type="number" name="issue_year" min="1400" max="2100" required>
+      </label>
+      <label>
+        Номер выпуска
+        <input type="text" name="issue_number" required>
+      </label>
+      <button type="submit">Создать выпуск</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

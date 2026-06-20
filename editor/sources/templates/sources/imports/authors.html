@@ -1,0 +1,153 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Авторы импорта{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Авторы импорта</h1>
+    <p class="muted">{{ batch.title }} · решение по автору применяется ко всем связанным записям текущего импорта</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:import_batch_review' batch.pk %}">К проверке</a>
+    <a href="{% url 'sources:import_batch_plan' batch.pk %}">План</a>
+    {% if is_applied and latest_apply_log %}
+      <a href="{% url 'sources:import_batch_result' batch.pk %}">Результат применения</a>
+    {% endif %}
+  </div>
+</div>
+
+{% if is_applied %}
+  <section class="panel">
+    <h2>Импорт применён</h2>
+    <p class="muted">Авторские решения показаны только для справки. Менять их после применения нельзя.</p>
+    {% if latest_apply_log %}<p><a href="{% url 'sources:import_batch_result' batch.pk %}">Показать результат применения</a></p>{% endif %}
+  </section>
+{% endif %}
+
+<div class="grid">
+  <div class="metric"><span>Авторов требует проверки</span><strong>{{ stats.authors_need_review }}</strong></div>
+  <div class="metric"><span>Всего обработано строк</span><strong>{{ stats.items }}</strong></div>
+  <div class="metric"><span>Готово сущностей</span><strong>{{ stats.ready }}</strong></div>
+</div>
+
+{% for author in authors %}
+  <section class="panel">
+    <div class="detail-title">
+      <div>
+        <h2>{{ author.label }}</h2>
+        <p class="muted">
+          {{ author.status_label }} · используется в {{ author.related_item_count }} импортируемых записях.
+          Это решение применится к {{ author.related_item_count }} связанным записям текущего импорта.
+        </p>
+        {% if author.matched_existing_id %}
+          <p class="muted">Выбрано: {{ author.matched_existing_label }}</p>
+        {% elif author.status == "will_create" %}
+          <p class="muted">Выбрано: будет создан новый автор.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="import-layout">
+      <div>
+        <h3>{% if is_applied %}Принятое решение{% elif author.status != "unresolved" %}Изменить решение{% else %}Принять решение{% endif %}</h3>
+        {% if is_applied %}
+          <p class="muted">Импорт уже применён. Авторское решение нельзя менять из этого экрана.</p>
+        {% else %}
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk author.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_author_review' batch.pk %}">
+            <button type="submit" name="decision_type" value="create">Создать нового автора</button>
+          </form>
+        {% endif %}
+
+        <h4>Похожие авторы</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Автор в базе</th>
+              <th>Работ</th>
+              <th>Совпадение</th>
+              <th>Действие</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for match in author.matches.all %}
+              <tr>
+                <td>
+                  <strong>{{ match.existing_label }}</strong>
+                  {% if author.matched_existing_type == match.existing_type and author.matched_existing_id == match.existing_id %}
+                    <span class="status-badge ok">Выбрано</span>
+                  {% endif %}
+                </td>
+                <td>{{ match.work_count|default:"-" }}</td>
+                <td>{{ match.score|floatformat:2 }}</td>
+                <td>
+                  {% if is_applied %}
+                    <span class="muted">Решение зафиксировано</span>
+                  {% elif author.matched_existing_type == match.existing_type and author.matched_existing_id == match.existing_id %}
+                    <span class="status-badge ok">Выбрано</span>
+                  {% else %}
+                    <form method="post" action="{% url 'sources:import_entity_decision' batch.pk author.pk %}" class="inline-form">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{% url 'sources:import_author_review' batch.pk %}">
+                      <input type="hidden" name="decision_type" value="link_existing">
+                      <input type="hidden" name="target_type" value="{{ match.existing_type }}">
+                      <input type="hidden" name="target_id" value="{{ match.existing_id }}">
+                      <button type="submit">Связать</button>
+                    </form>
+                  {% endif %}
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="4">Похожих авторов в базе не найдено.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% if not is_applied %}
+        <div class="actions">
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk author.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_author_review' batch.pk %}">
+            <button type="submit" name="decision_type" value="postpone">Отложить решение</button>
+            <span class="muted">Автор останется в импорте и будет блокировать применение, пока решение не принято.</span>
+          </form>
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk author.pk %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_author_review' batch.pk %}">
+            <button type="submit" name="decision_type" value="reject">Отклонить</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+
+      <div>
+        <h3>Связанные записи</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Тип</th>
+              <th>Исходная строка</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in author.related_items %}
+              <tr>
+                <td>{{ item.detected_type_label }}</td>
+                <td><a href="{% url 'sources:import_item_detail' batch.pk item.pk %}">{{ item.raw_text }}</a></td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="2">Связанные строки не найдены.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% empty %}
+  <section class="panel">
+    <p>В этом импорте авторы не распознаны.</p>
+  </section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,174 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Преобразовать выпуск в сборник · {{ plan.source_issue_label }}{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Преобразовать выпуск журнала в сборник</h1>
+    <p class="muted">{{ issue.journal_issue_id }} · {{ plan.source_issue_label }}</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:periodical_list' %}?q={{ issue.journal.title|urlencode }}">К журналам</a>
+    <a href="{% url 'admin:sources_journalissue_change' issue.pk %}">Редактировать выпуск</a>
+  </div>
+</div>
+
+<section class="panel">
+  <h2>Сейчас это выпуск журнала</h2>
+  <table>
+    <tbody>
+      <tr>
+        <th>Журнал</th>
+        <td>{{ plan.source_journal_label }}</td>
+      </tr>
+      <tr>
+        <th>Выпуск</th>
+        <td>{{ plan.source_issue_label }}</td>
+      </tr>
+      <tr>
+        <th>Статей в выпуске</th>
+        <td>{{ plan.articles|length }}</td>
+      </tr>
+      <tr>
+        <th>Нормализованных размещений</th>
+        <td>{{ plan.placement_count }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Будет сборник</h2>
+  <p class="bibliographic-line"><strong>{{ plan.collection_label }}</strong></p>
+  <table>
+    <tbody>
+      <tr>
+        <th>Название</th>
+        <td>{{ plan.collection.title }}</td>
+      </tr>
+      <tr>
+        <th>Место издания</th>
+        <td>{{ plan.collection.publication_place|default:"-" }}</td>
+      </tr>
+      <tr>
+        <th>Год</th>
+        <td>{{ plan.collection.year|default:plan.collection.publication_date|default:"-" }}</td>
+      </tr>
+      <tr>
+        <th>Что будет использовано</th>
+        <td>
+          {% if plan.will_reuse_collection %}
+            Существующий сборник:
+            <span class="mono">{{ plan.will_reuse_collection.work_id }}</span> — {{ plan.will_reuse_collection.title }}
+          {% else %}
+            Будет создан новый сборник.
+          {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  {% if plan.matches|length > 1 %}
+    <p><span class="status-badge error">Найдено несколько похожих сборников. Автоматическое преобразование заблокировано.</span></p>
+    <ul>
+      {% for match in plan.matches %}
+        <li><span class="mono">{{ match.work_id }}</span> — {{ match.title }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>Статьи, которые будут перенесены</h2>
+  {% if plan.articles %}
+    <table>
+      <thead>
+        <tr>
+          <th>Запись</th>
+          <th>Страницы</th>
+          <th>Текущее действие</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in plan.articles %}
+          <tr>
+            <td>
+              <a href="{% url 'sources:work_relations' row.work.pk %}"><span class="mono">{{ row.work.work_id }}</span></a>
+              — {{ row.label }}
+            </td>
+            <td>{{ row.pages|default:"-" }}</td>
+            <td>Будет перенесена из выпуска журнала в сборник.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">В этом выпуске нет статей для переноса.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>Что будет со старым выпуском</h2>
+  <ul>
+    <li>Старый журнал и выпуск не удаляются автоматически.</li>
+    <li>Связь статьи с журнальным выпуском будет снята.</li>
+    <li>Нормализованное размещение статьи будет перенесено на сборник.</li>
+    {% if plan.old_issue_cleanup_candidate %}
+      <li>Если после переноса выпуск останется пустым, он будет показан как кандидат на последующую очистку.</li>
+    {% endif %}
+  </ul>
+</section>
+
+{% if plan.blockers %}
+  <section class="panel">
+    <h2>Преобразование пока недоступно</h2>
+    <ul>
+      {% for blocker in plan.blockers %}
+        <li><span class="status-badge error">{{ blocker }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% else %}
+  <section class="panel">
+    <h2>Подтверждение</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label>
+        <input type="checkbox" name="confirm" value="yes" required>
+        Я понимаю, что статьи будут перенесены из выпуска журнала в сборник.
+      </label>
+      <div class="actions" style="margin-top: 1rem;">
+        <button type="submit">Преобразовать выпуск в сборник</button>
+        <a href="{% url 'sources:periodical_list' %}?q={{ issue.journal.title|urlencode }}">Отмена</a>
+      </div>
+    </form>
+  </section>
+{% endif %}
+
+<details class="panel">
+  <summary>Технические данные</summary>
+  <table>
+    <tbody>
+      <tr>
+        <th>JournalIssue</th>
+        <td><span class="mono">{{ issue.journal_issue_id }}</span></td>
+      </tr>
+      <tr>
+        <th>Target Issue</th>
+        <td>{% if plan.target_issue %}<span class="mono">{{ plan.target_issue.issue_id }}</span>{% else %}-{% endif %}</td>
+      </tr>
+      <tr>
+        <th>ArticlePlacement</th>
+        <td>
+          {% for placement in plan.placements %}
+            <span class="mono">{{ placement.placement_id }}</span>{% if not forloop.last %}; {% endif %}
+          {% empty %}
+            -
+          {% endfor %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+{% endblock %}

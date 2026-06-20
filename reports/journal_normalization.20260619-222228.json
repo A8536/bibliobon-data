@@ -1,0 +1,26 @@
+{
+  "source_journal": {
+    "id": "journal-002725",
+    "title": "Разыскания.— Вып. 7"
+  },
+  "target_journal": {
+    "id": "journal-002811",
+    "title": "Разыскания. Историко-краеведческий альманах"
+  },
+  "backup_path": "/Users/oleg/Projects/data/bibliobon-data/data/backups/editor.before-journal-normalization.20260619-222228.sqlite",
+  "moved_issues": [
+    {
+      "source_issue_id": "journal-issue-011646",
+      "source_label": "Разыскания.— Вып. 7, 2007",
+      "new_label": "Разыскания. Историко-краеведческий альманах, 2007",
+      "article_count": 0,
+      "placement_count": 0
+    }
+  ],
+  "merged_issues": [],
+  "skipped_issues": [],
+  "moved_articles": 0,
+  "moved_placements": 0,
+  "user": "editor",
+  "timestamp": "2026-06-19T22:22:28.343613+00:00"
+}

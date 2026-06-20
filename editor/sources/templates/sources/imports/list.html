@@ -1,0 +1,104 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Импорты{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Импорты библиографии</h1>
+    <p class="muted">Новый редакторский workflow: загрузка источника, разбор, решения, план и явное применение.</p>
+  </div>
+  <div class="actions">
+    <a class="button-link" href="{% url 'sources:import_batch_new' %}">Новый импорт</a>
+  </div>
+</div>
+
+<section class="panel">
+  <details>
+    <summary>Очистить черновики импорта</summary>
+    <p class="muted">Удаляются только неприменённые пачки: черновики, разобранные, требующие решений, готовые к применению и отменённые. Применённые импорты и библиографические записи не затрагиваются.</p>
+    <form method="post" action="{% url 'sources:import_batch_cleanup' %}">
+      {% csrf_token %}
+      <button type="submit">Очистить черновики импорта</button>
+    </form>
+  </details>
+</section>
+
+<section class="panel">
+  <h2>Текущие импорты</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Источник</th>
+        <th>Статус</th>
+        <th>Записей</th>
+        <th>Требует проверки</th>
+        <th>Готово</th>
+        <th>Создан</th>
+        <th>Действие</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for batch in batches %}
+        <tr>
+          <td><a href="{% url 'sources:import_batch_detail' batch.pk %}">{{ batch.title }}</a></td>
+          <td>{{ batch.source_name|default:"-" }}</td>
+          <td>{{ batch.status_label }}</td>
+          <td>{{ batch.item_count }}</td>
+          <td>{{ batch.unresolved_count }}</td>
+          <td>{{ batch.ready_count }}</td>
+          <td>{{ batch.created_at|date:"d.m.Y H:i" }}</td>
+          <td class="row-actions">
+            <a href="{% url 'sources:import_batch_review' batch.pk %}">Продолжить проверку</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="8">Активных импортов пока нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <details>
+    <summary>История применённых импортов</summary>
+    <p class="muted">Здесь лежат уже применённые пачки. Они не требуют действий и не показываются в основном списке текущей работы.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Источник</th>
+          <th>Записей</th>
+          <th>Создан</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for batch in applied_batches %}
+          <tr>
+            <td><a href="{% url 'sources:import_batch_detail' batch.pk %}">{{ batch.title }}</a></td>
+            <td>{{ batch.source_name|default:"-" }}</td>
+            <td>{{ batch.item_count }}</td>
+            <td>{{ batch.created_at|date:"d.m.Y H:i" }}</td>
+            <td class="row-actions">
+              <a href="{% url 'sources:import_batch_result' batch.pk %}">Результат</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5">Применённых импортов в истории нет.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <details>
+      <summary>Очистить историю применённых импортов</summary>
+      <p class="muted">Будут удалены только служебные записи импорта и журнал применения. Уже созданные или обновлённые библиографические записи не удаляются.</p>
+      <form method="post" action="{% url 'sources:import_batch_cleanup_applied' %}">
+        {% csrf_token %}
+        <button type="submit">Очистить историю применённых импортов</button>
+      </form>
+    </details>
+  </details>
+</section>
+{% endblock %}

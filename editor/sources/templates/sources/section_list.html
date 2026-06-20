@@ -1,0 +1,21 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Категории · Bibliobon{% endblock %}
+
+{% block content %}
+<h1>Категории</h1>
+<table>
+  <thead><tr><th>Код</th><th>Название</th><th>Родитель</th><th>Изданий</th><th></th></tr></thead>
+  <tbody>
+    {% for section in sections %}
+      <tr>
+        <td class="mono">{{ section.source_code }}</td>
+        <td>{{ section.title }}</td>
+        <td>{{ section.parent|default:"" }}</td>
+        <td>{{ section.work_count }}</td>
+        <td><a href="{% url 'admin:sources_section_change' section.pk %}">Редактировать</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

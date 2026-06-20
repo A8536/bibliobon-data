@@ -1,0 +1,40 @@
+{
+  "source_journal": {
+    "id": "journal-002522",
+    "title": "Коллекция.— Смоленск"
+  },
+  "target_journal": {
+    "id": "journal-002521",
+    "title": "Коллекция"
+  },
+  "backup_path": "/Users/oleg/Projects/data/bibliobon-data/data/backups/editor.before-journal-normalization.20260619-213143.sqlite",
+  "moved_issues": [
+    {
+      "source_issue_id": "journal-issue-010549",
+      "source_label": "Коллекция.— Смоленск, 2005, № 2",
+      "new_label": "Коллекция, 2005, № 2",
+      "article_count": 1,
+      "placement_count": 1
+    },
+    {
+      "source_issue_id": "journal-issue-010547",
+      "source_label": "Коллекция.— Смоленск, 2005, № 3",
+      "new_label": "Коллекция, 2005, № 3",
+      "article_count": 3,
+      "placement_count": 3
+    },
+    {
+      "source_issue_id": "journal-issue-010550",
+      "source_label": "Коллекция.— Смоленск, 2007, № 3–4, общ. № 26–27",
+      "new_label": "Коллекция, 2007, № 3–4, общ. № 26–27",
+      "article_count": 2,
+      "placement_count": 2
+    }
+  ],
+  "merged_issues": [],
+  "skipped_issues": [],
+  "moved_articles": 0,
+  "moved_placements": 0,
+  "user": "editor",
+  "timestamp": "2026-06-19T21:31:43.910435+00:00"
+}

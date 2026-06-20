@@ -1,0 +1,27 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Панель редактора · Bibliobon{% endblock %}
+
+{% block content %}
+<h1>Панель редактора</h1>
+
+<section class="grid">
+  {% for key, value in counts.items %}
+    <a class="metric" href="{% if key == 'works' %}{% url 'sources:work_list' %}{% elif key == 'sections' %}{% url 'sources:section_list' %}{% elif key == 'journals' or key == 'collections' %}{% url 'sources:periodical_list' %}{% else %}{% url 'admin:index' %}{% endif %}">
+      <span>{{ key }}</span>
+      <strong>{{ value }}</strong>
+    </a>
+  {% endfor %}
+</section>
+
+<section class="panel">
+  <h2>Диагностика</h2>
+  <table>
+    <tbody>
+      {% for key, value in diagnostics.items %}
+        <tr><th>{{ key }}</th><td>{{ value }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Авторы 2026-06-06-002</title>
+  <style>
+    :root { --catalog-bg:#f4f4f4; --catalog-surface:#fff; --catalog-border:#ddd; --catalog-ink:#242424; --catalog-muted:#6f6f6f; --catalog-accent:#be373b; --font-family:"San Francisco","Roboto",Arial,sans-serif; --heading-font-family:"Scada",var(--font-family); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:var(--catalog-bg); color:var(--catalog-ink); font:16px/1.35 var(--font-family); }
+    .wrap { width:min(1230px,calc(100% - 32px)); min-height:100vh; margin:0 auto; padding:26px 30px 56px; background:var(--catalog-surface); }
+    h1 { margin:0; font-family:var(--heading-font-family); font-size:42px; font-weight:400; line-height:1.12; text-transform:uppercase; }
+    h2 { margin:0; font-family:var(--heading-font-family); font-size:24px; font-weight:400; }
+    .lede { max-width:860px; margin:12px 0 0; color:var(--catalog-muted); font-size:17px; }
+    .review-nav,.stage-actions { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 22px; }
+    .review-nav { padding-bottom:18px; border-bottom:1px solid var(--catalog-border); }
+    .stage-actions { justify-content:flex-end; }
+    .review-nav a,.stage-link { min-height:34px; padding:7px 12px; border:1px solid var(--catalog-border); color:var(--catalog-ink); background:#fff; font-weight:700; text-decoration:none; }
+    .stage-link { border-color:var(--catalog-ink); color:#fff; background:var(--catalog-ink); }
+    .review-section { margin-top:24px; border:1px solid var(--catalog-border); background:#fff; }
+    .results-header { padding:16px 18px; border-bottom:1px solid var(--catalog-border); color:var(--catalog-muted); }
+    .bibliography-list { margin:0; padding:0; list-style:none; }
+    .bibliography-item { padding:14px 18px 15px; border-bottom:1px solid var(--catalog-border); }
+    .bibliography-item:last-child { border-bottom:0; }
+    .pair-layout { display:grid; grid-template-columns:minmax(0,1fr) 260px; gap:16px; align-items:stretch; }
+    .citation-row { padding:2px 4px; color:var(--catalog-ink); font-size:10pt; line-height:1.22; white-space:nowrap; overflow:hidden; text-overflow:clip; }
+    .candidate-citation { color:var(--catalog-muted); }
+    .record-prefix { color:var(--catalog-ink); font-weight:800; }
+    .field { border-bottom:1px solid #9aa0a6; text-decoration:underline; text-decoration-color:#9aa0a6; text-underline-offset:3px; }
+    .field-note,.pair-meta { margin-top:8px; color:var(--catalog-muted); font-size:13px; }
+    .pair-actions { display:grid; grid-template-columns:1fr; gap:8px; align-content:center; }
+    .choice-panel { display:none; margin-top:10px; padding:10px; border:1px solid var(--catalog-border); background:#fff; }
+    .choice-panel.is-open { display:block; }
+    .choice-search { width:100%; min-height:32px; margin-bottom:8px; padding:6px 8px; border:1px solid var(--catalog-border); font:inherit; }
+    .choice-list { display:grid; gap:6px; max-height:230px; overflow:auto; }
+    .service-button { min-height:34px; padding:6px 10px; border:1px solid var(--catalog-border); border-radius:0; color:var(--catalog-muted); background:#fff; cursor:pointer; font:inherit; font-weight:700; text-align:center; }
+    .service-button.is-selected { border-color:#188038; color:#188038; }
+    .service-button.is-danger { border-color:var(--catalog-accent); color:var(--catalog-accent); }
+    .choice-button { text-align:left; font-weight:400; }
+    .empty-state { padding:18px; color:var(--catalog-muted); }
+    code { background:#f1f3f4; padding:1px 4px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Авторы</h1>
+    <p class="lede">Run <code>2026-06-06-002</code>. Здесь подтверждается, какого автора из базы использовать, или что автора нужно создать. Запись в базу на этом экране не выполняется.</p>
+    <nav class="review-nav">
+      <a href="../review_containers.html/">К контейнерам</a>
+      <a href="#review">Нужно подтвердить: 0</a>
+      <a href="#ready">Найдены автоматически: 0</a>
+    </nav>
+    <div class="stage-actions"><a class="stage-link" href="../review_report.html/">Перейти к разбору записей</a></div>
+    <section id="review" class="review-section">
+      <div class="results-header"><h2>Нужно подтвердить</h2></div>
+      <ul class="bibliography-list"><li class="empty-state">Нет авторов, требующих ручного решения.</li></ul>
+    </section>
+    <section id="ready" class="review-section">
+      <div class="results-header"><h2>Найдены автоматически</h2></div>
+      <ul class="bibliography-list"><li class="empty-state">Нет автоматически найденных авторов.</li></ul>
+    </section>
+  </main>
+  <script>
+    var stateUrl = "../state/";
+    function csrfToken() { var cookies=document.cookie.split(";").map(function(i){return i.trim();}); for(var i=0;i<cookies.length;i++){ if(cookies[i].indexOf("bibliobon_data_editor_csrftoken=")===0||cookies[i].indexOf("csrftoken=")===0) return decodeURIComponent(cookies[i].split("=").slice(1).join("=")); } return ""; }
+    function postReviewState(payload) { return fetch(stateUrl, {method:"POST", headers:{"Content-Type":"application/json","X-CSRFToken":csrfToken()}, body:JSON.stringify(payload)}).then(function(response){ if(!response.ok) throw new Error("state save failed"); return response; }).catch(function(){ alert("Не удалось сохранить решение. Обновите страницу и попробуйте ещё раз."); }); }
+    function markDecision(button, skipSave) {
+      var item = button.closest(".bibliography-item");
+      item.querySelectorAll(".service-button").forEach(function(candidate){ candidate.classList.remove("is-selected"); });
+      button.classList.add("is-selected");
+      if(skipSave) return;
+      postReviewState({stage:"stage_authors", item_id:button.dataset.itemId||"", decision:button.dataset.decision||"", candidate_author:button.dataset.candidateAuthor||"", author_id:button.dataset.authorId||""});
+    }
+    function restoreState() { fetch(stateUrl).then(function(r){return r.ok?r.json():null;}).then(function(state){ if(!state||!state.stage_authors)return; Object.keys(state.stage_authors).forEach(function(itemId){ var saved=state.stage_authors[itemId]; var selector='.service-button[data-item-id="'+CSS.escape(itemId)+'"][data-decision="'+CSS.escape(saved.decision||"")+'"]'; var buttons=Array.prototype.slice.call(document.querySelectorAll(selector)); var button=buttons.find(function(candidate){ return !saved.author_id || candidate.dataset.authorId===saved.author_id; })||buttons[0]; if(button) markDecision(button,true); }); }).catch(function(){}); }
+    document.addEventListener("click", function(event) {
+      var panelButton = event.target.closest(".service-button[data-open-panel]");
+      if(panelButton) { var panel=panelButton.closest(".bibliography-item").querySelector(".choice-panel"); if(panel) panel.classList.toggle("is-open"); return; }
+      var button = event.target.closest(".service-button[data-decision]");
+      if(button) markDecision(button);
+    });
+    document.addEventListener("input", function(event) { var search=event.target.closest(".choice-search"); if(!search)return; var query=search.value.toLowerCase(); var panel=search.closest(".choice-panel"); panel.querySelectorAll(".choice-button").forEach(function(button){ button.style.display=button.textContent.toLowerCase().indexOf(query)===-1?"none":""; }); });
+    restoreState();
+  </script>
+</body>
+</html>

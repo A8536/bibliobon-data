@@ -1,0 +1,137 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Парсер · Bibliobon editor{% endblock %}
+
+{% block content %}
+<h1>Ввод библиографии</h1>
+
+<section class="panel">
+  <h2>Новые исходные данные</h2>
+  <p class="muted">Вставьте текст или загрузите .txt. Сайт сам создаст архивную копию, обновит рабочий файл batch-а и запустит parser run.</p>
+  <form class="parser-input-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>
+      <span class="filter-title">Добавить к существующей пачке</span>
+      <select name="batch_id">
+        <option value="">Создать новую пачку автоматически</option>
+        {% for batch in batches %}
+          <option value="{{ batch.batch_id }}">{{ batch.batch_id }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      <span class="filter-title">Текст библиографии</span>
+      <textarea name="bibliography_text" rows="12" placeholder="Вставьте библиографические записи"></textarea>
+    </label>
+    <label>
+      <span class="filter-title">Или текстовый файл</span>
+      <input type="file" name="bibliography_file" accept=".txt,text/plain">
+    </label>
+    <label class="checkbox-line">
+      <input type="checkbox" name="use_ai_markup" value="1">
+      <span>Использовать ИИ для предварительной разметки</span>
+    </label>
+    <label class="checkbox-line">
+      <input type="checkbox" name="clear_work_file" value="1">
+      <span>Очистить рабочий файл выбранной пачки перед добавлением новых данных</span>
+    </label>
+    <div class="actions">
+      <button type="submit">Создать batch и запустить парсер</button>
+    </div>
+  </form>
+</section>
+
+<section class="panel">
+  <h2>Отладочная очистка</h2>
+  <p class="muted">Полностью удаляет ранее введённые parser staging-данные: incoming batch-и, parser runs и normalized_text. Редакторская база не изменяется.</p>
+  <form method="post" onsubmit="return confirm('Удалить все отладочные данные парсинга? Редакторская база не будет изменена.');">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="clear_parser_staging">
+    <div class="actions">
+      <button type="submit">Полностью очистить данные парсинга</button>
+    </div>
+  </form>
+</section>
+
+<section class="panel">
+  <h2>Пачки</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Batch</th>
+        <th>Рабочий файл</th>
+        <th>Runs</th>
+        <th>Обновлено</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for batch in batches %}
+        <tr>
+          <td><span class="mono">{{ batch.batch_id }}</span><span class="muted">{{ batch.path }}</span></td>
+          <td>
+            {% if batch.current_exists %}
+              {{ batch.current_size }} bytes
+            {% else %}
+              нет
+            {% endif %}
+          </td>
+          <td>
+            {% for run_id in batch.runs %}
+              <a class="mono" href="{% url 'sources:parser_run_page' run_id 'review_report.html' %}">{{ run_id }}</a>{% if not forloop.last %}<br>{% endif %}
+            {% empty %}
+              <span class="muted">нет запусков</span>
+            {% endfor %}
+          </td>
+          <td>{{ batch.updated_at }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Пачек пока нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Последние parser runs</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Run</th>
+        <th>Записей</th>
+        <th>Предупреждений</th>
+        <th>Создан</th>
+        <th>Отчёт</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for run in runs %}
+        <tr>
+          <td><span class="mono">{{ run.run_id }}</span></td>
+          <td>{{ run.record_count }}</td>
+          <td>{{ run.warning_count }}</td>
+          <td>{{ run.created_at }}</td>
+          <td>
+            {% if run.has_report %}
+              <a href="{% url 'sources:parser_run_page' run.run_id 'review_report.html' %}">Открыть</a>
+            {% else %}
+              <span class="muted">нет</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Запусков пока нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% if request.GET.clear_parser_storage %}
+<script>
+  Object.keys(localStorage).forEach(function (key) {
+    if (key.indexOf("bibliobon-parser-") === 0) {
+      localStorage.removeItem(key);
+    }
+  });
+</script>
+{% endif %}
+{% endblock %}

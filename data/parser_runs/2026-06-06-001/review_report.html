@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Parser review 2026-06-06-001</title>
+  <style>
+    :root {
+      --catalog-bg: #f4f4f4;
+      --catalog-surface: #ffffff;
+      --catalog-soft: #f6f6f6;
+      --catalog-border: #dddddd;
+      --catalog-ink: #242424;
+      --catalog-muted: #6f6f6f;
+      --catalog-accent: #be373b;
+      --field-mark-bg: #fff1f1;
+      --font-family: "San Francisco", "Roboto", Arial, sans-serif;
+      --heading-font-family: "Scada", var(--font-family);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--catalog-bg);
+      color: var(--catalog-ink);
+      font: 13px/1.15 var(--font-family);
+    }
+    .wrap {
+      width: min(1230px, calc(100% - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 26px 30px 56px;
+      background: var(--catalog-surface);
+    }
+    h1 {
+      margin: 0;
+      color: #242424;
+      font-family: var(--heading-font-family);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      font-family: var(--heading-font-family);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 780px;
+      margin: 12px 0 0;
+      color: var(--catalog-muted);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+    .review-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    .review-nav a {
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 1px solid var(--catalog-border);
+      color: var(--catalog-ink);
+      background: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .stage-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      margin: -10px 0 22px;
+    }
+    .stage-link {
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 1px solid var(--catalog-ink);
+      color: #fff;
+      background: var(--catalog-ink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .review-section {
+      margin-top: 30px;
+      border: 1px solid var(--catalog-border);
+      background: #fff;
+    }
+    .results-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--catalog-border);
+      color: var(--catalog-muted);
+      background: #fff;
+    }
+    .results-count { margin-top: 6px; font-size: 14px; }
+    .bibliography-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background: #fff;
+    }
+    .bibliography-item {
+      padding: 14px 18px 15px;
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    .bibliography-item:last-child { border-bottom: 0; }
+    .pair-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 142px;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .citation-row {
+      color: var(--catalog-ink);
+      font-size: 10pt;
+      line-height: 1.22;
+      padding: 2px 4px;
+      cursor: pointer;
+        white-space: nowrap;     /* Запрещает перенос строк */
+  overflow: hidden;        /* Прячет текст, который вышел за границы */
+  text-overflow: clip;     /* Просто обрезает текст (по умолчанию) */
+
+    }
+    .citation-row + .citation-row { margin-top: 3px; }
+    .citation-row.is-selected-new {
+      background: #ffe7ed;
+    }
+    .citation-row.is-selected-old {
+      background: #e6f4ea;
+    }
+    .work-number {
+      color: var(--catalog-muted);
+      font-weight: normal;
+      margin-right: .35em;
+    }
+    .candidate-citation { color: var(--catalog-muted); }
+    .field-author { font-weight: 700; }
+    .record-prefix {
+      color: var(--catalog-ink);
+      font-weight: 800;
+    }
+    .field {
+      border-bottom: 1px solid transparent;
+      text-underline-offset: 3px;
+    }
+    .field-diff {
+      color: var(--catalog-accent);
+      background: var(--field-mark-bg);
+      font-weight: 800;
+      border-bottom-color: var(--catalog-accent);
+    }
+    .field-boundary {
+      border-bottom: 1px solid #9aa0a6;
+      text-decoration: underline;
+      text-decoration-color: #9aa0a6;
+      text-underline-offset: 3px;
+    }
+    .field-note {
+      margin-top: 8px;
+      color: var(--catalog-muted);
+      font-size: 13px;
+    }
+    .field-note strong { color: var(--catalog-accent); }
+    .pair-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+      color: var(--catalog-muted);
+      font-size: 13px;
+    }
+    .score {
+      color: var(--catalog-accent);
+      font-weight: 800;
+    }
+    .pair-actions {
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+    .service-button {
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid var(--catalog-border);
+      border-radius: 0;
+      color: var(--catalog-muted);
+      background: #fff;
+      cursor: default;
+      font: inherit;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+    }
+    .split-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      min-height: calc(2.44em + 7px);
+    }
+    .split-button.is-accepted {
+      border-color: #188038;
+      color: #188038;
+    }
+    .split-button.is-split {
+      border-color: #c5221f;
+      color: #c5221f;
+    }
+    .secondary-button {
+      border-color: var(--catalog-border);
+      color: var(--catalog-ink);
+    }
+    .new-record .citation-row {
+      padding-right: 16px;
+    }
+    .empty-state {
+      padding: 18px;
+      color: var(--catalog-muted);
+    }
+    code { background: #f1f3f4; padding: 1px 4px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Разбор парсинга</h1>
+    <p class="lede">Run <code>2026-06-06-001</code>. Страница показывает основные совпадения с <code>match_score >= 0.7</code> и слабые кандидаты для записей с <code>confidence >= 0.7</code>.</p>
+    <nav class="review-nav">
+      <a href="#full-matches">Полное совпадение: 0</a>
+      <a href="#matches">Совпадение: 1</a>
+      <a href="#new">Новые: 0</a>
+    </nav>
+    <div class="stage-actions">
+      <a class="stage-link" href="../review_containers.html/">Вернуться к контейнерам</a>
+      <a class="stage-link" href="../review_authors.html/">К авторам</a>
+      <a class="stage-link" href="../review_stage2.html/">Перейти ко второму этапу</a>
+    </div>
+    <section id="full-matches" class="review-section">
+      <div class="results-header">
+        <h2>Полное совпадение</h2>
+        <div class="results-count">Пар без отличий в отображаемых полях: <strong>0</strong></div>
+      </div>
+      <ul class="bibliography-list">
+        <li class="empty-state">Нет полных совпадений.</li>
+      </ul>
+    </section>
+    <section id="matches" class="review-section">
+      <div class="results-header">
+        <h2>Совпадение</h2>
+        <div class="results-count">Пар с сильным совпадением и отличиями полей: <strong>1</strong></div>
+      </div>
+      <ul class="bibliography-list">
+        
+<li class="bibliography-item" data-candidate-id="candidate-6e4cbdddb93c1e56" data-editor-source-id="work-043751" data-match-score="1.00">
+  <div class="pair-layout">
+    <div>
+      <div class="citation-row candidate-citation"><span class="field field-author" data-field="authors">Миклашевский А.</span> <span class="field" data-field="title">Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса</span> - <span class="field" data-field="publication_place">М</span>: <span class="field" data-field="publisher">Университетская тип</span>, <span class="field" data-field="publication_date">1895</span> - <span class="field field-diff" data-field="extent">729 с.</span>.</div>
+      <div class="citation-row"><span class="field field-author" data-field="authors">Миклашевский А.</span> <span class="field" data-field="title">Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса</span> - <span class="field" data-field="publication_place">М.</span>: <span class="field" data-field="publisher">Университетская тип.</span>, <span class="field" data-field="publication_date">1895</span> - <span class="field field-diff" data-field="extent">III, 729 с.: табл.</span>.</div>
+      <div class="field-note">Отличаются поля: <strong>extent</strong>.</div>
+      
+      <div class="field-note">причины: <strong>title_exact,year_exact,author_overlap,type_compatible</strong>; Все отличия: <strong>extent, raw publication</strong>.</div>
+      <div class="pair-meta">
+        
+        
+      </div>
+    </div>
+    <div class="pair-actions">
+      
+    </div>
+  </div>
+</li>
+
+      </ul>
+    </section>
+    <section id="new" class="review-section">
+      <div class="results-header">
+        <h2>Новые</h2>
+        <div class="results-count">Записей без сильного совпадения: <strong>0</strong></div>
+      </div>
+      <ul class="bibliography-list">
+        <li class="empty-state">Нет новых записей.</li>
+      </ul>
+    </section>
+  </main>
+  <script>
+    var stateUrl = "../state/";
+
+    function itemId(item) {
+      if (!item.dataset.reviewId) {
+        item.dataset.reviewId = "stage1-item-" + Array.prototype.indexOf.call(document.querySelectorAll(".bibliography-item"), item);
+      }
+      return item.dataset.reviewId;
+    }
+
+    function csrfToken() {
+      var cookies = document.cookie.split(";").map(function (item) { return item.trim(); });
+      for (var i = 0; i < cookies.length; i += 1) {
+        if (cookies[i].indexOf("bibliobon_data_editor_csrftoken=") === 0) {
+          return decodeURIComponent(cookies[i].split("=").slice(1).join("="));
+        }
+        if (cookies[i].indexOf("csrftoken=") === 0) {
+          return decodeURIComponent(cookies[i].split("=").slice(1).join("="));
+        }
+      }
+      return "";
+    }
+
+    function postReviewState(payload) {
+      fetch(stateUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken()
+        },
+        body: JSON.stringify(payload)
+      }).catch(function () {});
+    }
+
+    function saveStageOneItem(item, decision, selected) {
+      postReviewState({
+        stage: "stage1",
+        item_id: itemId(item),
+        decision: decision,
+        selected: selected || "",
+        candidate_id: item.dataset.candidateId || "",
+        editor_source_id: item.dataset.editorSourceId || "",
+        match_score: item.dataset.matchScore || ""
+      });
+    }
+
+    function saveStageOneState() {
+      var decisions = [];
+      document.querySelectorAll(".bibliography-item").forEach(function (item) {
+        var button = item.querySelector(".split-button");
+        if (button && button.classList.contains("is-split")) {
+          decisions.push({ id: itemId(item), decision: "new" });
+        } else if (button && button.classList.contains("is-accepted")) {
+          var selected = item.querySelector(".is-selected-new, .is-selected-old");
+          decisions.push({
+            id: itemId(item),
+            decision: selected && selected.classList.contains("is-selected-old") ? "keep_old" : "keep_new"
+          });
+        }
+      });
+      localStorage.setItem("bibliobon-parser-stage1-decisions", JSON.stringify(decisions));
+    }
+
+    document.addEventListener("click", function (event) {
+      var splitButton = event.target.closest(".split-button");
+      if (splitButton) {
+        var splitItem = splitButton.closest(".bibliography-item");
+        if (!splitItem) return;
+        splitItem.querySelectorAll(".citation-row").forEach(function (candidate) {
+          candidate.classList.remove("is-selected-new", "is-selected-old");
+        });
+        splitButton.classList.toggle("is-split");
+        splitButton.classList.remove("is-accepted");
+        splitButton.textContent = "Разделить";
+        saveStageOneItem(splitItem, splitButton.classList.contains("is-split") ? "new" : "clear", "");
+        saveStageOneState();
+        return;
+      }
+
+      var stageLink = event.target.closest(".stage-link");
+      if (stageLink) {
+        saveStageOneState();
+        return;
+      }
+
+      var row = event.target.closest(".citation-row");
+      if (!row) return;
+      var item = row.closest(".bibliography-item");
+      if (!item) return;
+      var wasSelected = row.classList.contains("is-selected-new") || row.classList.contains("is-selected-old");
+      item.querySelectorAll(".citation-row").forEach(function (candidate) {
+        candidate.classList.remove("is-selected-new", "is-selected-old");
+      });
+      var button = item.querySelector(".split-button");
+      if (wasSelected) {
+        if (button) {
+          button.classList.remove("is-accepted", "is-split");
+          button.textContent = "Разделить";
+        }
+        saveStageOneItem(item, "clear", "");
+        saveStageOneState();
+        return;
+      }
+      var selected = "";
+      if (row.classList.contains("candidate-citation")) {
+        row.classList.add("is-selected-new");
+        selected = "new";
+      } else {
+        row.classList.add("is-selected-old");
+        selected = "old";
+      }
+      if (button) {
+        button.classList.remove("is-split");
+        button.classList.add("is-accepted");
+        button.textContent = "Принять";
+      }
+      saveStageOneItem(item, selected === "old" ? "keep_old" : "keep_new", selected);
+      saveStageOneState();
+    });
+  </script>
+</body>
+</html>

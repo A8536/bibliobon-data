@@ -1,0 +1,25 @@
+{
+  "operation": "issue_to_collection",
+  "source_issue_id": "journal-issue-011667",
+  "source_issue_label": "Российское общество и власть в прошлом и настоящем / Мат-лы науч. конф. памяти проф. В.Г. Тюкавкина, 2004",
+  "collection_work_id": "work-005744",
+  "collection_label": "Российское общество и власть в прошлом и настоящем / Мат-лы науч. конф. памяти проф. В.Г. Тюкавкина. — 2004",
+  "created_collection": true,
+  "collection_issue_id": "issue-000004",
+  "created_collection_issue": true,
+  "moved_articles": [
+    {
+      "article_id": "article-032679",
+      "work_id": "work-048705"
+    }
+  ],
+  "moved_placements": [
+    {
+      "placement_id": "article-032679",
+      "from_issue_id": "journal-issue-011667",
+      "to_issue_id": "issue-000004"
+    }
+  ],
+  "old_issue_cleanup_candidate": true,
+  "backup_path": "/Users/oleg/Projects/data/bibliobon-data/data/backups/editor.before-issue-to-collection.20260619-222132.sqlite"
+}

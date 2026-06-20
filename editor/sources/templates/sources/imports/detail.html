@@ -1,0 +1,59 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Импорт {{ batch.title }}{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>{{ batch.title }}</h1>
+    <p class="muted">{{ batch.source_name|default:"Источник не указан" }} · {{ batch.status_label }}</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:import_batch_review' batch.pk %}">Перейти к проверке</a>
+    <a href="{% url 'sources:import_batch_plan' batch.pk %}">Показать план</a>
+    {% if latest_apply_log %}
+      <a href="{% url 'sources:import_batch_result' batch.pk %}">Показать результат применения</a>
+    {% endif %}
+  </div>
+</div>
+
+{% if latest_apply_log %}
+  <section class="panel">
+    <h2>Импорт применён</h2>
+    <p class="muted">Последнее применение: {{ latest_apply_log.applied_at|date:"d.m.Y H:i" }}{% if latest_apply_log.applied_by %} · {{ latest_apply_log.applied_by }}{% endif %}</p>
+    <p><a href="{% url 'sources:import_batch_result' batch.pk %}">Показать результат применения</a></p>
+  </section>
+{% endif %}
+
+<div class="grid">
+  <div class="metric"><span>Записей источника</span><strong>{{ stats.items }}</strong></div>
+  <div class="metric"><span>Распознанных сущностей</span><strong>{{ stats.entities }}</strong></div>
+  <div class="metric"><span>Групп</span><strong>{{ stats.groups }}</strong></div>
+  <div class="metric"><span>Требует решения</span><strong>{{ stats.needs_review }}</strong></div>
+  <div class="metric"><span>Готово</span><strong>{{ stats.ready }}</strong></div>
+  <div class="metric"><span>Совпадений</span><strong>{{ stats.matches }}</strong></div>
+</div>
+
+<div class="panel">
+  <h2>Действия</h2>
+  <div class="actions">
+    {% if is_applied %}
+      <p class="muted">Импорт уже применён. Повторный разбор и отмена из этого экрана недоступны.</p>
+    {% else %}
+    <form method="post" action="{% url 'sources:import_batch_parse' batch.pk %}">
+      {% csrf_token %}
+      <button type="submit">Запустить парсер заново</button>
+    </form>
+    <form method="post" action="{% url 'sources:import_batch_cancel' batch.pk %}">
+      {% csrf_token %}
+      <button class="danger-button" type="submit">Отменить импорт</button>
+    </form>
+    {% endif %}
+  </div>
+</div>
+
+<div class="panel">
+  <h2>Исходный текст</h2>
+  <pre class="import-raw">{{ batch.raw_input }}</pre>
+</div>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Проверка связей · {{ work.work_id }}{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Проверка связей записи</h1>
+    <p class="muted">{{ work.work_id }} · запись {{ work.source_number }} · {{ work.get_work_type_display }}</p>
+  </div>
+  <div class="actions">
+    <a class="button-link" href="{% url 'sources:work_relations' work.pk %}">Редактировать связи</a>
+    <a href="{% url 'sources:work_list' %}?q={{ work.title|urlencode }}">К списку работ</a>
+    <a href="{{ admin_urls.work }}">Редактировать Work</a>
+    {% if admin_urls.source %}<a href="{{ admin_urls.source }}">Редактировать Source</a>{% endif %}
+  </div>
+</div>
+
+<section class="panel">
+  <h2>Что проверяем</h2>
+  <table>
+    <tbody>
+      <tr>
+        <th>Номер</th>
+        <td>{{ work.source_number }}</td>
+      </tr>
+      <tr>
+        <th>Название</th>
+        <td><strong>{{ work.title }}</strong></td>
+      </tr>
+      <tr>
+        <th>Автор</th>
+        <td>
+          {% for author in authors %}
+            {{ author.display_name }}{% if not forloop.last %}; {% endif %}
+          {% empty %}
+            {{ work.raw_author_string|default:"-" }}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th>Тип записи</th>
+        <td>{% if work.work_type == "article" %}статья{% else %}{{ work.get_work_type_display }}{% endif %}</td>
+      </tr>
+      <tr>
+        <th>Библиографическое описание</th>
+        <td class="bibliographic-line">{{ bibliographic_description|default:work.title }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+{% if warnings %}
+  <section class="panel">
+    <h2>Диагностика</h2>
+    <ul>
+      {% for warning in warnings %}
+        <li><span class="status-badge warn">{{ warning }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
+{% if article.container_work %}
+  <section class="panel">
+    <h2>Размещение в книге или сборнике</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>Родительская запись</th>
+          <td><span class="mono">{{ article.container_work.work_id }}</span> — {{ article.container_work.title }}</td>
+        </tr>
+        <tr>
+          <th>Страницы</th>
+          <td>{{ article.pages|default:article.pages_raw|default:"-" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+{% endif %}
+
+{% if legacy_issue or target_issue or placement %}
+  <section class="panel">
+    <h2>Журнальное размещение</h2>
+    <div class="import-layout">
+      <div>
+        <h3>В описании указано</h3>
+        {% if described_issue_text %}
+          <p><strong>{{ described_issue_text }}</strong></p>
+        {% else %}
+          <p class="muted">В описании не найден номер выпуска.</p>
+        {% endif %}
+      </div>
+      <div>
+        <h3>В базе связано</h3>
+        {% if target_issue %}
+          <p>Target-выпуск: <strong>{{ target_issue_label }}</strong></p>
+        {% else %}
+          <p class="muted">Target-размещение не найдено.</p>
+        {% endif %}
+        {% if legacy_issue %}
+          <p>Legacy-выпуск: <strong>{{ legacy_issue_label }}</strong></p>
+        {% endif %}
+        {% if placement %}
+          <p>ArticlePlacement: <span class="mono">{{ placement.placement_id }}</span></p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if split_suggestion.can_split %}
+  <section class="panel">
+    <h2>Можно разделить исходную строку</h2>
+    <p class="muted">{{ split_suggestion.message }}</p>
+    <p><span class="status-badge warn">База не меняется</span> Это только заготовка для ручного нового импорта.</p>
+    <h3>Предложенные строки</h3>
+    <ol>
+      {% for line in split_suggestion.suggested_lines %}
+        <li class="bibliographic-line">{{ line }}</li>
+      {% endfor %}
+    </ol>
+    <textarea rows="{{ split_suggestion.suggested_lines|length|add:1 }}" readonly>{{ split_suggestion.copy_text }}</textarea>
+    <div class="actions">
+      <a href="{% url 'sources:import_batch_new' %}">Создать новый импорт</a>
+    </div>
+  </section>
+{% endif %}
+
+<section class="panel">
+  <h2>Текущие связи</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Что</th>
+        <th>Значение</th>
+        <th>Техническая ссылка</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Персоны и роли</td>
+        <td>
+          {% for relation in author_relations %}
+            {{ relation.author.display_name }} <span class="muted">({{ relation.role_label }})</span>{% if not forloop.last %}; {% endif %}
+          {% empty %}
+            -
+          {% endfor %}
+        </td>
+        <td>
+          {% for author, url in admin_urls.authors %}
+            <a href="{{ url }}">редактировать {{ author.display_name }}</a>{% if not forloop.last %}<br>{% endif %}
+          {% empty %}
+            -
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <td>Журнал</td>
+        <td>
+          {% if legacy_issue %}{{ legacy_issue.journal.title }}{% elif target_issue.periodical %}{{ target_issue.periodical.title }}{% else %}-{% endif %}
+        </td>
+        <td>
+          {% if journal_articles_url %}<a href="{{ journal_articles_url }}">Открыть статьи этого журнала</a>{% else %}-{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>Выпуск</td>
+        <td>
+          {% if target_issue %}{{ target_issue_label }}{% elif legacy_issue %}{{ legacy_issue_label }}{% else %}-{% endif %}
+        </td>
+        <td>
+          {% if admin_urls.issue %}<a href="{{ admin_urls.issue }}">редактировать Issue</a>{% endif %}
+          {% if admin_urls.legacy_issue %}{% if admin_urls.issue %}<br>{% endif %}<a href="{{ admin_urls.legacy_issue }}">редактировать JournalIssue</a>{% endif %}
+          {% if issue_articles_url %}<br><a href="{{ issue_articles_url }}">Открыть статьи этого выпуска</a>{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td>ArticlePlacement</td>
+        <td>{% if placement %}<span class="mono">{{ placement.placement_id }}</span>{% else %}-{% endif %}</td>
+        <td>{% if admin_urls.placement %}<a href="{{ admin_urls.placement }}">редактировать ArticlePlacement</a>{% else %}-{% endif %}</td>
+      </tr>
+      <tr>
+        <td>Legacy Article</td>
+        <td>{% if article %}<span class="mono">{{ article.article_id }}</span>{% else %}-{% endif %}</td>
+        <td>{% if admin_urls.article %}<a href="{{ admin_urls.article }}">редактировать Article</a>{% else %}-{% endif %}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<details class="panel">
+  <summary>Исходная техническая строка</summary>
+  <p class="bibliographic-line">{{ technical_bibliographic_line|default:work.title }}</p>
+  {% if work.publication_details %}
+    <pre>{{ work.publication_details }}</pre>
+  {% endif %}
+</details>
+{% endblock %}

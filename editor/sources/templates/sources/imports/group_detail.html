@@ -1,0 +1,348 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Группа импорта{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>{{ group.label }}</h1>
+    <p class="muted">{{ group.group_type_label }} · {{ group.status_label }}</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:import_batch_review' batch.pk %}">К очереди решений</a>
+    <a href="{% url 'sources:import_batch_plan' batch.pk %}">План</a>
+    {% if is_applied and latest_apply_log %}
+      <a href="{% url 'sources:import_batch_result' batch.pk %}">Результат применения</a>
+    {% endif %}
+  </div>
+</div>
+
+{% if is_applied %}
+  <section class="panel">
+    <h2>Импорт применён</h2>
+    <p class="muted">Группа показана как архивное состояние применённой пачки. Разделять, переносить и менять решения после применения нельзя.</p>
+    {% if latest_apply_log %}<p><a href="{% url 'sources:import_batch_result' batch.pk %}">Показать результат применения</a></p>{% endif %}
+  </section>
+{% endif %}
+
+<section class="panel">
+  <h2>Что проверяем в этой группе</h2>
+  <p class="muted">Сначала проверьте журнал, выпуск или сборник. После этого проверьте статьи внутри контейнера.</p>
+  {% if review_summary.containers %}
+    <table>
+      <thead>
+        <tr>
+          <th>Контейнер из импорта</th>
+          <th>Состояние</th>
+          <th>Решение</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in review_summary.containers %}
+          <tr>
+            <td>
+              <strong>{{ row.entity.entity_type_label }}: {{ row.editor_label }}</strong>
+              {% if row.best_match %}
+                <div class="muted">Похожая запись в базе: {{ row.best_match.existing_label }}</div>
+              {% endif %}
+            </td>
+            <td>
+              {% if row.entity.status == "linked_existing" %}
+                <span class="status-badge ok">{{ row.summary }}</span>
+              {% elif row.entity.status == "will_create" %}
+                <span class="status-badge warn">{{ row.summary }}</span>
+              {% elif row.entity.status == "unresolved" %}
+                <span class="status-badge warn">{{ row.summary }}</span>
+              {% else %}
+                {{ row.summary }}
+              {% endif %}
+            </td>
+            <td>
+              {% if is_applied %}
+                <span class="muted">Импорт уже применён. Решения нельзя менять.</span>
+              {% elif row.entity.status == "linked_existing" %}
+                <span class="muted">Решение принято.</span>
+              {% else %}
+                {% for match_row in row.match_rows %}
+                  <form method="post" action="{% url 'sources:import_entity_decision' batch.pk row.entity.pk %}" class="inline-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                    <input type="hidden" name="decision_type" value="link_existing">
+                    <input type="hidden" name="target_type" value="{{ match_row.match.existing_type }}">
+                    <input type="hidden" name="target_id" value="{{ match_row.match.existing_id }}">
+                    <span>{{ match_row.description }}</span>
+                    <button type="submit">Связать</button>
+                  </form>
+                {% endfor %}
+                <form method="post" action="{% url 'sources:import_entity_decision' batch.pk row.entity.pk %}" class="inline-form">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                  <span>{{ row.create_description }}</span>
+                  <button type="submit" name="decision_type" value="create">Создать</button>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">Контейнер для этой группы не найден.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>{{ review_summary.title }}</h2>
+  <p class="muted">{{ review_summary.message }}</p>
+</section>
+
+{% if review_summary.article_cards %}
+  <section class="panel">
+    <h2>Статьи внутри этого выпуска</h2>
+    {% for card in review_summary.article_cards %}
+      <div class="entity-row">
+        <div class="import-layout">
+          <div>
+            <h3>Статья из источника</h3>
+            <p class="bibliographic-line">{{ card.source_text }}</p>
+            <p class="muted">{{ card.entity.label }}</p>
+            {% if card.item %}
+              <p><a href="{% url 'sources:import_item_detail' batch.pk card.item.pk %}">Открыть строку импорта</a></p>
+            {% endif %}
+          </div>
+          <div>
+            <h3>{% if card.best_match.is_same_issue %}Статья в базе{% elif card.best_match.is_different_issue %}Похожая статья в базе{% else %}Похожая запись в базе{% endif %}</h3>
+            <p><strong>{{ card.best_match.existing_label }}</strong></p>
+            {% if card.best_match.is_different_issue %}
+              <p class="muted">
+                В базе уже есть статья с тем же названием, но она связана с другим выпуском:
+                <strong>{{ card.best_match.existing_issue_editor_label }}</strong>.
+              </p>
+              <p class="muted">
+                Текущая строка описывает публикацию в выпуске:
+                <strong>{{ card.best_match.import_issue_editor_label }}</strong>.
+              </p>
+              <p class="muted">Если это отдельная публикация, создайте новую статью в выпуске из текущей строки.</p>
+              <p class="muted">Совпадение по названию и автору: {{ card.best_match.score_percent }}%</p>
+            {% elif card.best_match.is_same_issue %}
+              <p><span class="status-badge ok">Статья уже есть в этом выпуске</span></p>
+              <ul class="compact-list">
+                <li>Название совпадает.</li>
+                <li>Автор совпадает.</li>
+                <li>Журнал и выпуск совпадают: {{ card.best_match.existing_issue_editor_label }}.</li>
+              </ul>
+              <p class="muted">Техническая оценка совпадения: {{ card.best_match.score_percent }}%</p>
+            {% elif card.best_match.has_issue_context %}
+              <p class="muted">Совпадение: {{ card.best_match.score_percent }}%</p>
+              <div class="muted">
+                {% if card.best_match.import_issue_label %}
+                  <div>В этой строке: {{ card.best_match.import_issue_editor_label }}</div>
+                {% endif %}
+                {% if card.best_match.existing_issue_label %}
+                  <div>Сейчас в базе связана с: {{ card.best_match.existing_issue_editor_label }}</div>
+                {% endif %}
+                {% if card.best_match.same_issue == False %}
+                  <div><strong>Проверьте контейнер:</strong> похожая запись находится в другом выпуске.</div>
+                {% endif %}
+              </div>
+            {% else %}
+              <p class="muted">Совпадение: {{ card.best_match.score_percent }}%</p>
+            {% endif %}
+            {% if card.best_match.admin_url %}
+              <p><a href="{{ card.best_match.admin_url }}">Открыть запись в базе</a></p>
+            {% endif %}
+          </div>
+        </div>
+        {% if is_applied %}
+          <p class="muted">Импорт уже применён. Решения нельзя менять.</p>
+        {% else %}
+          <h3>Что сделать?</h3>
+          <div class="actions">
+            {% if card.best_match.is_different_issue %}
+              <form method="post" action="{% url 'sources:import_entity_decision' batch.pk card.entity.pk %}" class="inline-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                <span>{{ card.create_description }}</span>
+                <button type="submit" name="decision_type" value="create">{{ card.create_label }}</button>
+              </form>
+              <form method="post" action="{% url 'sources:import_entity_decision' batch.pk card.entity.pk %}" class="inline-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                <input type="hidden" name="decision_type" value="link_existing">
+                <input type="hidden" name="target_type" value="{{ card.best_match.existing_type }}">
+                <input type="hidden" name="target_id" value="{{ card.best_match.existing_id }}">
+                <span>{{ card.link_description }} Найденная статья: «{{ card.found_article_label }}».</span>
+                <button type="submit">{{ card.link_label }}</button>
+              </form>
+            {% else %}
+              <form method="post" action="{% url 'sources:import_entity_decision' batch.pk card.entity.pk %}" class="inline-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                <input type="hidden" name="decision_type" value="link_existing">
+                <input type="hidden" name="target_type" value="{{ card.best_match.existing_type }}">
+                <input type="hidden" name="target_id" value="{{ card.best_match.existing_id }}">
+                <button type="submit">{{ card.link_label }}</button>
+              </form>
+              <form method="post" action="{% url 'sources:import_entity_decision' batch.pk card.entity.pk %}" class="inline-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                <button type="submit" name="decision_type" value="create">{{ card.create_label }}</button>
+              </form>
+            {% endif %}
+            <form method="post" action="{% url 'sources:import_entity_decision' batch.pk card.entity.pk %}" class="inline-form">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+              <button type="submit" name="decision_type" value="postpone">{{ card.postpone_label }}</button>
+              <span class="muted">Строка останется в импорте и будет блокировать применение, пока решение не принято.</span>
+            </form>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
+
+<section class="panel">
+  <details>
+    <summary>Если статья попала не в тот выпуск или сборник</summary>
+    <p class="muted">Эти действия нужны только для исправления неверной группировки. Связи авторов при переносе сохранятся.</p>
+    {% if article_entries %}
+      <table>
+        <thead>
+          <tr>
+            <th>Статья</th>
+            <th>Исходная строка</th>
+            <th>Изменить группу</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in article_entries %}
+            <tr>
+              <td><strong>{{ entry.entity.label }}</strong></td>
+              <td>
+                {% if entry.item %}
+                  {{ entry.item.raw_text }}
+                  <div><a href="{% url 'sources:import_item_detail' batch.pk entry.item.pk %}">Открыть строку</a></div>
+                {% else %}
+                  <span class="muted">Исходная строка не найдена.</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if is_applied %}
+                  <p class="muted">Импорт уже применён. Перенос статей недоступен.</p>
+                {% else %}
+                  <form method="post" action="{% url 'sources:import_group_article_action' batch.pk group.pk entry.entity.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="split">
+                    <button type="submit">Вынести в новую группу</button>
+                    <div class="muted">Будет создана новая группа того же типа, и в неё перейдёт только эта статья.</div>
+                  </form>
+                  <form method="post" action="{% url 'sources:import_group_article_action' batch.pk group.pk entry.entity.pk %}" class="inline-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="move">
+                    <label>
+                      Перенести в другую группу
+                      <select name="target_group_id" {% if not compatible_groups %}disabled{% endif %}>
+                        {% for target_group in compatible_groups %}
+                          <option value="{{ target_group.pk }}">{{ target_group.label }}</option>
+                        {% endfor %}
+                      </select>
+                    </label>
+                    <button type="submit" {% if not compatible_groups %}disabled{% endif %}>Перенести</button>
+                    {% if compatible_groups %}
+                      <div class="muted">Связь с текущим контейнером будет заменена на выбранную группу.</div>
+                    {% else %}
+                      <div class="muted">Других групп такого типа в этом импорте пока нет.</div>
+                    {% endif %}
+                  </form>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">В группе больше нет статей. Проверьте, нужна ли эта группа в плане импорта.</p>
+    {% endif %}
+  </details>
+</section>
+
+<section class="panel">
+  <details>
+    <summary>Технические сущности импорта</summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Что найдено</th>
+          <th>Тип</th>
+          <th>Статус</th>
+          <th>Решение</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entity in entities %}
+          <tr>
+            <td>
+              <strong>{{ entity.label }}</strong>
+              {% if entity.matched_existing_id %}
+                <span class="muted">Связано с {{ entity.matched_existing_label }}</span>
+              {% endif %}
+            </td>
+            <td>{{ entity.entity_type_label }}</td>
+            <td>{{ entity.status_label }}</td>
+            <td>
+              {% if is_applied %}
+                <span class="muted">Импорт уже применён. Решения нельзя менять.</span>
+              {% else %}
+                <form method="post" action="{% url 'sources:import_entity_decision' batch.pk entity.pk %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                  <button type="submit" name="decision_type" value="create">Создать новую запись</button>
+                </form>
+                {% for match in entity.matches.all %}
+                  <form method="post" action="{% url 'sources:import_entity_decision' batch.pk entity.pk %}" class="inline-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{% url 'sources:import_group_detail' batch.pk group.pk %}">
+                    <input type="hidden" name="decision_type" value="link_existing">
+                    <input type="hidden" name="target_type" value="{{ match.existing_type }}">
+                    <input type="hidden" name="target_id" value="{{ match.existing_id }}">
+                    <button type="submit">Связать с существующей записью</button>
+                  </form>
+                {% empty %}
+                  <span class="muted">Похожих записей нет.</span>
+                {% endfor %}
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4">Связанные сущности не найдены.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </details>
+</section>
+
+<section class="panel">
+  <h2>Связанные исходные записи</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Тип</th>
+        <th>Исходная строка</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td>{{ item.detected_type_label }}</td>
+          <td>{{ item.raw_text }}</td>
+          <td><a href="{% url 'sources:import_item_detail' batch.pk item.pk %}">Открыть</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="3">Записи источника не найдены.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

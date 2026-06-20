@@ -1,0 +1,43 @@
+{
+  "history": [
+    {
+      "backup_path": "data/backups/editor.before-parser-apply-changed_and_new.20260606-140335.sqlite",
+      "created_at": "2026-06-06T14:03:35.711501+00:00",
+      "mode": "changed_and_new",
+      "note": "Заполнены пустые raw-записи источника: 2. Уже были внесены ранее: 0. Пропущено без изменений: 0. Неподдержанных полей: 0.",
+      "result": {
+        "already_applied": 0,
+        "already_applied_candidate_ids": [],
+        "applied": 2,
+        "applied_candidate_ids": [
+          "candidate-c8b1b7253f4b5ae5",
+          "candidate-3dafc6a906766270"
+        ],
+        "note": "Заполнены пустые raw-записи источника: 2. Уже были внесены ранее: 0. Пропущено без изменений: 0. Неподдержанных полей: 0.",
+        "skipped": 0,
+        "unsupported": 0
+      },
+      "status": "applied"
+    }
+  ],
+  "latest": {
+    "backup_path": "data/backups/editor.before-parser-apply-changed_and_new.20260606-140335.sqlite",
+    "created_at": "2026-06-06T14:03:35.711501+00:00",
+    "mode": "changed_and_new",
+    "note": "Заполнены пустые raw-записи источника: 2. Уже были внесены ранее: 0. Пропущено без изменений: 0. Неподдержанных полей: 0.",
+    "result": {
+      "already_applied": 0,
+      "already_applied_candidate_ids": [],
+      "applied": 2,
+      "applied_candidate_ids": [
+        "candidate-c8b1b7253f4b5ae5",
+        "candidate-3dafc6a906766270"
+      ],
+      "note": "Заполнены пустые raw-записи источника: 2. Уже были внесены ранее: 0. Пропущено без изменений: 0. Неподдержанных полей: 0.",
+      "skipped": 0,
+      "unsupported": 0
+    },
+    "status": "applied"
+  },
+  "run_id": "2026-06-06-002"
+}

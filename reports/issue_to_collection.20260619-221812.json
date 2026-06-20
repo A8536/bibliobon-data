@@ -1,0 +1,34 @@
+{
+  "operation": "issue_to_collection",
+  "source_issue_id": "journal-issue-010501",
+  "source_issue_label": "Приложение к № 21 журнала «Дополнение к каталогу коллекционера», 2000",
+  "collection_work_id": "work-005742",
+  "collection_label": "Приложение к № 21 журнала «Дополнение к каталогу коллекционера». — 2000",
+  "created_collection": true,
+  "collection_issue_id": "issue-000002",
+  "created_collection_issue": true,
+  "moved_articles": [
+    {
+      "article_id": "article-030193",
+      "work_id": "work-046205"
+    },
+    {
+      "article_id": "article-030194",
+      "work_id": "work-046206"
+    }
+  ],
+  "moved_placements": [
+    {
+      "placement_id": "article-030193",
+      "from_issue_id": "journal-issue-010501",
+      "to_issue_id": "issue-000002"
+    },
+    {
+      "placement_id": "article-030194",
+      "from_issue_id": "journal-issue-010501",
+      "to_issue_id": "issue-000002"
+    }
+  ],
+  "old_issue_cleanup_candidate": true,
+  "backup_path": "/Users/oleg/Projects/data/bibliobon-data/data/backups/editor.before-issue-to-collection.20260619-221811.sqlite"
+}

@@ -1,0 +1,72 @@
+{% extends "sources/base.html" %}
+
+{% block title %}{{ journal.title }} · Bibliobon{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'sources:periodical_list' %}">Назад</a></p>
+<div class="detail-title">
+  <div>
+    <h1>Журнал: {{ journal.title }}</h1>
+    {% if journal.place or journal.description %}<p class="muted">{{ journal.place }} {{ journal.description }}</p>{% endif %}
+  </div>
+  <div class="actions">
+    <a href="{% url 'admin:sources_journal_change' journal.pk %}">Редактировать журнал</a>
+    <a href="{% url 'sources:work_list' %}?journal={{ journal.pk }}">Все статьи журнала</a>
+  </div>
+</div>
+<div class="actions">
+  {% if article_count == 1 %}
+    <form method="post" action="{% url 'sources:convert_single_journal_article' journal.pk %}">
+      {% csrf_token %}
+      <button type="submit">Преобразовать единственную статью в источник</button>
+    </form>
+  {% endif %}
+</div>
+
+<section class="panel">
+  <h2>Выпуски</h2>
+  <table>
+    <thead><tr><th>Выпуск</th><th>Год</th><th>Номер</th><th>Том</th><th>Статей</th><th>Предупреждения</th><th></th></tr></thead>
+    <tbody>
+      {% for issue in issues %}
+        <tr>
+          <td>
+            <strong><a href="{% url 'sources:journal_issue_detail' journal.pk issue.pk %}">{{ journal.title }}{% if issue.year %}, {{ issue.year }}{% endif %}{% if issue.issue_number %}, № {{ issue.issue_number }}{% endif %}</a></strong>
+            <small class="muted mono">{{ issue.journal_issue_id }}</small>
+          </td>
+          <td>{{ issue.year|default:"" }}</td>
+          <td>{{ issue.issue_number }}</td>
+          <td>{{ issue.volume }}</td>
+          <td>{{ issue.article_count }}</td>
+          <td>
+            {% if issue.article_count == 1 and not issue.issue_number and not issue.volume %}
+              <span class="status-badge warn">Похоже на сборник</span>
+            {% else %}
+              <span class="muted">-</span>
+            {% endif %}
+          </td>
+          <td class="row-actions">
+            <a href="{% url 'sources:journal_issue_detail' journal.pk issue.pk %}">Открыть</a>
+            <a href="{% url 'admin:sources_journalissue_change' issue.pk %}">Редактировать</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="7">Выпуски не найдены.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Последние статьи журнала: {{ article_count }}</h2>
+  <ol>
+    {% for article in articles %}
+      <li>
+        {{ article.work.title }}
+        <span class="muted">{% if article.pages_raw or article.pages %}С. {{ article.pages_raw|default:article.pages }}{% endif %}</span>
+        <a href="{% url 'sources:work_relations' article.work.pk %}">Связи</a>
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

@@ -1,0 +1,903 @@
+kind	severity	code	surface	owner	field	full_name	status	note	message
+inventory			model	Language	language_id	Language.language_id	present	CharField	
+inventory			model	Language	source_django_id	Language.source_django_id	present	PositiveIntegerField	
+inventory			model	Language	code	Language.code	present	CharField	
+inventory			model	Language	title	Language.title	present	CharField	
+inventory			model	Language	description	Language.description	present	TextField	
+inventory			model	Language	sort_order	Language.sort_order	present	PositiveIntegerField	
+inventory			model	Section	section_id	Section.section_id	present	CharField	
+inventory			model	Section	source_django_id	Section.source_django_id	present	PositiveIntegerField	
+inventory			model	Section	source_code	Section.source_code	present	CharField	
+inventory			model	Section	parent	Section.parent	present	ForeignKey	
+inventory			model	Section	title	Section.title	present	CharField	
+inventory			model	Section	description	Section.description	present	TextField	
+inventory			model	Section	note	Section.note	present	TextField	
+inventory			model	Section	sort_order	Section.sort_order	present	PositiveIntegerField	
+inventory			model	Tag	tag_id	Tag.tag_id	present	CharField	
+inventory			model	Tag	source_django_id	Tag.source_django_id	present	PositiveIntegerField	
+inventory			model	Tag	title	Tag.title	present	CharField	
+inventory			model	Tag	tag_type	Tag.tag_type	present	CharField	
+inventory			model	Tag	parent	Tag.parent	present	ForeignKey	
+inventory			model	Tag	description	Tag.description	present	TextField	
+inventory			model	Tag	sort_order	Tag.sort_order	present	PositiveIntegerField	
+inventory			model	Author	author_id	Author.author_id	present	CharField	
+inventory			model	Author	source_django_id	Author.source_django_id	present	PositiveIntegerField	
+inventory			model	Author	display_name	Author.display_name	present	CharField	
+inventory			model	Author	heading_name	Author.heading_name	present	CharField	
+inventory			model	Author	sort_name	Author.sort_name	present	CharField	
+inventory			model	Author	aliases	Author.aliases	present	TextField	
+inventory			model	Author	person_dates	Author.person_dates	present	CharField	
+inventory			model	Author	authority_note	Author.authority_note	present	TextField	
+inventory			model	Author	note	Author.note	present	TextField	
+inventory			model	Journal	journal_id	Journal.journal_id	present	CharField	
+inventory			model	Journal	source_django_id	Journal.source_django_id	present	PositiveIntegerField	
+inventory			model	Journal	title	Journal.title	present	CharField	
+inventory			model	Journal	parallel_title	Journal.parallel_title	present	CharField	
+inventory			model	Journal	title_remainder	Journal.title_remainder	present	TextField	
+inventory			model	Journal	responsibility_statement	Journal.responsibility_statement	present	TextField	
+inventory			model	Journal	place	Journal.place	present	CharField	
+inventory			model	Journal	publisher	Journal.publisher	present	CharField	
+inventory			model	Journal	issn	Journal.issn	present	CharField	
+inventory			model	Journal	periodicity	Journal.periodicity	present	CharField	
+inventory			model	Journal	numbering_start	Journal.numbering_start	present	CharField	
+inventory			model	Journal	numbering_end	Journal.numbering_end	present	CharField	
+inventory			model	Journal	start_year	Journal.start_year	present	PositiveSmallIntegerField	
+inventory			model	Journal	end_year	Journal.end_year	present	PositiveSmallIntegerField	
+inventory			model	Journal	title_history_note	Journal.title_history_note	present	TextField	
+inventory			model	Journal	description	Journal.description	present	TextField	
+inventory			model	JournalIssue	journal_issue_id	JournalIssue.journal_issue_id	present	CharField	
+inventory			model	JournalIssue	source_django_id	JournalIssue.source_django_id	present	PositiveIntegerField	
+inventory			model	JournalIssue	journal	JournalIssue.journal	present	ForeignKey	
+inventory			model	JournalIssue	title	JournalIssue.title	present	TextField	
+inventory			model	JournalIssue	parallel_title	JournalIssue.parallel_title	present	CharField	
+inventory			model	JournalIssue	title_remainder	JournalIssue.title_remainder	present	TextField	
+inventory			model	JournalIssue	responsibility_statement	JournalIssue.responsibility_statement	present	TextField	
+inventory			model	JournalIssue	year	JournalIssue.year	present	PositiveSmallIntegerField	
+inventory			model	JournalIssue	publication_date	JournalIssue.publication_date	present	CharField	
+inventory			model	JournalIssue	issue_number	JournalIssue.issue_number	present	CharField	
+inventory			model	JournalIssue	volume	JournalIssue.volume	present	CharField	
+inventory			model	JournalIssue	part_number	JournalIssue.part_number	present	CharField	
+inventory			model	JournalIssue	gross_number	JournalIssue.gross_number	present	CharField	
+inventory			model	JournalIssue	date_text	JournalIssue.date_text	present	CharField	
+inventory			model	JournalIssue	chronology	JournalIssue.chronology	present	CharField	
+inventory			model	JournalIssue	enumeration	JournalIssue.enumeration	present	CharField	
+inventory			model	JournalIssue	publication_place	JournalIssue.publication_place	present	CharField	
+inventory			model	JournalIssue	publisher	JournalIssue.publisher	present	CharField	
+inventory			model	JournalIssue	publication_details	JournalIssue.publication_details	present	TextField	
+inventory			model	JournalIssue	issn	JournalIssue.issn	present	CharField	
+inventory			model	JournalIssue	isbn	JournalIssue.isbn	present	CharField	
+inventory			model	JournalIssue	notes	JournalIssue.notes	present	TextField	
+inventory			model	Work	work_id	Work.work_id	present	CharField	
+inventory			model	Work	source_django_id	Work.source_django_id	present	PositiveIntegerField	
+inventory			model	Work	source_sequence	Work.source_sequence	present	PositiveIntegerField	
+inventory			model	Work	source_number	Work.source_number	present	PositiveIntegerField	
+inventory			model	Work	source_page_marker	Work.source_page_marker	present	CharField	
+inventory			model	Work	source_section	Work.source_section	present	ForeignKey	
+inventory			model	Work	language	Work.language	present	ForeignKey	
+inventory			model	Work	work_type	Work.work_type	present	CharField	
+inventory			model	Work	is_container	Work.is_container	present	BooleanField	
+inventory			model	Work	raw_author_string	Work.raw_author_string	present	TextField	
+inventory			model	Work	title	Work.title	present	TextField	
+inventory			model	Work	parallel_title	Work.parallel_title	present	CharField	
+inventory			model	Work	subtitle	Work.subtitle	present	TextField	
+inventory			model	Work	title_remainder	Work.title_remainder	present	TextField	
+inventory			model	Work	volume_number	Work.volume_number	present	CharField	
+inventory			model	Work	part_number	Work.part_number	present	CharField	
+inventory			model	Work	part_title	Work.part_title	present	TextField	
+inventory			model	Work	responsibility_note	Work.responsibility_note	present	TextField	
+inventory			model	Work	responsibility_statement	Work.responsibility_statement	present	TextField	
+inventory			model	Work	host_title	Work.host_title	present	TextField	
+inventory			model	Work	edition_statement	Work.edition_statement	present	CharField	
+inventory			model	Work	additional_edition_statement	Work.additional_edition_statement	present	CharField	
+inventory			model	Work	publication_place	Work.publication_place	present	CharField	
+inventory			model	Work	publisher	Work.publisher	present	CharField	
+inventory			model	Work	publication_date	Work.publication_date	present	CharField	
+inventory			model	Work	manufacture_place	Work.manufacture_place	present	CharField	
+inventory			model	Work	manufacturer	Work.manufacturer	present	CharField	
+inventory			model	Work	manufacture_date	Work.manufacture_date	present	CharField	
+inventory			model	Work	copyright_date	Work.copyright_date	present	CharField	
+inventory			model	Work	physical_description	Work.physical_description	present	TextField	
+inventory			model	Work	extent	Work.extent	present	CharField	
+inventory			model	Work	illustrations	Work.illustrations	present	CharField	
+inventory			model	Work	dimensions	Work.dimensions	present	CharField	
+inventory			model	Work	accompanying_material	Work.accompanying_material	present	CharField	
+inventory			model	Work	circulation	Work.circulation	present	CharField	
+inventory			model	Work	article_pages	Work.article_pages	present	CharField	
+inventory			model	Work	page_start	Work.page_start	present	PositiveIntegerField	
+inventory			model	Work	page_end	Work.page_end	present	PositiveIntegerField	
+inventory			model	Work	publication_details	Work.publication_details	present	TextField	
+inventory			model	Work	series_statement	Work.series_statement	present	TextField	
+inventory			model	Work	notes	Work.notes	present	TextField	
+inventory			model	Work	bibliography_note	Work.bibliography_note	present	TextField	
+inventory			model	Work	index_note	Work.index_note	present	TextField	
+inventory			model	Work	contents_note	Work.contents_note	present	TextField	
+inventory			model	Work	isbn	Work.isbn	present	CharField	
+inventory			model	Work	issn	Work.issn	present	CharField	
+inventory			model	Work	doi	Work.doi	present	CharField	
+inventory			model	Work	url	Work.url	present	URLField	
+inventory			model	Work	access_date	Work.access_date	present	DateField	
+inventory			model	Work	content_type	Work.content_type	present	CharField	
+inventory			model	Work	media_type	Work.media_type	present	CharField	
+inventory			model	Work	carrier_type	Work.carrier_type	present	CharField	
+inventory			model	Work	description_status	Work.description_status	present	CharField	
+inventory			model	Work	public_review	Work.public_review	present	TextField	
+inventory			model	Work	inferred_year	Work.inferred_year	present	PositiveSmallIntegerField	
+inventory			model	Work	authors	Work.authors	present	ManyToManyField	
+inventory			model	Work	tags	Work.tags	present	ManyToManyField	
+inventory			model	Book	book_id	Book.book_id	present	CharField	
+inventory			model	Book	source_django_id	Book.source_django_id	present	PositiveIntegerField	
+inventory			model	Book	work	Book.work	present	OneToOneField	
+inventory			model	Book	edition	Book.edition	present	CharField	
+inventory			model	Book	page_count	Book.page_count	present	CharField	
+inventory			model	Book	isbn	Book.isbn	present	CharField	
+inventory			model	Collection	collection_id	Collection.collection_id	present	CharField	
+inventory			model	Collection	source_django_id	Collection.source_django_id	present	PositiveIntegerField	
+inventory			model	Collection	parent_work	Collection.parent_work	present	OneToOneField	
+inventory			model	Collection	title	Collection.title	present	CharField	
+inventory			model	Collection	publication_details	Collection.publication_details	present	TextField	
+inventory			model	Collection	year	Collection.year	present	PositiveSmallIntegerField	
+inventory			model	Collection	place	Collection.place	present	CharField	
+inventory			model	Collection	publisher	Collection.publisher	present	CharField	
+inventory			model	Collection	source_text	Collection.source_text	present	TextField	
+inventory			model	Article	article_id	Article.article_id	present	CharField	
+inventory			model	Article	source_django_id	Article.source_django_id	present	PositiveIntegerField	
+inventory			model	Article	work	Article.work	present	OneToOneField	
+inventory			model	Article	container_work	Article.container_work	present	ForeignKey	
+inventory			model	Article	collection	Article.collection	present	ForeignKey	
+inventory			model	Article	journal_issue	Article.journal_issue	present	ForeignKey	
+inventory			model	Article	pages	Article.pages	present	CharField	
+inventory			model	Article	pages_raw	Article.pages_raw	present	CharField	
+inventory			model	Article	page_start	Article.page_start	present	PositiveIntegerField	
+inventory			model	Article	page_end	Article.page_end	present	PositiveIntegerField	
+inventory			model	Article	location_note	Article.location_note	present	CharField	
+inventory			model	Article	placement_note	Article.placement_note	present	TextField	
+inventory			model	WorkGroup	group_id	WorkGroup.group_id	present	CharField	
+inventory			model	WorkGroup	source_django_id	WorkGroup.source_django_id	present	PositiveIntegerField	
+inventory			model	WorkGroup	title	WorkGroup.title	present	CharField	
+inventory			model	WorkGroup	group_type	WorkGroup.group_type	present	CharField	
+inventory			model	WorkGroup	note	WorkGroup.note	present	TextField	
+inventory			model	WorkGroupItem	id	WorkGroupItem.id	present	BigAutoField	
+inventory			model	WorkGroupItem	group	WorkGroupItem.group	present	ForeignKey	
+inventory			model	WorkGroupItem	work	WorkGroupItem.work	present	ForeignKey	
+inventory			model	WorkGroupItem	sort_order	WorkGroupItem.sort_order	present	PositiveIntegerField	
+inventory			model	WorkAuthor	id	WorkAuthor.id	present	BigAutoField	
+inventory			model	WorkAuthor	work	WorkAuthor.work	present	ForeignKey	
+inventory			model	WorkAuthor	author	WorkAuthor.author	present	ForeignKey	
+inventory			model	WorkAuthor	sort_order	WorkAuthor.sort_order	present	PositiveIntegerField	
+inventory			model	WorkAuthor	role	WorkAuthor.role	present	CharField	
+inventory			model	WorkAuthor	source_text	WorkAuthor.source_text	present	CharField	
+inventory			model	WorkAuthor	name_as_printed	WorkAuthor.name_as_printed	present	CharField	
+inventory			model	WorkAuthor	include_in_responsibility	WorkAuthor.include_in_responsibility	present	BooleanField	
+inventory			model	WorkAuthor	is_primary_heading	WorkAuthor.is_primary_heading	present	BooleanField	
+inventory			model	WorkTag	id	WorkTag.id	present	BigAutoField	
+inventory			model	WorkTag	work	WorkTag.work	present	ForeignKey	
+inventory			model	WorkTag	tag	WorkTag.tag	present	ForeignKey	
+inventory			model	WorkTag	sort_order	WorkTag.sort_order	present	PositiveIntegerField	
+inventory			model	WorkTag	source_text	WorkTag.source_text	present	CharField	
+inventory			model	Source	source_id	Source.source_id	present	CharField	
+inventory			model	Source	source_django_id	Source.source_django_id	present	PositiveIntegerField	
+inventory			model	Source	legacy_work	Source.legacy_work	present	OneToOneField	
+inventory			model	Source	source_sequence	Source.source_sequence	present	PositiveIntegerField	
+inventory			model	Source	source_number	Source.source_number	present	PositiveIntegerField	
+inventory			model	Source	source_page_marker	Source.source_page_marker	present	CharField	
+inventory			model	Source	source_type	Source.source_type	present	CharField	
+inventory			model	Source	section	Source.section	present	ForeignKey	
+inventory			model	Source	language	Source.language	present	ForeignKey	
+inventory			model	Source	raw_author_string	Source.raw_author_string	present	TextField	
+inventory			model	Source	title	Source.title	present	TextField	
+inventory			model	Source	parallel_title	Source.parallel_title	present	CharField	
+inventory			model	Source	subtitle	Source.subtitle	present	TextField	
+inventory			model	Source	title_remainder	Source.title_remainder	present	TextField	
+inventory			model	Source	volume_number	Source.volume_number	present	CharField	
+inventory			model	Source	part_number	Source.part_number	present	CharField	
+inventory			model	Source	part_title	Source.part_title	present	TextField	
+inventory			model	Source	responsibility_statement	Source.responsibility_statement	present	TextField	
+inventory			model	Source	edition_statement	Source.edition_statement	present	CharField	
+inventory			model	Source	additional_edition_statement	Source.additional_edition_statement	present	CharField	
+inventory			model	Source	publication_place	Source.publication_place	present	CharField	
+inventory			model	Source	publisher	Source.publisher	present	CharField	
+inventory			model	Source	publication_date	Source.publication_date	present	CharField	
+inventory			model	Source	inferred_year	Source.inferred_year	present	PositiveSmallIntegerField	
+inventory			model	Source	manufacture_place	Source.manufacture_place	present	CharField	
+inventory			model	Source	manufacturer	Source.manufacturer	present	CharField	
+inventory			model	Source	manufacture_date	Source.manufacture_date	present	CharField	
+inventory			model	Source	copyright_date	Source.copyright_date	present	CharField	
+inventory			model	Source	extent	Source.extent	present	CharField	
+inventory			model	Source	illustrations	Source.illustrations	present	CharField	
+inventory			model	Source	dimensions	Source.dimensions	present	CharField	
+inventory			model	Source	accompanying_material	Source.accompanying_material	present	CharField	
+inventory			model	Source	circulation	Source.circulation	present	CharField	
+inventory			model	Source	series_statement	Source.series_statement	present	TextField	
+inventory			model	Source	notes	Source.notes	present	TextField	
+inventory			model	Source	bibliography_note	Source.bibliography_note	present	TextField	
+inventory			model	Source	index_note	Source.index_note	present	TextField	
+inventory			model	Source	contents_note	Source.contents_note	present	TextField	
+inventory			model	Source	isbn	Source.isbn	present	CharField	
+inventory			model	Source	issn	Source.issn	present	CharField	
+inventory			model	Source	doi	Source.doi	present	CharField	
+inventory			model	Source	url	Source.url	present	URLField	
+inventory			model	Source	access_date	Source.access_date	present	DateField	
+inventory			model	Source	content_type	Source.content_type	present	CharField	
+inventory			model	Source	media_type	Source.media_type	present	CharField	
+inventory			model	Source	carrier_type	Source.carrier_type	present	CharField	
+inventory			model	Source	raw_publication_details	Source.raw_publication_details	present	TextField	
+inventory			model	Source	raw_host_title	Source.raw_host_title	present	TextField	
+inventory			model	Source	public_review	Source.public_review	present	TextField	
+inventory			model	Source	data_source	Source.data_source	present	CharField	
+inventory			model	Source	first_seen_at	Source.first_seen_at	present	DateTimeField	
+inventory			model	Source	updated_at	Source.updated_at	present	DateTimeField	
+inventory			model	Source	description_status	Source.description_status	present	CharField	
+inventory			model	SourceAuthor	id	SourceAuthor.id	present	BigAutoField	
+inventory			model	SourceAuthor	source	SourceAuthor.source	present	ForeignKey	
+inventory			model	SourceAuthor	author	SourceAuthor.author	present	ForeignKey	
+inventory			model	SourceAuthor	sort_order	SourceAuthor.sort_order	present	PositiveIntegerField	
+inventory			model	SourceAuthor	role	SourceAuthor.role	present	CharField	
+inventory			model	SourceAuthor	source_text	SourceAuthor.source_text	present	CharField	
+inventory			model	SourceAuthor	name_as_printed	SourceAuthor.name_as_printed	present	CharField	
+inventory			model	SourceAuthor	include_in_responsibility	SourceAuthor.include_in_responsibility	present	BooleanField	
+inventory			model	SourceAuthor	is_primary_heading	SourceAuthor.is_primary_heading	present	BooleanField	
+inventory			model	SourceAuthor	created_at	SourceAuthor.created_at	present	DateTimeField	
+inventory			model	SourceAuthor	updated_at	SourceAuthor.updated_at	present	DateTimeField	
+inventory			model	SourceTag	id	SourceTag.id	present	BigAutoField	
+inventory			model	SourceTag	source	SourceTag.source	present	ForeignKey	
+inventory			model	SourceTag	tag	SourceTag.tag	present	ForeignKey	
+inventory			model	SourceTag	sort_order	SourceTag.sort_order	present	PositiveIntegerField	
+inventory			model	SourceTag	source_text	SourceTag.source_text	present	CharField	
+inventory			model	SourceTag	created_at	SourceTag.created_at	present	DateTimeField	
+inventory			model	SourceTag	updated_at	SourceTag.updated_at	present	DateTimeField	
+inventory			model	Periodical	periodical_id	Periodical.periodical_id	present	CharField	
+inventory			model	Periodical	source_django_id	Periodical.source_django_id	present	PositiveIntegerField	
+inventory			model	Periodical	legacy_journal	Periodical.legacy_journal	present	OneToOneField	
+inventory			model	Periodical	title	Periodical.title	present	CharField	
+inventory			model	Periodical	parallel_title	Periodical.parallel_title	present	CharField	
+inventory			model	Periodical	title_remainder	Periodical.title_remainder	present	TextField	
+inventory			model	Periodical	responsibility_statement	Periodical.responsibility_statement	present	TextField	
+inventory			model	Periodical	place	Periodical.place	present	CharField	
+inventory			model	Periodical	publisher	Periodical.publisher	present	CharField	
+inventory			model	Periodical	issn	Periodical.issn	present	CharField	
+inventory			model	Periodical	periodicity	Periodical.periodicity	present	CharField	
+inventory			model	Periodical	numbering_start	Periodical.numbering_start	present	CharField	
+inventory			model	Periodical	numbering_end	Periodical.numbering_end	present	CharField	
+inventory			model	Periodical	start_year	Periodical.start_year	present	PositiveSmallIntegerField	
+inventory			model	Periodical	end_year	Periodical.end_year	present	PositiveSmallIntegerField	
+inventory			model	Periodical	title_history_note	Periodical.title_history_note	present	TextField	
+inventory			model	Periodical	description	Periodical.description	present	TextField	
+inventory			model	Issue	issue_id	Issue.issue_id	present	CharField	
+inventory			model	Issue	source_django_id	Issue.source_django_id	present	PositiveIntegerField	
+inventory			model	Issue	legacy_journal_issue	Issue.legacy_journal_issue	present	OneToOneField	
+inventory			model	Issue	legacy_container_work	Issue.legacy_container_work	present	OneToOneField	
+inventory			model	Issue	issue_type	Issue.issue_type	present	CharField	
+inventory			model	Issue	periodical	Issue.periodical	present	ForeignKey	
+inventory			model	Issue	source	Issue.source	present	ForeignKey	
+inventory			model	Issue	title	Issue.title	present	TextField	
+inventory			model	Issue	parallel_title	Issue.parallel_title	present	CharField	
+inventory			model	Issue	title_remainder	Issue.title_remainder	present	TextField	
+inventory			model	Issue	responsibility_statement	Issue.responsibility_statement	present	TextField	
+inventory			model	Issue	year	Issue.year	present	PositiveSmallIntegerField	
+inventory			model	Issue	publication_date	Issue.publication_date	present	CharField	
+inventory			model	Issue	issue_number	Issue.issue_number	present	CharField	
+inventory			model	Issue	volume	Issue.volume	present	CharField	
+inventory			model	Issue	part_number	Issue.part_number	present	CharField	
+inventory			model	Issue	gross_number	Issue.gross_number	present	CharField	
+inventory			model	Issue	chronology	Issue.chronology	present	CharField	
+inventory			model	Issue	enumeration	Issue.enumeration	present	CharField	
+inventory			model	Issue	publication_place	Issue.publication_place	present	CharField	
+inventory			model	Issue	publisher	Issue.publisher	present	CharField	
+inventory			model	Issue	publication_details	Issue.publication_details	present	TextField	
+inventory			model	Issue	issn	Issue.issn	present	CharField	
+inventory			model	Issue	isbn	Issue.isbn	present	CharField	
+inventory			model	Issue	notes	Issue.notes	present	TextField	
+inventory			model	ArticlePlacement	placement_id	ArticlePlacement.placement_id	present	CharField	
+inventory			model	ArticlePlacement	source_django_id	ArticlePlacement.source_django_id	present	PositiveIntegerField	
+inventory			model	ArticlePlacement	legacy_article	ArticlePlacement.legacy_article	present	OneToOneField	
+inventory			model	ArticlePlacement	source	ArticlePlacement.source	present	OneToOneField	
+inventory			model	ArticlePlacement	issue	ArticlePlacement.issue	present	ForeignKey	
+inventory			model	ArticlePlacement	pages_raw	ArticlePlacement.pages_raw	present	CharField	
+inventory			model	ArticlePlacement	page_start	ArticlePlacement.page_start	present	PositiveIntegerField	
+inventory			model	ArticlePlacement	page_end	ArticlePlacement.page_end	present	PositiveIntegerField	
+inventory			model	ArticlePlacement	location_note	ArticlePlacement.location_note	present	CharField	
+inventory			model	ArticlePlacement	placement_note	ArticlePlacement.placement_note	present	TextField	
+inventory			model	ArticlePlacement	created_at	ArticlePlacement.created_at	present	DateTimeField	
+inventory			model	ArticlePlacement	updated_at	ArticlePlacement.updated_at	present	DateTimeField	
+inventory			model	SourceGroup	group_id	SourceGroup.group_id	present	CharField	
+inventory			model	SourceGroup	source_django_id	SourceGroup.source_django_id	present	PositiveIntegerField	
+inventory			model	SourceGroup	legacy_work_group	SourceGroup.legacy_work_group	present	OneToOneField	
+inventory			model	SourceGroup	title	SourceGroup.title	present	CharField	
+inventory			model	SourceGroup	group_type	SourceGroup.group_type	present	CharField	
+inventory			model	SourceGroup	note	SourceGroup.note	present	TextField	
+inventory			model	SourceGroupItem	id	SourceGroupItem.id	present	BigAutoField	
+inventory			model	SourceGroupItem	group	SourceGroupItem.group	present	ForeignKey	
+inventory			model	SourceGroupItem	source	SourceGroupItem.source	present	ForeignKey	
+inventory			model	SourceGroupItem	sort_order	SourceGroupItem.sort_order	present	PositiveIntegerField	
+inventory			model	SourceGroupItem	created_at	SourceGroupItem.created_at	present	DateTimeField	
+inventory			model	SourceGroupItem	updated_at	SourceGroupItem.updated_at	present	DateTimeField	
+inventory			google_sheet	Languages	language_id	Languages.language_id	present		
+inventory			google_sheet	Languages	code	Languages.code	present		
+inventory			google_sheet	Languages	title	Languages.title	present		
+inventory			google_sheet	Languages	description	Languages.description	present		
+inventory			google_sheet	Languages	sort_order	Languages.sort_order	present		
+inventory			google_sheet	Sections	section_id	Sections.section_id	present		
+inventory			google_sheet	Sections	source_code	Sections.source_code	present		
+inventory			google_sheet	Sections	parent_section_id	Sections.parent_section_id	present		
+inventory			google_sheet	Sections	parent_source_code	Sections.parent_source_code	present		
+inventory			google_sheet	Sections	title	Sections.title	present		
+inventory			google_sheet	Sections	note	Sections.note	present		
+inventory			google_sheet	Sections	description	Sections.description	present		
+inventory			google_sheet	Sections	sort_order	Sections.sort_order	present		
+inventory			google_sheet	Tags	tag_id	Tags.tag_id	present		
+inventory			google_sheet	Tags	title	Tags.title	present		
+inventory			google_sheet	Tags	tag_type	Tags.tag_type	present		
+inventory			google_sheet	Tags	parent_tag_id	Tags.parent_tag_id	present		
+inventory			google_sheet	Tags	parent_title	Tags.parent_title	present		
+inventory			google_sheet	Tags	description	Tags.description	present		
+inventory			google_sheet	Tags	sort_order	Tags.sort_order	present		
+inventory			google_sheet	Works	work_id	Works.work_id	present		
+inventory			google_sheet	Works	source_sequence	Works.source_sequence	present		
+inventory			google_sheet	Works	source_number	Works.source_number	present		
+inventory			google_sheet	Works	work_type	Works.work_type	present		
+inventory			google_sheet	Works	container_index	Works.container_index	present		
+inventory			google_sheet	Works	section_id	Works.section_id	present		
+inventory			google_sheet	Works	section_code	Works.section_code	present		
+inventory			google_sheet	Works	language_id	Works.language_id	present		
+inventory			google_sheet	Works	language_code	Works.language_code	present		
+inventory			google_sheet	Works	raw_author_string	Works.raw_author_string	present		
+inventory			google_sheet	Works	linked_authors	Works.linked_authors	present		
+inventory			google_sheet	Works	title	Works.title	present		
+inventory			google_sheet	Works	parallel_title	Works.parallel_title	present		
+inventory			google_sheet	Works	subtitle	Works.subtitle	present		
+inventory			google_sheet	Works	title_remainder	Works.title_remainder	present		
+inventory			google_sheet	Works	volume_number	Works.volume_number	present		
+inventory			google_sheet	Works	part_number	Works.part_number	present		
+inventory			google_sheet	Works	part_title	Works.part_title	present		
+inventory			google_sheet	Works	responsibility_statement	Works.responsibility_statement	present		
+inventory			google_sheet	Works	edition_statement	Works.edition_statement	present		
+inventory			google_sheet	Works	additional_edition_statement	Works.additional_edition_statement	present		
+inventory			google_sheet	Works	publication_place	Works.publication_place	present		
+inventory			google_sheet	Works	publisher	Works.publisher	present		
+inventory			google_sheet	Works	publication_date	Works.publication_date	present		
+inventory			google_sheet	Works	year	Works.year	present		
+inventory			google_sheet	Works	extent	Works.extent	present		
+inventory			google_sheet	Works	illustrations	Works.illustrations	present		
+inventory			google_sheet	Works	dimensions	Works.dimensions	present		
+inventory			google_sheet	Works	accompanying_material	Works.accompanying_material	present		
+inventory			google_sheet	Works	circulation	Works.circulation	present		
+inventory			google_sheet	Works	physical_description	Works.physical_description	present		
+inventory			google_sheet	Works	article_pages	Works.article_pages	present		
+inventory			google_sheet	Works	page_start	Works.page_start	present		
+inventory			google_sheet	Works	page_end	Works.page_end	present		
+inventory			google_sheet	Works	series_statement	Works.series_statement	present		
+inventory			google_sheet	Works	notes	Works.notes	present		
+inventory			google_sheet	Works	raw_publication_details	Works.raw_publication_details	present		
+inventory			google_sheet	Works	data_source	Works.data_source	present		
+inventory			google_sheet	Works	first_seen_at	Works.first_seen_at	present		
+inventory			google_sheet	Works	updated_at	Works.updated_at	present		
+inventory			google_sheet	Works	description_status	Works.description_status	present		
+inventory			google_sheet	Works	public_review	Works.public_review	present		
+inventory			google_sheet	Works	isbn	Works.isbn	present		
+inventory			google_sheet	Works	issn	Works.issn	present		
+inventory			google_sheet	Works	doi	Works.doi	present		
+inventory			google_sheet	Works	url	Works.url	present		
+inventory			google_sheet	Authors	author_id	Authors.author_id	present		
+inventory			google_sheet	Authors	display_name	Authors.display_name	present		
+inventory			google_sheet	Authors	heading_name	Authors.heading_name	present		
+inventory			google_sheet	Authors	sort_name	Authors.sort_name	present		
+inventory			google_sheet	Authors	aliases	Authors.aliases	present		
+inventory			google_sheet	Authors	person_dates	Authors.person_dates	present		
+inventory			google_sheet	Authors	authority_note	Authors.authority_note	present		
+inventory			google_sheet	Authors	note	Authors.note	present		
+inventory			google_sheet	WorkAuthors	work_id	WorkAuthors.work_id	present		
+inventory			google_sheet	WorkAuthors	work_title	WorkAuthors.work_title	present		
+inventory			google_sheet	WorkAuthors	author_id	WorkAuthors.author_id	present		
+inventory			google_sheet	WorkAuthors	author_display_name	WorkAuthors.author_display_name	present		
+inventory			google_sheet	WorkAuthors	sort_order	WorkAuthors.sort_order	present		
+inventory			google_sheet	WorkAuthors	role	WorkAuthors.role	present		
+inventory			google_sheet	WorkAuthors	source_text	WorkAuthors.source_text	present		
+inventory			google_sheet	WorkAuthors	name_as_printed	WorkAuthors.name_as_printed	present		
+inventory			google_sheet	WorkAuthors	include_in_responsibility	WorkAuthors.include_in_responsibility	present		
+inventory			google_sheet	WorkAuthors	is_primary_heading	WorkAuthors.is_primary_heading	present		
+inventory			google_sheet	WorkTags	work_id	WorkTags.work_id	present		
+inventory			google_sheet	WorkTags	work_title	WorkTags.work_title	present		
+inventory			google_sheet	WorkTags	tag_id	WorkTags.tag_id	present		
+inventory			google_sheet	WorkTags	tag_title	WorkTags.tag_title	present		
+inventory			google_sheet	WorkTags	sort_order	WorkTags.sort_order	present		
+inventory			google_sheet	WorkTags	source_text	WorkTags.source_text	present		
+inventory			google_sheet	Journals	journal_id	Journals.journal_id	present		
+inventory			google_sheet	Journals	title	Journals.title	present		
+inventory			google_sheet	Journals	parallel_title	Journals.parallel_title	present		
+inventory			google_sheet	Journals	title_remainder	Journals.title_remainder	present		
+inventory			google_sheet	Journals	responsibility_statement	Journals.responsibility_statement	present		
+inventory			google_sheet	Journals	place	Journals.place	present		
+inventory			google_sheet	Journals	publisher	Journals.publisher	present		
+inventory			google_sheet	Journals	issn	Journals.issn	present		
+inventory			google_sheet	Journals	periodicity	Journals.periodicity	present		
+inventory			google_sheet	Journals	numbering_start	Journals.numbering_start	present		
+inventory			google_sheet	Journals	numbering_end	Journals.numbering_end	present		
+inventory			google_sheet	Journals	start_year	Journals.start_year	present		
+inventory			google_sheet	Journals	end_year	Journals.end_year	present		
+inventory			google_sheet	Journals	title_history_note	Journals.title_history_note	present		
+inventory			google_sheet	Journals	description	Journals.description	present		
+inventory			google_sheet	JournalIssues	journal_issue_id	JournalIssues.journal_issue_id	present		
+inventory			google_sheet	JournalIssues	journal_id	JournalIssues.journal_id	present		
+inventory			google_sheet	JournalIssues	journal_title	JournalIssues.journal_title	present		
+inventory			google_sheet	JournalIssues	title	JournalIssues.title	present		
+inventory			google_sheet	JournalIssues	year	JournalIssues.year	present		
+inventory			google_sheet	JournalIssues	publication_date	JournalIssues.publication_date	present		
+inventory			google_sheet	JournalIssues	issue_number	JournalIssues.issue_number	present		
+inventory			google_sheet	JournalIssues	volume	JournalIssues.volume	present		
+inventory			google_sheet	JournalIssues	part_number	JournalIssues.part_number	present		
+inventory			google_sheet	JournalIssues	gross_number	JournalIssues.gross_number	present		
+inventory			google_sheet	JournalIssues	date_text	JournalIssues.date_text	present		
+inventory			google_sheet	JournalIssues	chronology	JournalIssues.chronology	present		
+inventory			google_sheet	JournalIssues	enumeration	JournalIssues.enumeration	present		
+inventory			google_sheet	JournalIssues	publication_place	JournalIssues.publication_place	present		
+inventory			google_sheet	JournalIssues	publisher	JournalIssues.publisher	present		
+inventory			google_sheet	JournalIssues	raw_publication_details	JournalIssues.raw_publication_details	present		
+inventory			google_sheet	JournalIssues	issn	JournalIssues.issn	present		
+inventory			google_sheet	JournalIssues	isbn	JournalIssues.isbn	present		
+inventory			google_sheet	JournalIssues	notes	JournalIssues.notes	present		
+inventory			google_sheet	ArticlePlacements	article_id	ArticlePlacements.article_id	present		
+inventory			google_sheet	ArticlePlacements	work_id	ArticlePlacements.work_id	present		
+inventory			google_sheet	ArticlePlacements	work_title	ArticlePlacements.work_title	present		
+inventory			google_sheet	ArticlePlacements	container_id	ArticlePlacements.container_id	present		
+inventory			google_sheet	ArticlePlacements	container_type	ArticlePlacements.container_type	present		
+inventory			google_sheet	ArticlePlacements	container_title	ArticlePlacements.container_title	present		
+inventory			google_sheet	ArticlePlacements	pages_raw	ArticlePlacements.pages_raw	present		
+inventory			google_sheet	ArticlePlacements	location_note	ArticlePlacements.location_note	present		
+inventory			google_sheet	ArticlePlacements	placement_note	ArticlePlacements.placement_note	present		
+inventory			google_sheet	WorkGroups	group_id	WorkGroups.group_id	present		
+inventory			google_sheet	WorkGroups	title	WorkGroups.title	present		
+inventory			google_sheet	WorkGroups	group_type	WorkGroups.group_type	present		
+inventory			google_sheet	WorkGroups	note	WorkGroups.note	present		
+inventory			google_sheet	WorkGroupItems	group_id	WorkGroupItems.group_id	present		
+inventory			google_sheet	WorkGroupItems	group_title	WorkGroupItems.group_title	present		
+inventory			google_sheet	WorkGroupItems	work_id	WorkGroupItems.work_id	present		
+inventory			google_sheet	WorkGroupItems	work_title	WorkGroupItems.work_title	present		
+inventory			google_sheet	WorkGroupItems	sort_order	WorkGroupItems.sort_order	present		
+inventory			site_contract	languages	language_id	languages.language_id	present		
+inventory			site_contract	languages	source_django_id	languages.source_django_id	present		
+inventory			site_contract	languages	code	languages.code	present		
+inventory			site_contract	languages	title	languages.title	present		
+inventory			site_contract	languages	description	languages.description	present		
+inventory			site_contract	languages	sort_order	languages.sort_order	present		
+inventory			site_contract	sections	section_id	sections.section_id	present		
+inventory			site_contract	sections	source_django_id	sections.source_django_id	present		
+inventory			site_contract	sections	source_code	sections.source_code	present		
+inventory			site_contract	sections	parent_id	sections.parent_id	present		
+inventory			site_contract	sections	title	sections.title	present		
+inventory			site_contract	sections	description	sections.description	present		
+inventory			site_contract	sections	note	sections.note	present		
+inventory			site_contract	sections	sort_order	sections.sort_order	present		
+inventory			site_contract	tags	tag_id	tags.tag_id	present		
+inventory			site_contract	tags	source_django_id	tags.source_django_id	present		
+inventory			site_contract	tags	title	tags.title	present		
+inventory			site_contract	tags	tag_type	tags.tag_type	present		
+inventory			site_contract	tags	parent_id	tags.parent_id	present		
+inventory			site_contract	tags	description	tags.description	present		
+inventory			site_contract	tags	sort_order	tags.sort_order	present		
+inventory			site_contract	authors	author_id	authors.author_id	present		
+inventory			site_contract	authors	source_django_id	authors.source_django_id	present		
+inventory			site_contract	authors	display_name	authors.display_name	present		
+inventory			site_contract	authors	heading_name	authors.heading_name	present		
+inventory			site_contract	authors	sort_name	authors.sort_name	present		
+inventory			site_contract	authors	aliases	authors.aliases	present		
+inventory			site_contract	authors	person_dates	authors.person_dates	present		
+inventory			site_contract	authors	authority_note	authors.authority_note	present		
+inventory			site_contract	authors	note	authors.note	present		
+inventory			site_contract	sources	source_id	sources.source_id	present		
+inventory			site_contract	sources	source_django_id	sources.source_django_id	present		
+inventory			site_contract	sources	legacy_work_id	sources.legacy_work_id	present		
+inventory			site_contract	sources	source_sequence	sources.source_sequence	present		
+inventory			site_contract	sources	source_number	sources.source_number	present		
+inventory			site_contract	sources	source_page_marker	sources.source_page_marker	present		
+inventory			site_contract	sources	source_type	sources.source_type	present		
+inventory			site_contract	sources	section_id	sources.section_id	present		
+inventory			site_contract	sources	language_id	sources.language_id	present		
+inventory			site_contract	sources	raw_author_string	sources.raw_author_string	present		
+inventory			site_contract	sources	title	sources.title	present		
+inventory			site_contract	sources	parallel_title	sources.parallel_title	present		
+inventory			site_contract	sources	subtitle	sources.subtitle	present		
+inventory			site_contract	sources	title_remainder	sources.title_remainder	present		
+inventory			site_contract	sources	volume_number	sources.volume_number	present		
+inventory			site_contract	sources	part_number	sources.part_number	present		
+inventory			site_contract	sources	part_title	sources.part_title	present		
+inventory			site_contract	sources	responsibility_statement	sources.responsibility_statement	present		
+inventory			site_contract	sources	edition_statement	sources.edition_statement	present		
+inventory			site_contract	sources	additional_edition_statement	sources.additional_edition_statement	present		
+inventory			site_contract	sources	publication_place	sources.publication_place	present		
+inventory			site_contract	sources	publisher	sources.publisher	present		
+inventory			site_contract	sources	publication_date	sources.publication_date	present		
+inventory			site_contract	sources	inferred_year	sources.inferred_year	present		
+inventory			site_contract	sources	manufacture_place	sources.manufacture_place	present		
+inventory			site_contract	sources	manufacturer	sources.manufacturer	present		
+inventory			site_contract	sources	manufacture_date	sources.manufacture_date	present		
+inventory			site_contract	sources	copyright_date	sources.copyright_date	present		
+inventory			site_contract	sources	extent	sources.extent	present		
+inventory			site_contract	sources	illustrations	sources.illustrations	present		
+inventory			site_contract	sources	dimensions	sources.dimensions	present		
+inventory			site_contract	sources	accompanying_material	sources.accompanying_material	present		
+inventory			site_contract	sources	circulation	sources.circulation	present		
+inventory			site_contract	sources	series_statement	sources.series_statement	present		
+inventory			site_contract	sources	notes	sources.notes	present		
+inventory			site_contract	sources	bibliography_note	sources.bibliography_note	present		
+inventory			site_contract	sources	index_note	sources.index_note	present		
+inventory			site_contract	sources	contents_note	sources.contents_note	present		
+inventory			site_contract	sources	isbn	sources.isbn	present		
+inventory			site_contract	sources	issn	sources.issn	present		
+inventory			site_contract	sources	doi	sources.doi	present		
+inventory			site_contract	sources	url	sources.url	present		
+inventory			site_contract	sources	access_date	sources.access_date	present		
+inventory			site_contract	sources	content_type	sources.content_type	present		
+inventory			site_contract	sources	media_type	sources.media_type	present		
+inventory			site_contract	sources	carrier_type	sources.carrier_type	present		
+inventory			site_contract	sources	raw_publication_details	sources.raw_publication_details	present		
+inventory			site_contract	sources	raw_host_title	sources.raw_host_title	present		
+inventory			site_contract	sources	public_review	sources.public_review	present		
+inventory			site_contract	sources	data_source	sources.data_source	present		
+inventory			site_contract	sources	first_seen_at	sources.first_seen_at	present		
+inventory			site_contract	sources	updated_at	sources.updated_at	present		
+inventory			site_contract	sources	description_status	sources.description_status	present		
+inventory			site_contract	source_authors	id	source_authors.id	present		
+inventory			site_contract	source_authors	source_id	source_authors.source_id	present		
+inventory			site_contract	source_authors	author_id	source_authors.author_id	present		
+inventory			site_contract	source_authors	sort_order	source_authors.sort_order	present		
+inventory			site_contract	source_authors	role	source_authors.role	present		
+inventory			site_contract	source_authors	source_text	source_authors.source_text	present		
+inventory			site_contract	source_authors	name_as_printed	source_authors.name_as_printed	present		
+inventory			site_contract	source_authors	include_in_responsibility	source_authors.include_in_responsibility	present		
+inventory			site_contract	source_authors	is_primary_heading	source_authors.is_primary_heading	present		
+inventory			site_contract	source_authors	created_at	source_authors.created_at	present		
+inventory			site_contract	source_authors	updated_at	source_authors.updated_at	present		
+inventory			site_contract	source_tags	id	source_tags.id	present		
+inventory			site_contract	source_tags	source_id	source_tags.source_id	present		
+inventory			site_contract	source_tags	tag_id	source_tags.tag_id	present		
+inventory			site_contract	source_tags	sort_order	source_tags.sort_order	present		
+inventory			site_contract	source_tags	source_text	source_tags.source_text	present		
+inventory			site_contract	source_tags	created_at	source_tags.created_at	present		
+inventory			site_contract	source_tags	updated_at	source_tags.updated_at	present		
+inventory			site_contract	periodicals	periodical_id	periodicals.periodical_id	present		
+inventory			site_contract	periodicals	source_django_id	periodicals.source_django_id	present		
+inventory			site_contract	periodicals	legacy_journal_id	periodicals.legacy_journal_id	present		
+inventory			site_contract	periodicals	title	periodicals.title	present		
+inventory			site_contract	periodicals	parallel_title	periodicals.parallel_title	present		
+inventory			site_contract	periodicals	title_remainder	periodicals.title_remainder	present		
+inventory			site_contract	periodicals	responsibility_statement	periodicals.responsibility_statement	present		
+inventory			site_contract	periodicals	place	periodicals.place	present		
+inventory			site_contract	periodicals	publisher	periodicals.publisher	present		
+inventory			site_contract	periodicals	issn	periodicals.issn	present		
+inventory			site_contract	periodicals	periodicity	periodicals.periodicity	present		
+inventory			site_contract	periodicals	numbering_start	periodicals.numbering_start	present		
+inventory			site_contract	periodicals	numbering_end	periodicals.numbering_end	present		
+inventory			site_contract	periodicals	start_year	periodicals.start_year	present		
+inventory			site_contract	periodicals	end_year	periodicals.end_year	present		
+inventory			site_contract	periodicals	title_history_note	periodicals.title_history_note	present		
+inventory			site_contract	periodicals	description	periodicals.description	present		
+inventory			site_contract	issues	issue_id	issues.issue_id	present		
+inventory			site_contract	issues	source_django_id	issues.source_django_id	present		
+inventory			site_contract	issues	legacy_journal_issue_id	issues.legacy_journal_issue_id	present		
+inventory			site_contract	issues	legacy_container_work_id	issues.legacy_container_work_id	present		
+inventory			site_contract	issues	issue_type	issues.issue_type	present		
+inventory			site_contract	issues	periodical_id	issues.periodical_id	present		
+inventory			site_contract	issues	source_id	issues.source_id	present		
+inventory			site_contract	issues	title	issues.title	present		
+inventory			site_contract	issues	parallel_title	issues.parallel_title	present		
+inventory			site_contract	issues	title_remainder	issues.title_remainder	present		
+inventory			site_contract	issues	responsibility_statement	issues.responsibility_statement	present		
+inventory			site_contract	issues	year	issues.year	present		
+inventory			site_contract	issues	publication_date	issues.publication_date	present		
+inventory			site_contract	issues	issue_number	issues.issue_number	present		
+inventory			site_contract	issues	volume	issues.volume	present		
+inventory			site_contract	issues	part_number	issues.part_number	present		
+inventory			site_contract	issues	gross_number	issues.gross_number	present		
+inventory			site_contract	issues	chronology	issues.chronology	present		
+inventory			site_contract	issues	enumeration	issues.enumeration	present		
+inventory			site_contract	issues	publication_place	issues.publication_place	present		
+inventory			site_contract	issues	publisher	issues.publisher	present		
+inventory			site_contract	issues	raw_publication_details	issues.raw_publication_details	present		
+inventory			site_contract	issues	issn	issues.issn	present		
+inventory			site_contract	issues	isbn	issues.isbn	present		
+inventory			site_contract	issues	notes	issues.notes	present		
+inventory			site_contract	article_placements	placement_id	article_placements.placement_id	present		
+inventory			site_contract	article_placements	source_django_id	article_placements.source_django_id	present		
+inventory			site_contract	article_placements	legacy_article_id	article_placements.legacy_article_id	present		
+inventory			site_contract	article_placements	source_id	article_placements.source_id	present		
+inventory			site_contract	article_placements	issue_id	article_placements.issue_id	present		
+inventory			site_contract	article_placements	pages_raw	article_placements.pages_raw	present		
+inventory			site_contract	article_placements	page_start	article_placements.page_start	present		
+inventory			site_contract	article_placements	page_end	article_placements.page_end	present		
+inventory			site_contract	article_placements	location_note	article_placements.location_note	present		
+inventory			site_contract	article_placements	placement_note	article_placements.placement_note	present		
+inventory			site_contract	article_placements	created_at	article_placements.created_at	present		
+inventory			site_contract	article_placements	updated_at	article_placements.updated_at	present		
+inventory			site_contract	source_groups	group_id	source_groups.group_id	present		
+inventory			site_contract	source_groups	source_django_id	source_groups.source_django_id	present		
+inventory			site_contract	source_groups	legacy_work_group_id	source_groups.legacy_work_group_id	present		
+inventory			site_contract	source_groups	title	source_groups.title	present		
+inventory			site_contract	source_groups	group_type	source_groups.group_type	present		
+inventory			site_contract	source_groups	note	source_groups.note	present		
+inventory			site_contract	source_group_items	id	source_group_items.id	present		
+inventory			site_contract	source_group_items	group_id	source_group_items.group_id	present		
+inventory			site_contract	source_group_items	source_id	source_group_items.source_id	present		
+inventory			site_contract	source_group_items	sort_order	source_group_items.sort_order	present		
+inventory			site_contract	source_group_items	created_at	source_group_items.created_at	present		
+inventory			site_contract	source_group_items	updated_at	source_group_items.updated_at	present		
+inventory			artifact_sqlite	article_placements	placement_id	article_placements.placement_id	present	TEXT	
+inventory			artifact_sqlite	article_placements	source_django_id	article_placements.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	article_placements	legacy_article_id	article_placements.legacy_article_id	present	TEXT	
+inventory			artifact_sqlite	article_placements	source_id	article_placements.source_id	present	TEXT	
+inventory			artifact_sqlite	article_placements	issue_id	article_placements.issue_id	present	TEXT	
+inventory			artifact_sqlite	article_placements	pages_raw	article_placements.pages_raw	present	TEXT	
+inventory			artifact_sqlite	article_placements	page_start	article_placements.page_start	present	INTEGER	
+inventory			artifact_sqlite	article_placements	page_end	article_placements.page_end	present	INTEGER	
+inventory			artifact_sqlite	article_placements	location_note	article_placements.location_note	present	TEXT	
+inventory			artifact_sqlite	article_placements	placement_note	article_placements.placement_note	present	TEXT	
+inventory			artifact_sqlite	article_placements	created_at	article_placements.created_at	present	TEXT	
+inventory			artifact_sqlite	article_placements	updated_at	article_placements.updated_at	present	TEXT	
+inventory			artifact_sqlite	authors	author_id	authors.author_id	present	TEXT	
+inventory			artifact_sqlite	authors	source_django_id	authors.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	authors	display_name	authors.display_name	present	TEXT	
+inventory			artifact_sqlite	authors	heading_name	authors.heading_name	present	TEXT	
+inventory			artifact_sqlite	authors	sort_name	authors.sort_name	present	TEXT	
+inventory			artifact_sqlite	authors	aliases	authors.aliases	present	TEXT	
+inventory			artifact_sqlite	authors	person_dates	authors.person_dates	present	TEXT	
+inventory			artifact_sqlite	authors	authority_note	authors.authority_note	present	TEXT	
+inventory			artifact_sqlite	authors	note	authors.note	present	TEXT	
+inventory			artifact_sqlite	export_metadata	key	export_metadata.key	present	TEXT	
+inventory			artifact_sqlite	export_metadata	value	export_metadata.value	present	TEXT	
+inventory			artifact_sqlite	issues	issue_id	issues.issue_id	present	TEXT	
+inventory			artifact_sqlite	issues	source_django_id	issues.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	issues	legacy_journal_issue_id	issues.legacy_journal_issue_id	present	TEXT	
+inventory			artifact_sqlite	issues	legacy_container_work_id	issues.legacy_container_work_id	present	TEXT	
+inventory			artifact_sqlite	issues	issue_type	issues.issue_type	present	TEXT	
+inventory			artifact_sqlite	issues	periodical_id	issues.periodical_id	present	TEXT	
+inventory			artifact_sqlite	issues	source_id	issues.source_id	present	TEXT	
+inventory			artifact_sqlite	issues	title	issues.title	present	TEXT	
+inventory			artifact_sqlite	issues	parallel_title	issues.parallel_title	present	TEXT	
+inventory			artifact_sqlite	issues	title_remainder	issues.title_remainder	present	TEXT	
+inventory			artifact_sqlite	issues	responsibility_statement	issues.responsibility_statement	present	TEXT	
+inventory			artifact_sqlite	issues	year	issues.year	present	INTEGER	
+inventory			artifact_sqlite	issues	publication_date	issues.publication_date	present	TEXT	
+inventory			artifact_sqlite	issues	issue_number	issues.issue_number	present	TEXT	
+inventory			artifact_sqlite	issues	volume	issues.volume	present	TEXT	
+inventory			artifact_sqlite	issues	part_number	issues.part_number	present	TEXT	
+inventory			artifact_sqlite	issues	gross_number	issues.gross_number	present	TEXT	
+inventory			artifact_sqlite	issues	chronology	issues.chronology	present	TEXT	
+inventory			artifact_sqlite	issues	enumeration	issues.enumeration	present	TEXT	
+inventory			artifact_sqlite	issues	publication_place	issues.publication_place	present	TEXT	
+inventory			artifact_sqlite	issues	publisher	issues.publisher	present	TEXT	
+inventory			artifact_sqlite	issues	raw_publication_details	issues.raw_publication_details	present	TEXT	
+inventory			artifact_sqlite	issues	issn	issues.issn	present	TEXT	
+inventory			artifact_sqlite	issues	isbn	issues.isbn	present	TEXT	
+inventory			artifact_sqlite	issues	notes	issues.notes	present	TEXT	
+inventory			artifact_sqlite	languages	language_id	languages.language_id	present	TEXT	
+inventory			artifact_sqlite	languages	source_django_id	languages.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	languages	code	languages.code	present	TEXT	
+inventory			artifact_sqlite	languages	title	languages.title	present	TEXT	
+inventory			artifact_sqlite	languages	description	languages.description	present	TEXT	
+inventory			artifact_sqlite	languages	sort_order	languages.sort_order	present	INTEGER	
+inventory			artifact_sqlite	periodicals	periodical_id	periodicals.periodical_id	present	TEXT	
+inventory			artifact_sqlite	periodicals	source_django_id	periodicals.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	periodicals	legacy_journal_id	periodicals.legacy_journal_id	present	TEXT	
+inventory			artifact_sqlite	periodicals	title	periodicals.title	present	TEXT	
+inventory			artifact_sqlite	periodicals	parallel_title	periodicals.parallel_title	present	TEXT	
+inventory			artifact_sqlite	periodicals	title_remainder	periodicals.title_remainder	present	TEXT	
+inventory			artifact_sqlite	periodicals	responsibility_statement	periodicals.responsibility_statement	present	TEXT	
+inventory			artifact_sqlite	periodicals	place	periodicals.place	present	TEXT	
+inventory			artifact_sqlite	periodicals	publisher	periodicals.publisher	present	TEXT	
+inventory			artifact_sqlite	periodicals	issn	periodicals.issn	present	TEXT	
+inventory			artifact_sqlite	periodicals	periodicity	periodicals.periodicity	present	TEXT	
+inventory			artifact_sqlite	periodicals	numbering_start	periodicals.numbering_start	present	TEXT	
+inventory			artifact_sqlite	periodicals	numbering_end	periodicals.numbering_end	present	TEXT	
+inventory			artifact_sqlite	periodicals	start_year	periodicals.start_year	present	INTEGER	
+inventory			artifact_sqlite	periodicals	end_year	periodicals.end_year	present	INTEGER	
+inventory			artifact_sqlite	periodicals	title_history_note	periodicals.title_history_note	present	TEXT	
+inventory			artifact_sqlite	periodicals	description	periodicals.description	present	TEXT	
+inventory			artifact_sqlite	sections	section_id	sections.section_id	present	TEXT	
+inventory			artifact_sqlite	sections	source_django_id	sections.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	sections	source_code	sections.source_code	present	TEXT	
+inventory			artifact_sqlite	sections	parent_id	sections.parent_id	present	TEXT	
+inventory			artifact_sqlite	sections	title	sections.title	present	TEXT	
+inventory			artifact_sqlite	sections	description	sections.description	present	TEXT	
+inventory			artifact_sqlite	sections	note	sections.note	present	TEXT	
+inventory			artifact_sqlite	sections	sort_order	sections.sort_order	present	INTEGER	
+inventory			artifact_sqlite	source_authors	id	source_authors.id	present	INTEGER	
+inventory			artifact_sqlite	source_authors	source_id	source_authors.source_id	present	TEXT	
+inventory			artifact_sqlite	source_authors	author_id	source_authors.author_id	present	TEXT	
+inventory			artifact_sqlite	source_authors	sort_order	source_authors.sort_order	present	INTEGER	
+inventory			artifact_sqlite	source_authors	role	source_authors.role	present	TEXT	
+inventory			artifact_sqlite	source_authors	source_text	source_authors.source_text	present	TEXT	
+inventory			artifact_sqlite	source_authors	name_as_printed	source_authors.name_as_printed	present	TEXT	
+inventory			artifact_sqlite	source_authors	include_in_responsibility	source_authors.include_in_responsibility	present	INTEGER	
+inventory			artifact_sqlite	source_authors	is_primary_heading	source_authors.is_primary_heading	present	INTEGER	
+inventory			artifact_sqlite	source_authors	created_at	source_authors.created_at	present	TEXT	
+inventory			artifact_sqlite	source_authors	updated_at	source_authors.updated_at	present	TEXT	
+inventory			artifact_sqlite	source_group_items	id	source_group_items.id	present	INTEGER	
+inventory			artifact_sqlite	source_group_items	group_id	source_group_items.group_id	present	TEXT	
+inventory			artifact_sqlite	source_group_items	source_id	source_group_items.source_id	present	TEXT	
+inventory			artifact_sqlite	source_group_items	sort_order	source_group_items.sort_order	present	INTEGER	
+inventory			artifact_sqlite	source_group_items	created_at	source_group_items.created_at	present	TEXT	
+inventory			artifact_sqlite	source_group_items	updated_at	source_group_items.updated_at	present	TEXT	
+inventory			artifact_sqlite	source_groups	group_id	source_groups.group_id	present	TEXT	
+inventory			artifact_sqlite	source_groups	source_django_id	source_groups.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	source_groups	legacy_work_group_id	source_groups.legacy_work_group_id	present	TEXT	
+inventory			artifact_sqlite	source_groups	title	source_groups.title	present	TEXT	
+inventory			artifact_sqlite	source_groups	group_type	source_groups.group_type	present	TEXT	
+inventory			artifact_sqlite	source_groups	note	source_groups.note	present	TEXT	
+inventory			artifact_sqlite	source_tags	id	source_tags.id	present	INTEGER	
+inventory			artifact_sqlite	source_tags	source_id	source_tags.source_id	present	TEXT	
+inventory			artifact_sqlite	source_tags	tag_id	source_tags.tag_id	present	TEXT	
+inventory			artifact_sqlite	source_tags	sort_order	source_tags.sort_order	present	INTEGER	
+inventory			artifact_sqlite	source_tags	source_text	source_tags.source_text	present	TEXT	
+inventory			artifact_sqlite	source_tags	created_at	source_tags.created_at	present	TEXT	
+inventory			artifact_sqlite	source_tags	updated_at	source_tags.updated_at	present	TEXT	
+inventory			artifact_sqlite	sources	source_id	sources.source_id	present	TEXT	
+inventory			artifact_sqlite	sources	source_django_id	sources.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	sources	legacy_work_id	sources.legacy_work_id	present	TEXT	
+inventory			artifact_sqlite	sources	source_sequence	sources.source_sequence	present	INTEGER	
+inventory			artifact_sqlite	sources	source_number	sources.source_number	present	INTEGER	
+inventory			artifact_sqlite	sources	source_page_marker	sources.source_page_marker	present	TEXT	
+inventory			artifact_sqlite	sources	source_type	sources.source_type	present	TEXT	
+inventory			artifact_sqlite	sources	section_id	sources.section_id	present	TEXT	
+inventory			artifact_sqlite	sources	language_id	sources.language_id	present	TEXT	
+inventory			artifact_sqlite	sources	raw_author_string	sources.raw_author_string	present	TEXT	
+inventory			artifact_sqlite	sources	title	sources.title	present	TEXT	
+inventory			artifact_sqlite	sources	parallel_title	sources.parallel_title	present	TEXT	
+inventory			artifact_sqlite	sources	subtitle	sources.subtitle	present	TEXT	
+inventory			artifact_sqlite	sources	title_remainder	sources.title_remainder	present	TEXT	
+inventory			artifact_sqlite	sources	volume_number	sources.volume_number	present	TEXT	
+inventory			artifact_sqlite	sources	part_number	sources.part_number	present	TEXT	
+inventory			artifact_sqlite	sources	part_title	sources.part_title	present	TEXT	
+inventory			artifact_sqlite	sources	responsibility_statement	sources.responsibility_statement	present	TEXT	
+inventory			artifact_sqlite	sources	edition_statement	sources.edition_statement	present	TEXT	
+inventory			artifact_sqlite	sources	additional_edition_statement	sources.additional_edition_statement	present	TEXT	
+inventory			artifact_sqlite	sources	publication_place	sources.publication_place	present	TEXT	
+inventory			artifact_sqlite	sources	publisher	sources.publisher	present	TEXT	
+inventory			artifact_sqlite	sources	publication_date	sources.publication_date	present	TEXT	
+inventory			artifact_sqlite	sources	inferred_year	sources.inferred_year	present	INTEGER	
+inventory			artifact_sqlite	sources	manufacture_place	sources.manufacture_place	present	TEXT	
+inventory			artifact_sqlite	sources	manufacturer	sources.manufacturer	present	TEXT	
+inventory			artifact_sqlite	sources	manufacture_date	sources.manufacture_date	present	TEXT	
+inventory			artifact_sqlite	sources	copyright_date	sources.copyright_date	present	TEXT	
+inventory			artifact_sqlite	sources	extent	sources.extent	present	TEXT	
+inventory			artifact_sqlite	sources	illustrations	sources.illustrations	present	TEXT	
+inventory			artifact_sqlite	sources	dimensions	sources.dimensions	present	TEXT	
+inventory			artifact_sqlite	sources	accompanying_material	sources.accompanying_material	present	TEXT	
+inventory			artifact_sqlite	sources	circulation	sources.circulation	present	TEXT	
+inventory			artifact_sqlite	sources	series_statement	sources.series_statement	present	TEXT	
+inventory			artifact_sqlite	sources	notes	sources.notes	present	TEXT	
+inventory			artifact_sqlite	sources	bibliography_note	sources.bibliography_note	present	TEXT	
+inventory			artifact_sqlite	sources	index_note	sources.index_note	present	TEXT	
+inventory			artifact_sqlite	sources	contents_note	sources.contents_note	present	TEXT	
+inventory			artifact_sqlite	sources	isbn	sources.isbn	present	TEXT	
+inventory			artifact_sqlite	sources	issn	sources.issn	present	TEXT	
+inventory			artifact_sqlite	sources	doi	sources.doi	present	TEXT	
+inventory			artifact_sqlite	sources	url	sources.url	present	TEXT	
+inventory			artifact_sqlite	sources	access_date	sources.access_date	present	TEXT	
+inventory			artifact_sqlite	sources	content_type	sources.content_type	present	TEXT	
+inventory			artifact_sqlite	sources	media_type	sources.media_type	present	TEXT	
+inventory			artifact_sqlite	sources	carrier_type	sources.carrier_type	present	TEXT	
+inventory			artifact_sqlite	sources	raw_publication_details	sources.raw_publication_details	present	TEXT	
+inventory			artifact_sqlite	sources	raw_host_title	sources.raw_host_title	present	TEXT	
+inventory			artifact_sqlite	sources	public_review	sources.public_review	present	TEXT	
+inventory			artifact_sqlite	sources	data_source	sources.data_source	present	TEXT	
+inventory			artifact_sqlite	sources	first_seen_at	sources.first_seen_at	present	TEXT	
+inventory			artifact_sqlite	sources	updated_at	sources.updated_at	present	TEXT	
+inventory			artifact_sqlite	sources	description_status	sources.description_status	present	TEXT	
+inventory			artifact_sqlite	tags	tag_id	tags.tag_id	present	TEXT	
+inventory			artifact_sqlite	tags	source_django_id	tags.source_django_id	present	INTEGER	
+inventory			artifact_sqlite	tags	title	tags.title	present	TEXT	
+inventory			artifact_sqlite	tags	tag_type	tags.tag_type	present	TEXT	
+inventory			artifact_sqlite	tags	parent_id	tags.parent_id	present	TEXT	
+inventory			artifact_sqlite	tags	description	tags.description	present	TEXT	
+inventory			artifact_sqlite	tags	sort_order	tags.sort_order	present	INTEGER	
+inventory			field_contract	Source	source_id	source_id	active	Stable canonical bibliographic source ID.	
+inventory			field_contract	Source	source_type	source_type	active	Target values are source categories, not parser confidence classes.	
+inventory			field_contract	Source	source_sequence	source_sequence	active	Ordering in the historical bibliography.	
+inventory			field_contract	Source	source_number	source_number	active	Historical source number.	
+inventory			field_contract	Source	source_page_marker	source_page_marker	active	No Google Sheets header yet.	
+inventory			field_contract	Source.section	section_id	section_id	active	Foreign key to Section.	
+inventory			field_contract	Section	section_code	section_code	active	Human/editor-facing section code; `section_code` is the Works sheet lookup helper.	
+inventory			field_contract	Section, Tag	parent_id	parent_id	active	Parent relation ID for hierarchical records.	
+inventory			field_contract	Section	parent_source_code	parent_source_code	compatibility	Google Sheets display helper for parent section code.	
+inventory			field_contract	Source.language	language_id	language_id	active	Foreign key to Language.	
+inventory			field_contract	Language	code	code	active	Language code; `language_code` is the Works sheet lookup helper.	
+inventory			field_contract	Language, Tag, Periodical	description	description	active	Context-specific description text.	
+inventory			field_contract	ArticlePlacement	container_index	container_index	compatibility	Google Sheets helper for linking a work row to an issue/container row.	
+inventory			field_contract	SourceAuthor	linked_authors	linked_authors	compatibility	Google Sheets display helper; canonical relation rows live in `WorkAuthors`/`source_authors`.	
+inventory			field_contract	Source	raw_author_string	raw_author_string	active	Raw author string before normalized author links.	
+inventory			field_contract	Source	title	title	active	Main title.	
+inventory			field_contract	Source	parallel_title	parallel_title	active	Parallel title.	
+inventory			field_contract	Source	subtitle	subtitle	active	Subtitle parsed separately from title.	
+inventory			field_contract	Source	title_remainder	title_remainder	active	Remaining title/responsibility title area.	
+inventory			field_contract	Source	volume_number	volume_number	active	Volume number for source records.	
+inventory			field_contract	Source	part_number	part_number	active	Part number.	
+inventory			field_contract	Source	part_title	part_title	active	Part title.	
+inventory			field_contract	Source	responsibility_statement	responsibility_statement	active	Statement of responsibility.	
+inventory			field_contract	Source	edition_statement	edition_statement	active	Edition statement.	
+inventory			field_contract	Source	additional_edition_statement	additional_edition_statement	active	Additional edition statement.	
+inventory			field_contract	Source	publication_place	publication_place	active	Place of publication.	
+inventory			field_contract	Source	publisher	publisher	active	Publisher.	
+inventory			field_contract	Source	publication_date	publication_date	active	Publication date as printed.	
+inventory			field_contract	Source	inferred_year	inferred_year	active	Normalized/inferred year.	
+inventory			field_contract	Source	manufacture_place	manufacture_place	active	No Google Sheets header yet.	
+inventory			field_contract	Source	manufacturer	manufacturer	active	No Google Sheets header yet.	
+inventory			field_contract	Source	manufacture_date	manufacture_date	active	No Google Sheets header yet.	
+inventory			field_contract	Source	copyright_date	copyright_date	active	No Google Sheets header yet.	
+inventory			field_contract	Source	extent	extent	active	Extent/volume, not article placement pages.	
+inventory			field_contract	Source	physical_description	physical_description	compatibility	Legacy editor/Sheets helper; target uses structured physical fields and `extent`.	
+inventory			field_contract	ArticlePlacement	article_pages	article_pages	compatibility	Legacy Work sheet helper; target article pages live in `ArticlePlacements.pages_raw`, `page_start`, `page_end`.	
+inventory			field_contract	Source	illustrations	illustrations	active	Illustration statement.	
+inventory			field_contract	Source	dimensions	dimensions	active	Dimensions.	
+inventory			field_contract	Source	accompanying_material	accompanying_material	active	Accompanying material.	
+inventory			field_contract	Source	circulation	circulation	active	Print run/circulation.	
+inventory			field_contract	Source	series_statement	series_statement	active	Series statement.	
+inventory			field_contract	Source	notes	notes	active	Editorial/public note field.	
+inventory			field_contract	Source	bibliography_note	bibliography_note	active	No Google Sheets header yet.	
+inventory			field_contract	Source	index_note	index_note	active	No Google Sheets header yet.	
+inventory			field_contract	Source	contents_note	contents_note	active	No Google Sheets header yet.	
+inventory			field_contract	Source	isbn	isbn	active	ISBN.	
+inventory			field_contract	Source	issn	issn	active	ISSN.	
+inventory			field_contract	Source	doi	doi	active	DOI.	
+inventory			field_contract	Source	url	url	active	URL.	
+inventory			field_contract	Source	access_date	access_date	active	Access date.	
+inventory			field_contract	Source	content_type	content_type	active	GOST carrier/content metadata.	
+inventory			field_contract	Source	media_type	media_type	active	GOST media metadata.	
+inventory			field_contract	Source	carrier_type	carrier_type	active	GOST carrier metadata.	
+inventory			field_contract	Source, Issue	raw_publication_details	raw_publication_details	active	Canonical raw bibliographic/publication detail field. Legacy Google Sheets alias `publication_details_raw` is import-only.	
+inventory			field_contract	Source	raw_host_title	raw_host_title	active	Raw host/container title before normalized placement.	
+inventory			field_contract	Source	public_review	public_review	active	Annotation/public review text, including trailing parser `{...}` annotation.	
+inventory			field_contract	Source	data_source	data_source	active	Free-text provenance for the source record, for example `Баранов 2021`, `ручное добавление`, `Google Sheets`, `сообщение пользователя`, `проверено по РГБ`.	
+inventory			field_contract	Source	first_seen_at	first_seen_at	active	Timestamp when the entity first appeared in the editor database.	
+inventory			field_contract	Source, SourceAuthor, SourceTag, ArticlePlacement, SourceGroupItem	updated_at	updated_at	active	Timestamp when the record/relation was last changed.	
+inventory			field_contract	Source	description_status	description_status	active	`parsed`, `partial`, `raw_only`, `needs_review`.	
+inventory			field_contract	Author, SourceAuthor	author_id	author_id	active	Normalized author ID.	
+inventory			field_contract	Author	display_name	display_name	active	Display form.	
+inventory			field_contract	Author	heading_name	heading_name	active	Bibliographic heading.	
+inventory			field_contract	Author	sort_name	sort_name	active	Sorting form.	
+inventory			field_contract	Author	aliases	aliases	active	Alternate names.	
+inventory			field_contract	Author	person_dates	person_dates	active	Life dates.	
+inventory			field_contract	Author	authority_note	authority_note	active	Authority-control note.	
+inventory			field_contract	Author, Section, SourceGroup	note	note	active	Context-specific note.	
+inventory			field_contract	SourceAuthor, SourceTag, Section, SourceGroupItem	sort_order	sort_order	active	Ordered relation position.	
+inventory			field_contract	SourceAuthor	role	role	active	Author role.	
+inventory			field_contract	SourceAuthor, SourceTag	source_text	source_text	active	Raw relation text.	
+inventory			field_contract	SourceAuthor, SourceTag, ArticlePlacement, SourceGroupItem	created_at	created_at	active	Timestamp when the relation first appeared in the editor database. Relation-level provenance uses timestamps only unless a future workflow needs relation-specific `data_source`.	
+inventory			field_contract	Work, Source	work_title	work_title	compatibility	Google Sheets display helper for relation tabs.	
+inventory			field_contract	Author	author_display_name	author_display_name	compatibility	Google Sheets display helper for relation tabs.	
+inventory			field_contract	SourceAuthor	name_as_printed	name_as_printed	active	Author name as printed in source.	
+inventory			field_contract	SourceAuthor	include_in_responsibility	include_in_responsibility	active	Rendering control.	
+inventory			field_contract	SourceAuthor	is_primary_heading	is_primary_heading	active	Primary access-point flag.	
+inventory			field_contract	Periodical, Issue	periodical_id	periodical_id	active	Canonical serial identity ID.	
+inventory			field_contract	Periodical	periodical_title	periodical_title	compatibility	Google Sheets display helper for issue rows.	
+inventory			field_contract	Periodical	place	place	active	Periodical place; source publication place remains `publication_place`.	
+inventory			field_contract	Periodical	periodicity	periodicity	active	Serial periodicity.	
+inventory			field_contract	Periodical	numbering_start	numbering_start	active	Start of serial numbering.	
+inventory			field_contract	Periodical	numbering_end	numbering_end	active	End of serial numbering.	
+inventory			field_contract	Periodical	start_year	start_year	active	Start year for serial identity.	
+inventory			field_contract	Periodical	end_year	end_year	active	End year for serial identity.	
+inventory			field_contract	Periodical	title_history_note	title_history_note	active	Periodical title history note.	
+inventory			field_contract	Issue, ArticlePlacement	issue_id	issue_id	active	Canonical issue/container ID.	
+inventory			field_contract	Issue	issue_type	issue_type	active	Issue/container kind.	
+inventory			field_contract	Issue	year	year	active	Issue/container year. Source year is exported as `inferred_year`.	
+inventory			field_contract	Issue	issue_number	issue_number	active	Issue number.	
+inventory			field_contract	Issue	volume	volume	active	Issue volume.	
+inventory			field_contract	Issue	gross_number	gross_number	active	Gross/continuous issue number.	
+inventory			field_contract	Issue	date_text	date_text	active	Issue date text in Google Sheets/editor compatibility layer; artifact currently exports `chronology`/`enumeration` plus `publication_date`.	
+inventory			field_contract	Issue	chronology	chronology	active	Chronology text.	
+inventory			field_contract	Issue	enumeration	enumeration	active	Enumeration text.	
+inventory			field_contract	ArticlePlacement	placement_id	placement_id	active	Article placement row ID in artifact.	
+inventory			field_contract	ArticlePlacement	container_id	container_id	compatibility	Google Sheets helper: issue/container target ID before canonical placement export.	
+inventory			field_contract	ArticlePlacement	container_type	container_type	compatibility	Google Sheets helper: issue/container target type.	
+inventory			field_contract	ArticlePlacement	container_title	container_title	compatibility	Google Sheets display helper for container target.	
+inventory			field_contract	ArticlePlacement	pages_raw	pages_raw	active	Raw article page range.	
+inventory			field_contract	ArticlePlacement, Source	page_start	page_start	active	Normalized article start page.	
+inventory			field_contract	ArticlePlacement, Source	page_end	page_end	active	Normalized article end page.	
+inventory			field_contract	ArticlePlacement	location_note	location_note	active	Placement location note.	
+inventory			field_contract	ArticlePlacement	placement_note	placement_note	active	Placement note.	
+inventory			field_contract	SourceGroup, SourceGroupItem	group_id	group_id	active	Related-source group ID.	
+inventory			field_contract	SourceGroup	group_title	group_title	compatibility	Google Sheets display helper for group item rows.	
+inventory			field_contract	SourceGroup	group_type	group_type	active	Group type.	
+inventory			field_contract	Tag, SourceTag	tag_id	tag_id	active	Normalized tag ID.	
+inventory			field_contract	Tag, SourceTag	tag_title	tag_title	compatibility	Google Sheets display helper for tag relation rows.	
+inventory			field_contract	Tag	tag_type	tag_type	active	Tag category.	
+inventory			field_contract	Tag	parent_title	parent_title	compatibility	Google Sheets display helper for parent tag title.	
+inventory			field_contract	Source, Periodical, Issue, ArticlePlacement, SourceGroup	legacy_*	legacy_*	compatibility	Compatibility references only; not canonical public identifiers.	

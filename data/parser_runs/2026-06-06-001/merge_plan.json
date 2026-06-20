@@ -1,0 +1,21 @@
+{
+  "apply_allowed": false,
+  "candidate_count": 1,
+  "created_at": "2026-06-06T14:00:49+00:00",
+  "editor_db": "/Users/oleg/Projects/data/bibliobon-data/data/editor.sqlite",
+  "items": [
+    {
+      "action": "review_match",
+      "best_editor_source_id": "work-043751",
+      "best_editor_source_number": 59,
+      "candidate_id": "candidate-6e4cbdddb93c1e56",
+      "conflict_count": 1,
+      "match_score": 1.0,
+      "safe_fill_empty_count": 0,
+      "safe_to_apply_automatically": false
+    }
+  ],
+  "resolved_candidate_count": 5,
+  "run_dir": "/Users/oleg/Projects/data/bibliobon-data/data/parser_runs/2026-06-06-001",
+  "staging_only": true
+}

@@ -1,0 +1,388 @@
+{% extends "sources/base.html" %}
+
+{% block title %}План импорта{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>План импорта</h1>
+    <p class="muted">{{ batch.title }} · {{ plan.status_label }}</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:import_batch_review' batch.pk %}">К проверке</a>
+    <a href="{% url 'sources:import_author_review' batch.pk %}">Авторы</a>
+    {% if is_applied and latest_apply_log %}
+      <a href="{% url 'sources:import_batch_result' batch.pk %}">Результат применения</a>
+    {% endif %}
+  </div>
+</div>
+
+{% if is_applied %}
+  <section class="panel">
+    <h2>Импорт применён</h2>
+    <p class="muted">Это архивный план. Основной отчёт по фактическим изменениям находится на странице результата применения.</p>
+    {% if latest_apply_log %}<p><a href="{% url 'sources:import_batch_result' batch.pk %}">Показать результат применения</a></p>{% endif %}
+  </section>
+{% elif plan.problems %}
+  <section class="panel">
+    <h2>Импорт нельзя применить</h2>
+    <ul>
+      {% for problem in plan.problems %}
+        <li>{{ problem }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% elif plan.can_apply %}
+  <section class="panel">
+    <h2>Импорт готов</h2>
+    <p class="muted">Обязательные решения приняты, импорт можно применить. Безопасные дополнения заполнят только пустые поля.</p>
+  </section>
+{% endif %}
+
+<section class="panel">
+  <h2>Проверка готовности</h2>
+  <div class="import-layout">
+    <div>
+      <h3>Блокирует применение</h3>
+      <ul>
+        {% for item in plan.validation.blocking %}
+          <li>
+            <strong>{{ item.title }}</strong><br>
+            {{ item.message }}
+            {% if item.target_url %}<br><a href="{{ item.target_url }}">Исправить</a>{% endif %}
+          </li>
+        {% empty %}
+          <li class="muted">Блокирующих проблем нет.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h3>Требует внимания</h3>
+      <ul>
+        {% for item in plan.validation.warnings %}
+          <li>
+            <strong>{{ item.title }}</strong><br>
+            {{ item.message }}
+            {% if item.target_url %}<br><a href="{{ item.target_url }}">Проверить</a>{% endif %}
+          </li>
+        {% empty %}
+          <li class="muted">Предупреждений нет.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <details>
+    <summary>Готово</summary>
+    <ul>
+      {% for item in plan.validation.ok %}
+        <li><strong>{{ item.title }}</strong> — {{ item.message }}</li>
+      {% empty %}
+        <li class="muted">Проверки пока не выполнены.</li>
+      {% endfor %}
+    </ul>
+  </details>
+</section>
+
+<section class="panel">
+  <h2>Кратко</h2>
+  <div class="grid">
+    <div class="metric"><span>{% if is_applied %}Планировалось создать{% else %}Будет создано{% endif %}</span><strong>{{ plan.summary.create }}</strong></div>
+    <div class="metric"><span>{% if is_applied %}Планировалось дополнить{% else %}Будет дополнено{% endif %}</span><strong>{{ plan.summary.update }}</strong></div>
+    <div class="metric"><span>{% if is_applied %}Планировалось пропустить{% else %}Будет пропущено{% endif %}</span><strong>{{ plan.summary.skip }}</strong></div>
+    <div class="metric"><span>Отложено / отклонено</span><strong>{{ plan.summary.postpone_reject }}</strong></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Уже есть в базе</h2>
+  <p class="muted">Эти строки совпали с существующими статьями в том же журнале и выпуске. Ручное подтверждение не требуется.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Статья</th>
+        <th>Журнал и выпуск</th>
+        <th>Что будет сделано</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in plan.preview.already_existing_rows %}
+        <tr>
+          <td>
+            <strong>{{ row.existing_label }}</strong>
+            <div class="muted">{{ row.raw_text }}</div>
+          </td>
+          <td>{{ row.issue_label }}</td>
+          <td>
+            {{ row.action }}
+            {% if row.supplement_labels %}
+              <div class="muted">
+                {% for label in row.supplement_labels %}
+                  {{ label }}{% if not forloop.last %}; {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </td>
+          <td>
+            {% if row.item_id %}
+              <a href="{% url 'sources:import_item_detail' batch.pk row.item_id %}">Открыть</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Автоматически найденных существующих статей нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>{% if is_applied %}План создания на момент применения{% else %}Будет создано подробно{% endif %}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Тип</th>
+        <th>Запись</th>
+        <th>Связи</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in plan.preview.create_rows %}
+        <tr>
+          <td>{{ row.type_label }}</td>
+          <td><strong>{{ row.label }}</strong></td>
+          <td>
+            {% for detail in row.details %}
+              <div class="muted">{{ detail }}</div>
+            {% empty %}
+              <span class="muted">Связанные сущности не указаны.</span>
+            {% endfor %}
+          </td>
+          <td>
+            {% if row.group_id %}
+              <a href="{% url 'sources:import_group_detail' batch.pk row.group_id %}">Группа</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Создаваемых сущностей нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>{% if is_applied %}План дополнения существующих записей{% else %}Будет дополнено в существующих записях{% endif %}</h2>
+  <p class="muted">{% if is_applied %}Фактически применённые изменения смотрите на странице результата.{% else %}Будут записаны только выбранные значения из источника в пустые поля существующей записи.{% endif %}</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Запись в базе</th>
+        <th>Исходная строка</th>
+        <th>Поля и значения</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in plan.preview.update_rows %}
+        <tr>
+          <td><strong>{{ row.existing_label }}</strong></td>
+          <td>{{ row.raw_text }}</td>
+          <td>
+            {% for field in row.fields %}
+              <div><strong>{{ field.label }}</strong>: {{ field.source }}</div>
+            {% empty %}
+              <div class="muted">Выбранных безопасных полей нет.</div>
+            {% endfor %}
+            {% if row.replacement_fields %}
+              <div><strong>Будет заменено:</strong></div>
+              {% for field in row.replacement_fields %}
+                <div>
+                  <strong>{{ field.label }}</strong><br>
+                  Было: {{ field.existing|default:"-" }}<br>
+                  Станет: {{ field.source|default:"-" }}
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% if row.ignored_fields %}
+              <details>
+                <summary>Не будет применено</summary>
+                {% for field in row.ignored_fields %}
+                  <div class="muted">{{ field.label }}: {{ field.source }} ({{ field.status }})</div>
+                {% endfor %}
+              </details>
+            {% endif %}
+          </td>
+          <td><a href="{% url 'sources:import_item_detail' batch.pk row.item_id %}">{% if is_applied %}Открыть{% else %}Изменить{% endif %}</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Дополнений существующих записей нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Авторы</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Имя из источника</th>
+        <th>Решение</th>
+        <th>Затронет записей</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in plan.preview.author_rows %}
+        <tr>
+          <td><strong>{{ row.label }}</strong></td>
+          <td>
+            {{ row.action }}
+            {% if row.target_label %}<div class="muted">{{ row.target_label }}</div>{% endif %}
+          </td>
+          <td>{{ row.related_count }}</td>
+          <td><a href="{% url 'sources:import_author_review' batch.pk %}">Авторы</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">Авторских решений нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Журналы, выпуски и сборники</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Тип</th>
+        <th>Сущность</th>
+        <th>Решение</th>
+        <th>Детали</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in plan.preview.container_rows %}
+        <tr>
+          <td>{{ row.type_label }}</td>
+          <td><strong>{{ row.label }}</strong></td>
+          <td>
+            {{ row.action }}
+            {% if row.target_label %}<div class="muted">{{ row.target_label }}</div>{% endif %}
+          </td>
+          <td>
+            {% for detail in row.details %}
+              <div class="muted">{{ detail }}</div>
+            {% empty %}
+              <span class="muted">-</span>
+            {% endfor %}
+          </td>
+          <td>
+            {% if row.group_id %}
+              <a href="{% url 'sources:import_group_detail' batch.pk row.group_id %}">Группа</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Журналов, выпусков и сборников в плане нет.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Строки без изменений / отложенные / отклонённые</h2>
+  <div class="import-layout">
+    <div>
+      <h3>Пропущены как уже существующие</h3>
+      <ul>
+        {% for row in plan.preview.skipped_rows %}
+          <li>
+            {% if row.existing_label %}<strong>{{ row.existing_label }}</strong><br>{% endif %}
+            {{ row.raw_text }}
+            <a href="{% url 'sources:import_item_detail' batch.pk row.item_id %}">{% if is_applied %}Открыть{% else %}Изменить{% endif %}</a>
+          </li>
+        {% empty %}
+          <li class="muted">Таких строк нет.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h3>Отложены</h3>
+      <ul>
+        {% for row in plan.preview.postponed_rows %}
+          <li>{{ row.raw_text }} <a href="{% url 'sources:import_item_detail' batch.pk row.item_id %}">Открыть</a></li>
+        {% empty %}
+          <li class="muted">Отложенных строк нет.</li>
+        {% endfor %}
+      </ul>
+      <h3>Отклонены</h3>
+      <ul>
+        {% for row in plan.preview.rejected_rows %}
+          <li>{{ row.raw_text }} <a href="{% url 'sources:import_item_detail' batch.pk row.item_id %}">Открыть</a></li>
+        {% empty %}
+          <li class="muted">Отклонённых строк нет.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% if plan.preview.group_problem_rows %}
+  <section class="panel">
+    <h2>Группы требуют решения</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Группа</th>
+          <th>Статус</th>
+          <th>Статей</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in plan.preview.group_problem_rows %}
+          <tr>
+            <td>{{ row.label }}</td>
+            <td>{{ row.status }}</td>
+            <td>{{ row.article_count }}</td>
+            <td><a href="{% url 'sources:import_group_detail' batch.pk row.group_id %}">Проверить</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endif %}
+
+{% if plan.unresolved %}
+  <section class="panel">
+    <h2>Осталось проверить</h2>
+    <table>
+      <thead><tr><th>Тип</th><th>Запись</th></tr></thead>
+      <tbody>
+        {% for entity in plan.unresolved %}
+          <tr><td>{{ entity.type }}</td><td>{{ entity.label }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endif %}
+
+<section class="panel">
+  <h2>Применение</h2>
+  {% if is_applied %}
+    <p class="muted">Импорт уже применён. Повторное применение из этого экрана недоступно.</p>
+    {% if latest_apply_log %}<p><a href="{% url 'sources:import_batch_result' batch.pk %}">Показать результат применения</a></p>{% endif %}
+  {% elif plan.can_apply and not plan.problems %}
+    <form method="post" action="{% url 'sources:import_batch_apply' batch.pk %}">
+      {% csrf_token %}
+      <button type="submit">Применить импорт к базе</button>
+    </form>
+  {% else %}
+    <p class="muted">Кнопка применения появится после принятия обязательных решений.</p>
+  {% endif %}
+</section>
+{% endblock %}

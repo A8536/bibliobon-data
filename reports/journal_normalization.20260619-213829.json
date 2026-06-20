@@ -1,0 +1,33 @@
+{
+  "source_journal": {
+    "id": "journal-002787",
+    "title": "Лавка коллекционера. Самара"
+  },
+  "target_journal": {
+    "id": "journal-002523",
+    "title": "Лавка коллекционера"
+  },
+  "backup_path": "/Users/oleg/Projects/data/bibliobon-data/data/backups/editor.before-journal-normalization.20260619-213829.sqlite",
+  "moved_issues": [
+    {
+      "source_issue_id": "journal-issue-011721",
+      "source_label": "Лавка коллекционера. Самара, 2006, № 54",
+      "new_label": "Лавка коллекционера, 2006, № 54",
+      "article_count": 1,
+      "placement_count": 1
+    },
+    {
+      "source_issue_id": "journal-issue-011722",
+      "source_label": "Лавка коллекционера. Самара, 2007, № 1-2, общ. № 59-60",
+      "new_label": "Лавка коллекционера, 2007, № 1-2, общ. № 59-60",
+      "article_count": 1,
+      "placement_count": 1
+    }
+  ],
+  "merged_issues": [],
+  "skipped_issues": [],
+  "moved_articles": 0,
+  "moved_placements": 0,
+  "user": "editor",
+  "timestamp": "2026-06-19T21:38:29.932392+00:00"
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "action": "link_existing_author",
+    "author_key": "миклашевский:а",
+    "author_options": [
+      {
+        "author_id": "author-013245",
+        "display_name": "Миклашевский А.",
+        "heading_name": "Миклашевский А.",
+        "person_dates": "",
+        "score": 1.0
+      }
+    ],
+    "author_reasons": "author_name_exact",
+    "author_score": 1.0,
+    "best_author_dates": "",
+    "best_author_display_name": "Миклашевский А.",
+    "best_author_heading_name": "Миклашевский А.",
+    "best_author_id": "author-013245",
+    "candidate_author": "Миклашевский А.",
+    "candidate_heading_name": "Миклашевский А.",
+    "candidate_ids": "candidate-6e4cbdddb93c1e56",
+    "example_1": "Миклашевский А. Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса. - М.: Университетская тип., 1895. - III, 729 с.: табл.",
+    "example_2": "",
+    "raw_record_ids": "raw-b966997c7cdf6e9d",
+    "review_note": "Автор найден в базе; можно подтвердить связь с существующим автором.",
+    "status": "ready"
+  }
+]

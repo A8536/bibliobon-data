@@ -1,0 +1,11 @@
+{
+  "producer": "bibliobon-data",
+  "status": "draft",
+  "created_from": [
+    "/Users/oleg/Projects/websites/bibliobon-catalog/app/db.sqlite3",
+    "Google Sheets 1zYFOqM-wBT6mFYLmblaGRBlV0rJeWAaLrEsCMJYKHTw"
+  ],
+  "notes": [
+    "This is a placeholder until the first repeatable build script exists."
+  ]
+}

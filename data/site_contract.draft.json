@@ -1,0 +1,12 @@
+{
+  "contract_version": "draft",
+  "producer": "bibliobon-data",
+  "description": "Draft future export contract for bibliobon-catalog site imports.",
+  "sqlite": "data/bibliobon.sqlite",
+  "status": "draft",
+  "notes": [
+    "This file is a placeholder. Define required_tables after the first bootstrap from the current Django database.",
+    "Use stable data-project IDs as canonical keys. Preserve Django IDs only as compatibility fields during migration."
+  ],
+  "required_tables": {}
+}

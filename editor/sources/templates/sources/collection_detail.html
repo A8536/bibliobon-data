@@ -1,0 +1,27 @@
+{% extends "sources/base.html" %}
+
+{% block title %}{{ container.title }} · Bibliobon{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'sources:periodical_list' %}">Назад</a></p>
+<h1>{{ container.title }}</h1>
+<p>{{ container.publication_details }}</p>
+<div class="actions">
+  <a href="{% url 'admin:sources_work_change' container.pk %}">Редактировать сборник</a>
+  {% if article_count == 1 %}
+    <form method="post" action="{% url 'sources:convert_single_collection_article' container.pk %}">
+      {% csrf_token %}
+      <button type="submit">Преобразовать единственную статью в источник</button>
+    </form>
+  {% endif %}
+</div>
+
+<section class="panel">
+  <h2>Статьи: {{ article_count }}</h2>
+  <ol>
+    {% for article in articles %}
+      <li>{{ article.work.title }} <a href="{% url 'admin:sources_work_change' article.work.pk %}">Work</a></li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

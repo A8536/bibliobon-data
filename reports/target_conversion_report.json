@@ -1,0 +1,49 @@
+{
+  "legacy": {
+    "works": 5744,
+    "work_authors": 4998,
+    "work_tags": 3000,
+    "journals": 249,
+    "journal_issues": 1700,
+    "articles": 4533,
+    "work_groups": 9,
+    "work_group_items": 93,
+    "container_works": 274,
+    "legacy_collections_with_articles": 0
+  },
+  "target_current": {
+    "sources": 5744,
+    "source_authors": 4998,
+    "source_tags": 3000,
+    "periodicals": 249,
+    "issues": 1974,
+    "article_placements": 4533,
+    "source_groups": 9,
+    "source_group_items": 93
+  },
+  "conversion_plan": {
+    "sources_from_works": 5744,
+    "periodicals_from_journals": 249,
+    "issues_from_journal_issues": 1700,
+    "issues_from_container_works": 274,
+    "article_placements_from_articles": 4533,
+    "source_groups_from_work_groups": 9
+  },
+  "diagnostics": {
+    "articles_without_container": 0,
+    "articles_with_both_main_containers": 0,
+    "legacy_collection_articles": 0,
+    "standalone_records_that_look_like_articles": 25
+  },
+  "last_apply": {
+    "sources": 5744,
+    "source_authors": 4998,
+    "source_tags": 3000,
+    "periodicals": 249,
+    "issues": 1974,
+    "article_placements": 4533,
+    "source_groups": 9,
+    "source_group_items": 93,
+    "skipped_article_placements": 0
+  }
+}

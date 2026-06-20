@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Parser review stage 3</title>
+  <style>
+    :root {
+      --catalog-bg: #f4f4f4;
+      --catalog-surface: #ffffff;
+      --catalog-soft: #f6f6f6;
+      --catalog-border: #dddddd;
+      --catalog-ink: #242424;
+      --catalog-muted: #6f6f6f;
+      --catalog-accent: #be373b;
+      --font-family: "San Francisco", "Roboto", Arial, sans-serif;
+      --heading-font-family: "Scada", var(--font-family);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--catalog-bg);
+      color: var(--catalog-ink);
+      font: 13px/1.15 var(--font-family);
+    }
+    .wrap {
+      width: min(1230px, calc(100% - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 26px 30px 56px;
+      background: var(--catalog-surface);
+    }
+    h1 {
+      margin: 0;
+      color: #242424;
+      font-family: var(--heading-font-family);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      font-family: var(--heading-font-family);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 860px;
+      margin: 12px 0 0;
+      color: var(--catalog-muted);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+    .review-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    .review-nav a {
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 1px solid var(--catalog-border);
+      color: var(--catalog-ink);
+      background: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .review-section {
+      margin-top: 30px;
+      border: 1px solid var(--catalog-border);
+      background: #fff;
+    }
+    .results-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--catalog-border);
+      color: var(--catalog-muted);
+      background: #fff;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    .summary-cell {
+      min-height: 92px;
+      padding: 14px 16px;
+      border-right: 1px solid var(--catalog-border);
+      background: #fff;
+    }
+    .summary-cell:last-child { border-right: 0; }
+    .summary-number {
+      color: var(--catalog-accent);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    .summary-label {
+      margin-top: 8px;
+      color: var(--catalog-muted);
+      line-height: 1.25;
+    }
+    .stage-notes {
+      display: grid;
+      gap: 10px;
+      padding: 16px 18px;
+      color: var(--catalog-muted);
+      line-height: 1.35;
+    }
+    .service-button {
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 1px solid #188038;
+      border-radius: 0;
+      color: #188038;
+      background: #fff;
+      cursor: default;
+      font: inherit;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+    }
+    .apply-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 18px;
+      border-top: 1px solid var(--catalog-border);
+    }
+    .service-button.secondary {
+      border-color: var(--catalog-border);
+      color: var(--catalog-ink);
+    }
+    .file-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .file-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    code { background: #f1f3f4; padding: 1px 4px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Третий этап разбора</h1>
+    <p class="lede">Статический макет итогов по текущему файлу. Если на втором этапе остановиться, данные остаются в staging-состоянии и в общую базу не попадают.</p>
+    <nav class="review-nav">
+      <a href="../review_stage2.html/">Назад ко второму этапу</a>
+      <a href="../review_report.html/">К первому этапу</a>
+    </nav>
+
+    <section class="review-section">
+      <div class="results-header">
+        <h2>Итоги файла 260527-1_1-20.txt</h2>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-cell">
+          <div class="summary-number">20</div>
+          <div class="summary-label">записей было в исходном файле</div>
+        </div>
+        <div class="summary-cell">
+          <div class="summary-number">11</div>
+          <div class="summary-label">однозначно совпали с базой на первом этапе</div>
+        </div>
+        <div class="summary-cell">
+          <div class="summary-number">6</div>
+          <div class="summary-label">приняты после ручного уточнения</div>
+        </div>
+        <div class="summary-cell">
+          <div class="summary-number">2</div>
+          <div class="summary-label">подготовлены как новые записи</div>
+        </div>
+        <div class="summary-cell">
+          <div class="summary-number">1</div>
+          <div class="summary-label">осталась неразобранной для повторного прохода</div>
+        </div>
+      </div>
+      <div class="stage-notes">
+        <div>После применения изменённые записи должны попасть в редакторскую базу только через отдельный apply-шаг с backup.</div>
+        <div>Из рабочей копии исходного текста должны быть удалены записи, прошедшие третий этап.</div>
+        <div>Неразобранные записи должны остаться в отдельной копии исходника для повторного парсинга.</div>
+      </div>
+      <form class="apply-row" method="post" action="../apply/">
+        <input type="hidden" name="csrfmiddlewaretoken" value="">
+        <button class="service-button secondary" type="submit" name="mode" value="changed_only">Внести только изменённые записи</button>
+        <button class="service-button" type="submit" name="mode" value="changed_and_new">Внести изменённые и новые записи</button>
+      </form>
+    </section>
+
+    <section class="review-section">
+      <div class="results-header">
+        <h2>Состояния и файлы</h2>
+      </div>
+      <div class="stage-notes">
+        <ul class="file-list">
+          <li><code>stage2_state.json</code> — выбранные и изменённые записи второго этапа.</li>
+          <li><code>accepted_for_apply.jsonl</code> — записи, готовые к внесению в базу.</li>
+          <li><code>remaining_source_copy.txt</code> — копия исходника только с неразобранными строками.</li>
+          <li><code>stage3_summary.json</code> — итоговая статистика текущего файла.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script>
+    var csrf = document.cookie.split("; ").find(function (item) {
+      return item.indexOf("bibliobon_data_editor_csrftoken=") === 0;
+    });
+    if (csrf) {
+      document.querySelectorAll('input[name="csrfmiddlewaretoken"]').forEach(function (input) {
+        input.value = decodeURIComponent(csrf.split("=").slice(1).join("="));
+      });
+    }
+  </script>
+</body>
+</html>

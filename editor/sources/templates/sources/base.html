@@ -1,0 +1,34 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Bibliobon editor{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'sources/editor.css' %}?v=20260618">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{% url 'sources:dashboard' %}">Bibliobon data editor</a>
+    <nav>
+      <a href="{% url 'sources:work_list' %}">Издания</a>
+      <a href="{% url 'sources:quick_create' %}">Создать</a>
+      <a href="{% url 'sources:import_batch_list' %}">Импорты</a>
+      <a href="{% url 'sources:parser_batches' %}">Парсер</a>
+      <a href="{% url 'sources:relation_tool' %}">Связи</a>
+      <a href="{% url 'sources:service_tools' %}">Сервис</a>
+      <a href="{% url 'sources:section_list' %}">Категории</a>
+      <a href="{% url 'sources:periodical_list' %}">Журналы и сборники</a>
+      <a href="{% url 'admin:index' %}">Админка</a>
+    </nav>
+  </header>
+  <main class="page">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}<li class="{{ message.tags }}">{{ message }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Parser review stage 2</title>
+  <style>
+    :root {
+      --catalog-bg: #f4f4f4;
+      --catalog-surface: #ffffff;
+      --catalog-soft: #f6f6f6;
+      --catalog-border: #dddddd;
+      --catalog-ink: #242424;
+      --catalog-muted: #6f6f6f;
+      --catalog-accent: #be373b;
+      --field-mark-bg: #fff1f1;
+      --font-family: "San Francisco", "Roboto", Arial, sans-serif;
+      --heading-font-family: "Scada", var(--font-family);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--catalog-bg);
+      color: var(--catalog-ink);
+      font: 13px/1.15 var(--font-family);
+    }
+    .wrap {
+      width: min(1230px, calc(100% - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 26px 30px 56px;
+      background: var(--catalog-surface);
+    }
+    h1 {
+      margin: 0;
+      color: #242424;
+      font-family: var(--heading-font-family);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      font-family: var(--heading-font-family);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 860px;
+      margin: 12px 0 0;
+      color: var(--catalog-muted);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+    .review-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    .review-nav a {
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 1px solid var(--catalog-border);
+      color: var(--catalog-ink);
+      background: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .review-section {
+      margin-top: 30px;
+      border: 1px solid var(--catalog-border);
+      background: #fff;
+    }
+    .results-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--catalog-border);
+      color: var(--catalog-muted);
+      background: #fff;
+    }
+    .results-count { margin-top: 6px; font-size: 14px; }
+    .bibliography-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background: #fff;
+    }
+    .bibliography-item {
+      padding: 14px 18px 15px;
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    .bibliography-item:last-child { border-bottom: 0; }
+    .pair-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 142px;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .citation-row {
+      color: var(--catalog-ink);
+      font-size: 10pt;
+      line-height: 1.22;
+      padding: 2px 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+    .citation-row + .citation-row { margin-top: 3px; }
+    .citation-row.is-selected-new { background: #ffe7ed; }
+    .citation-row.is-selected-old { background: #e6f4ea; }
+    .candidate-citation { color: var(--catalog-muted); }
+    .field-author { font-weight: 700; }
+    .field {
+      border-bottom: 1px solid transparent;
+      text-underline-offset: 3px;
+    }
+    .field-diff {
+      color: var(--catalog-accent);
+      background: var(--field-mark-bg);
+      font-weight: 800;
+      border-bottom-color: var(--catalog-accent);
+    }
+    .field-note {
+      margin-top: 8px;
+      color: var(--catalog-muted);
+      font-size: 13px;
+    }
+    .field-note strong { color: var(--catalog-accent); }
+    .pair-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+      color: var(--catalog-muted);
+      font-size: 13px;
+    }
+    .score {
+      color: var(--catalog-accent);
+      font-weight: 800;
+    }
+    .pair-actions {
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+    .service-button {
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid var(--catalog-border);
+      border-radius: 0;
+      color: var(--catalog-muted);
+      background: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+    }
+    .status-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      min-height: calc(2.44em + 7px);
+      cursor: pointer;
+    }
+    .status-box.is-changed {
+      border-color: #188038;
+      color: #188038;
+    }
+    .stage-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin: -10px 0 22px;
+    }
+    .stage-link {
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 1px solid var(--catalog-ink);
+      color: #fff;
+      background: var(--catalog-ink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 34px 18px;
+      background: rgba(36, 36, 36, .28);
+      z-index: 10;
+    }
+    .modal-backdrop.is-open {
+      display: flex;
+    }
+    .modal {
+      width: min(980px, 100%);
+      max-height: calc(100vh - 68px);
+      overflow: auto;
+      border: 1px solid var(--catalog-border);
+      background: #fff;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .18);
+    }
+    .modal-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--catalog-border);
+      background: #fff;
+    }
+    .modal-header h2 {
+      font-size: 24px;
+    }
+    .modal-body {
+      padding: 18px;
+    }
+    .modal-citation {
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      border-left: 3px solid var(--catalog-border);
+      background: var(--catalog-soft);
+      color: var(--catalog-muted);
+      font-size: 10pt;
+      line-height: 1.22;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 16px;
+    }
+    .field-control {
+      display: grid;
+      gap: 5px;
+    }
+    .field-control.full {
+      grid-column: 1 / -1;
+    }
+    .field-control label {
+      color: var(--catalog-muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .field-control input,
+    .field-control textarea,
+    .field-control select {
+      width: 100%;
+      min-height: 34px;
+      padding: 7px 9px;
+      border: 1px solid var(--catalog-border);
+      border-radius: 0;
+      background: #fff;
+      color: var(--catalog-ink);
+      font: inherit;
+    }
+    .field-control textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+    .all-fields-toggle {
+      display: inline-flex;
+      width: fit-content;
+      margin: 14px 0 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--catalog-accent);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .all-fields {
+      display: none;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--catalog-border);
+    }
+    .all-fields.is-open {
+      display: block;
+    }
+    .all-fields h3 {
+      margin: 0 0 12px;
+      color: var(--catalog-muted);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 14px 18px 18px;
+      border-top: 1px solid var(--catalog-border);
+    }
+    .accept-button {
+      border-color: #188038;
+      color: #188038;
+    }
+    .cancel-button {
+      border-color: var(--catalog-border);
+      color: var(--catalog-muted);
+    }
+    code { background: #f1f3f4; padding: 1px 4px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Второй этап разбора</h1>
+    <p class="lede">Макет состояния после первого этапа. Полные совпадения уже исключены из рабочей копии исходного текста. Здесь остаются записи, по которым нужно выбрать или поправить данные перед следующим шагом.</p>
+    <nav class="review-nav">
+      <a href="review_report.html">Назад к первому этапу</a>
+      <a href="#records">Неразобранные: 9</a>
+    </nav>
+    <div class="stage-actions">
+      <a class="stage-link" href="../review_stage3.html/">Перейти к третьему этапу</a>
+    </div>
+
+    <section id="records" class="review-section">
+      <div class="results-header">
+        <h2>Неразобранные записи</h2>
+        <div class="results-count">Клик по записи открывает форму редактирования основных полей.</div>
+      </div>
+      <ul class="bibliography-list">
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="Аблов Н." data-title="Недостатки нашей денежной системы, средства к ея исправлению и размен бумажных денег на звонкую монету" data-subtitle="" data-responsibility="" data-place="СПб" data-publisher="тип. Майкова" data-date="1871" data-extent="12 с" data-notes=""><span class="field field-author">Аблов Н.</span> <span class="field">Недостатки нашей денежной системы, средства к ея исправлению и размен бумажных денег на звонкую монету</span> - <span class="field">СПб</span>: <span class="field field-diff">тип. Майкова</span>, <span class="field">1871</span> - <span class="field">12 с</span>.</div>
+              <div class="citation-row" data-authors="Аблов Н." data-title="Недостатки нашей денежной системы, средства к ея исправлению и размен бумажных денег на звонкую монету" data-subtitle="" data-responsibility="" data-place="СПб." data-publisher="Тип. Майкова, ценз." data-date="1871" data-extent="12 с." data-notes=""><span class="field field-author">Аблов Н.</span> <span class="field">Недостатки нашей денежной системы, средства к ея исправлению и размен бумажных денег на звонкую монету</span> - <span class="field">СПб.</span>: <span class="field field-diff">Тип. Майкова, ценз.</span>, <span class="field">1871</span> - <span class="field">12 с.</span>.</div>
+              <div class="field-note">Отличаются поля: <strong>publisher</strong>.</div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="Антонович А." data-title="Теория бумажно-денежного обращения и государственные кредитные билеты" data-subtitle="" data-responsibility="" data-place="Киев" data-publisher="Унив. тип. (И.И. Завадского)" data-date="1883" data-extent="[6], 262 с., [2] л. табл" data-notes=""><span class="field field-author">Антонович А.</span> <span class="field">Теория бумажно-денежного обращения и государственные кредитные билеты</span> - <span class="field">Киев</span>: <span class="field">Унив. тип. (И.И. Завадского)</span>, <span class="field">1883</span> - <span class="field field-diff">[6], 262 с., [2] л. табл</span>.</div>
+              <div class="citation-row" data-authors="Антонович А." data-title="Теория бумажно-денежного обращения и государственные кредитные билеты" data-subtitle="" data-responsibility="" data-place="Киев" data-publisher="Унив. тип. (И.И. Завадского)" data-date="1883" data-extent="[6], 262 с." data-notes=""><span class="field field-author">Антонович А.</span> <span class="field">Теория бумажно-денежного обращения и государственные кредитные билеты</span> - <span class="field">Киев</span>: <span class="field">Унив. тип. (И.И. Завадского)</span>, <span class="field">1883</span> - <span class="field field-diff">[6], 262 с.</span>.</div>
+              <div class="field-note">Отличаются поля: <strong>extent</strong>.</div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="Боголепов М.И." data-title="Война и деньги" data-subtitle="" data-responsibility="" data-place="" data-publisher="" data-date="" data-extent="" data-notes=""><span class="field field-author">Боголепов М.И.</span> <span class="field">Война и деньги</span>.</div>
+              <div class="citation-row" data-authors="Боголепов М.И." data-title="Война и деньги" data-subtitle="" data-responsibility="" data-place="Пг" data-publisher="Право" data-date="1915" data-extent="" data-notes=""><span class="field field-author">Боголепов М.И.</span> <span class="field">Война и деньги</span> - <span class="field field-diff">Пг</span>: <span class="field field-diff">Право</span>, <span class="field field-diff">1915</span>.</div>
+              <div class="field-note">Отличаются поля: <strong>place, publisher, date</strong>.</div>
+              <div class="pair-meta"><span>match_score: <span class="score">0.80</span></span></div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="Безобразов В.П." data-title="О некоторых явлениях денежного обращения в России в связи с промышленностью, торговлею и кредитом" data-subtitle="" data-responsibility="" data-place="М" data-publisher="Унив. тип" data-date="1863" data-extent="3 т" data-notes=""><span class="field field-author">Безобразов В.П.</span> <span class="field">О некоторых явлениях денежного обращения в России в связи с промышленностью, торговлею и кредитом</span> - <span class="field">М</span>: <span class="field">Унив. тип</span>, <span class="field">1863</span> - <span class="field field-diff">3 т</span>.</div>
+              <div class="citation-row" data-authors="Безобразов В.П." data-title="О некоторых явлениях денежного обращения в России в связи с промышленностью, торговлею и кредитом" data-subtitle="" data-responsibility="3 т." data-place="М." data-publisher="Унив. тип." data-date="1863" data-extent="в 3 т." data-notes=""><span class="field field-author">Безобразов В.П.</span> <span class="field">О некоторых явлениях денежного обращения в России в связи с промышленностью, торговлею и кредитом</span> / <span class="field field-diff">3 т.</span> - <span class="field">М.</span>: <span class="field">Унив. тип.</span>, <span class="field">1863</span> - <span class="field field-diff">в 3 т.</span>.</div>
+              <div class="field-note">Отличаются поля: <strong>responsibility, extent</strong>.</div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="Бунге Н.Х." data-title="О восстановлении постоянной денежной единицы в России" data-subtitle="" data-responsibility="" data-place="Киев" data-publisher="Унив. тип. (И. Завадского)" data-date="1878" data-extent="63 с" data-notes=""><span class="field field-author">Бунге Н.Х.</span> <span class="field">О восстановлении постоянной денежной единицы в России</span> - <span class="field">Киев</span>: <span class="field field-diff">Унив. тип. (И. Завадского)</span>, <span class="field">1878</span> - <span class="field">63 с</span>.</div>
+              <div class="citation-row" data-authors="Бунге Н.Х." data-title="О восстановлении постоянной денежной единицы в России" data-subtitle="" data-responsibility="" data-place="Киев" data-publisher="Унив. тип. (И.И. Завадского)" data-date="1878" data-extent="63 с." data-notes=""><span class="field field-author">Бунге Н.Х.</span> <span class="field">О восстановлении постоянной денежной единицы в России</span> - <span class="field">Киев</span>: <span class="field field-diff">Унив. тип. (И.И. Завадского)</span>, <span class="field">1878</span> - <span class="field">63 с.</span>.</div>
+              <div class="field-note">Отличаются поля: <strong>publisher</strong>.</div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="Вагнер А." data-title="Русские бумажные деньги" data-subtitle="" data-responsibility="" data-place="СПб" data-publisher="" data-date="1871" data-extent="" data-notes=""><span class="field field-author">Вагнер А.</span> <span class="field">Русские бумажные деньги</span> - <span class="field">СПб</span>, <span class="field">1871</span>.</div>
+              <div class="citation-row" data-authors="Вагнер А." data-title="Русские бумажные деньги" data-subtitle="" data-responsibility="" data-place="СПб." data-publisher="" data-date="1871" data-extent="" data-notes="Пер. с нем."><span class="field field-author">Вагнер А.</span> <span class="field">Русские бумажные деньги</span> - <span class="field">СПб.</span>, <span class="field">1871</span> - <span class="field field-diff">Пер. с нем.</span>.</div>
+              <div class="field-note">Отличаются поля: <strong>notes</strong>.</div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="" data-title="Всемирная выставка 1900 г. в Париже. Экспедиция заготовления государственных бумаг СПб. Буклет выставки" data-subtitle="" data-responsibility="" data-place="СПб" data-publisher="" data-date="1900" data-extent="" data-notes=""><span class="field">Всемирная выставка 1900 г. в Париже. Экспедиция заготовления государственных бумаг СПб. Буклет выставки</span> - <span class="field">СПб</span>, <span class="field">1900</span>.</div>
+              <div class="citation-row" data-authors="" data-title="Всемирная выставка 1900 г. в Париже. Экспедиция заготовления государственных бумаг СПб. Буклет выставки" data-subtitle="" data-responsibility="" data-place="СПб." data-publisher="" data-date="1900" data-extent="" data-notes=""><span class="field">Всемирная выставка 1900 г. в Париже. Экспедиция заготовления государственных бумаг СПб. Буклет выставки</span> - <span class="field">СПб.</span>, <span class="field">1900</span>.</div>
+              <div class="pair-meta"><span>match_score: <span class="score">0.90</span></span></div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="" data-title="Бумажные деньги в России с 1853 по 1863 год" data-subtitle="" data-responsibility="" data-place="Б.м." data-publisher="" data-date="1863" data-extent="" data-notes="Оттиск"><span class="field">Бумажные деньги в России с 1853 по 1863 год</span> - <span class="field">Б.м.</span>, <span class="field">1863</span> - <span class="field">Оттиск</span>.</div>
+              <div class="field-note">Новая запись без сильного совпадения.</div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+        <li class="bibliography-item">
+          <div class="pair-layout">
+            <div>
+              <div class="citation-row candidate-citation" data-authors="" data-title="Военные займы: сборник статей" data-subtitle="" data-responsibility="Под ред. М.И. Туган-Барановского" data-place="Пг" data-publisher="" data-date="1917" data-extent="194, 2 с" data-notes=""><span class="field">Военные займы: сборник статей</span> / <span class="field">Под ред. М.И. Туган-Барановского</span> - <span class="field">Пг</span>, <span class="field">1917</span> - <span class="field">194, 2 с</span>.</div>
+              <div class="field-note">Новая запись без сильного совпадения.</div>
+            </div>
+            <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="edit-modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h2 id="modal-title">Редактирование записи</h2>
+      </div>
+      <div class="modal-body">
+        <div class="modal-citation" id="modal-citation">Аблов Н. Недостатки нашей денежной системы... - СПб: тип. Майкова, 1871 - 12 с.</div>
+        <div class="form-grid">
+          <div class="field-control">
+            <label for="source-type">Тип записи</label>
+            <select id="source-type">
+              <option selected>book</option>
+              <option>article</option>
+              <option>collection</option>
+              <option>unknown</option>
+            </select>
+          </div>
+          <div class="field-control">
+            <label for="authors">Авторы</label>
+            <input id="authors" value="Аблов Н.">
+          </div>
+          <div class="field-control full">
+            <label for="title">Заглавие</label>
+            <textarea id="title">Недостатки нашей денежной системы, средства к ея исправлению и размен бумажных денег на звонкую монету</textarea>
+          </div>
+          <div class="field-control">
+            <label for="subtitle">Подзаголовок</label>
+            <input id="subtitle" value="">
+          </div>
+          <div class="field-control">
+            <label for="responsibility">Ответственность</label>
+            <input id="responsibility" value="">
+          </div>
+          <div class="field-control">
+            <label for="place">Место издания</label>
+            <input id="place" value="СПб">
+          </div>
+          <div class="field-control">
+            <label for="publisher">Издатель</label>
+            <input id="publisher" value="тип. Майкова">
+          </div>
+          <div class="field-control">
+            <label for="date">Дата</label>
+            <input id="date" value="1871">
+          </div>
+          <div class="field-control">
+            <label for="extent">Объём</label>
+            <input id="extent" value="12 с">
+          </div>
+          <div class="field-control full">
+            <label for="notes">Примечания</label>
+            <textarea id="notes"></textarea>
+          </div>
+        </div>
+        <button class="all-fields-toggle" type="button" id="toggle-all-fields">Все поля</button>
+        <div class="all-fields" id="all-fields-panel">
+          <h3>Все поля</h3>
+          <div class="form-grid">
+            <div class="field-control">
+              <label for="parallel-title">Параллельное заглавие</label>
+              <input id="parallel-title" value="">
+            </div>
+            <div class="field-control">
+              <label for="title-remainder">Прочие сведения к заглавию</label>
+              <input id="title-remainder" value="">
+            </div>
+            <div class="field-control">
+              <label for="edition">Сведения об издании</label>
+              <input id="edition" value="">
+            </div>
+            <div class="field-control">
+              <label for="series">Серия</label>
+              <input id="series" value="">
+            </div>
+            <div class="field-control">
+              <label for="illustrations">Иллюстрации</label>
+              <input id="illustrations" value="">
+            </div>
+            <div class="field-control">
+              <label for="dimensions">Размер</label>
+              <input id="dimensions" value="">
+            </div>
+            <div class="field-control">
+              <label for="circulation">Тираж</label>
+              <input id="circulation" value="">
+            </div>
+            <div class="field-control">
+              <label for="isbn">ISBN</label>
+              <input id="isbn" value="">
+            </div>
+            <div class="field-control">
+              <label for="issn">ISSN</label>
+              <input id="issn" value="">
+            </div>
+            <div class="field-control">
+              <label for="doi">DOI</label>
+              <input id="doi" value="">
+            </div>
+            <div class="field-control full">
+              <label for="url">URL</label>
+              <input id="url" value="">
+            </div>
+            <div class="field-control">
+              <label for="access-date">Дата обращения</label>
+              <input id="access-date" value="">
+            </div>
+            <div class="field-control">
+              <label for="content-type">Вид содержания</label>
+              <input id="content-type" value="">
+            </div>
+            <div class="field-control">
+              <label for="media-type">Средство доступа</label>
+              <input id="media-type" value="">
+            </div>
+            <div class="field-control">
+              <label for="carrier-type">Носитель</label>
+              <input id="carrier-type" value="">
+            </div>
+            <div class="field-control">
+              <label for="article-pages">Страницы статьи</label>
+              <input id="article-pages" value="">
+            </div>
+            <div class="field-control">
+              <label for="page-start">Первая страница</label>
+              <input id="page-start" value="">
+            </div>
+            <div class="field-control">
+              <label for="page-end">Последняя страница</label>
+              <input id="page-end" value="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="service-button cancel-button" type="button" id="cancel-edit">Отменить</button>
+        <button class="service-button accept-button" type="button" id="accept-edit">Принять</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var modal = document.getElementById("edit-modal");
+    var citation = document.getElementById("modal-citation");
+    var storageKey = "bibliobon-parser-stage2-edits:" + location.pathname;
+    var stateUrl = "../state/";
+    var activeItem = null;
+    var activeItemId = null;
+    var activeSelected = "";
+    var dirty = false;
+    var fields = {
+      sourceType: document.getElementById("source-type"),
+      authors: document.getElementById("authors"),
+      title: document.getElementById("title"),
+      subtitle: document.getElementById("subtitle"),
+      responsibility: document.getElementById("responsibility"),
+      place: document.getElementById("place"),
+      publisher: document.getElementById("publisher"),
+      date: document.getElementById("date"),
+      extent: document.getElementById("extent"),
+      notes: document.getElementById("notes"),
+      parallelTitle: document.getElementById("parallel-title"),
+      titleRemainder: document.getElementById("title-remainder"),
+      edition: document.getElementById("edition"),
+      series: document.getElementById("series"),
+      illustrations: document.getElementById("illustrations"),
+      dimensions: document.getElementById("dimensions"),
+      circulation: document.getElementById("circulation"),
+      isbn: document.getElementById("isbn"),
+      issn: document.getElementById("issn"),
+      doi: document.getElementById("doi"),
+      url: document.getElementById("url"),
+      accessDate: document.getElementById("access-date"),
+      contentType: document.getElementById("content-type"),
+      mediaType: document.getElementById("media-type"),
+      carrierType: document.getElementById("carrier-type"),
+      articlePages: document.getElementById("article-pages"),
+      pageStart: document.getElementById("page-start"),
+      pageEnd: document.getElementById("page-end")
+    };
+    var allFieldsPanel = document.getElementById("all-fields-panel");
+    var toggleAllFields = document.getElementById("toggle-all-fields");
+
+    function itemId(item) {
+      if (!item.dataset.reviewId) {
+        item.dataset.reviewId = "stage2-item-" + Array.prototype.indexOf.call(document.querySelectorAll(".bibliography-item"), item);
+      }
+      return item.dataset.reviewId;
+    }
+
+    function readSavedEdits() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey) || "{}");
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function writeSavedEdits(edits) {
+      localStorage.setItem(storageKey, JSON.stringify(edits));
+    }
+
+    function csrfToken() {
+      var cookies = document.cookie.split(";").map(function (item) { return item.trim(); });
+      for (var i = 0; i < cookies.length; i += 1) {
+        if (cookies[i].indexOf("bibliobon_data_editor_csrftoken=") === 0) {
+          return decodeURIComponent(cookies[i].split("=").slice(1).join("="));
+        }
+        if (cookies[i].indexOf("csrftoken=") === 0) {
+          return decodeURIComponent(cookies[i].split("=").slice(1).join("="));
+        }
+      }
+      return "";
+    }
+
+    function postReviewState(payload) {
+      return fetch(stateUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken()
+        },
+        body: JSON.stringify(payload)
+      }).then(function (response) {
+        if (!response.ok) throw new Error("state save failed");
+        return response;
+      }).catch(function () {
+        alert("Не удалось сохранить правку. Обновите страницу и попробуйте ещё раз.");
+      });
+    }
+
+    function fieldValues() {
+      var values = {};
+      Object.keys(fields).forEach(function (key) {
+        values[key] = fields[key].value;
+      });
+      return values;
+    }
+
+    function markItemChanged(item) {
+      var status = item.querySelector(".status-box");
+      if (status) {
+        status.classList.add("is-changed");
+        status.textContent = "Изменено";
+      }
+    }
+
+    function restoreSavedEdits() {
+      fetch(stateUrl)
+        .then(function (response) { return response.ok ? response.json() : null; })
+        .then(function (state) {
+          if (!state || !state.stage2) {
+            writeSavedEdits({});
+            return;
+          }
+          var merged = {};
+          document.querySelectorAll(".bibliography-item").forEach(function (item) {
+            var saved = state.stage2[itemId(item)];
+            if (!saved) return;
+            merged[itemId(item)] = {
+              accepted_at: saved.updated_at,
+              selected: saved.selected || "",
+              values: saved.values || {}
+            };
+            markItemChanged(item);
+          });
+          writeSavedEdits(merged);
+        })
+        .catch(function () {
+          writeSavedEdits({});
+        });
+    }
+
+    document.addEventListener("click", function (event) {
+      var statusBox = event.target.closest(".status-box");
+      if (statusBox) {
+        var statusItem = statusBox.closest(".bibliography-item");
+        if (statusBox.classList.contains("is-changed")) {
+          statusBox.classList.remove("is-changed");
+          statusBox.textContent = "Без изменений";
+          statusItem.querySelectorAll(".citation-row").forEach(function (candidate) {
+            candidate.classList.remove("is-selected-new", "is-selected-old");
+          });
+          var edits = readSavedEdits();
+          delete edits[itemId(statusItem)];
+          writeSavedEdits(edits);
+          postReviewState({
+            stage: "stage2",
+            action: "clear",
+            item_id: itemId(statusItem),
+            candidate_id: statusItem.dataset.candidateId || "",
+            editor_source_id: statusItem.dataset.editorSourceId || ""
+          });
+        }
+        return;
+      }
+      var row = event.target.closest(".citation-row");
+      if (!row) return;
+      var item = event.target.closest(".bibliography-item");
+      if (!item) return;
+      item.querySelectorAll(".citation-row").forEach(function (candidate) {
+        candidate.classList.remove("is-selected-new", "is-selected-old");
+      });
+      var selectedRow = row;
+      if (selectedRow.classList.contains("candidate-citation")) {
+        selectedRow.classList.add("is-selected-new");
+        activeSelected = "new";
+      } else {
+        selectedRow.classList.add("is-selected-old");
+        activeSelected = "old";
+      }
+      activeItem = item;
+      activeItemId = itemId(item);
+      dirty = false;
+      var saved = readSavedEdits()[activeItemId];
+      fields.sourceType.value = saved ? saved.values.sourceType : selectedRow.dataset.type || "book";
+      fields.authors.value = saved ? saved.values.authors : selectedRow.dataset.authors || "";
+      fields.title.value = saved ? saved.values.title : selectedRow.dataset.title || "";
+      fields.subtitle.value = saved ? saved.values.subtitle : selectedRow.dataset.subtitle || "";
+      fields.responsibility.value = saved ? saved.values.responsibility : selectedRow.dataset.responsibility || "";
+      fields.place.value = saved ? saved.values.place : selectedRow.dataset.place || "";
+      fields.publisher.value = saved ? saved.values.publisher : selectedRow.dataset.publisher || "";
+      fields.date.value = saved ? saved.values.date : selectedRow.dataset.date || "";
+      fields.extent.value = saved ? saved.values.extent : selectedRow.dataset.extent || "";
+      fields.notes.value = saved ? saved.values.notes : selectedRow.dataset.notes || "";
+      fields.parallelTitle.value = saved ? saved.values.parallelTitle || "" : selectedRow.dataset.parallelTitle || "";
+      fields.titleRemainder.value = saved ? saved.values.titleRemainder || "" : selectedRow.dataset.titleRemainder || "";
+      fields.edition.value = saved ? saved.values.edition || "" : selectedRow.dataset.edition || "";
+      fields.series.value = saved ? saved.values.series || "" : selectedRow.dataset.series || "";
+      fields.illustrations.value = saved ? saved.values.illustrations || "" : selectedRow.dataset.illustrations || "";
+      fields.dimensions.value = saved ? saved.values.dimensions || "" : selectedRow.dataset.dimensions || "";
+      fields.circulation.value = saved ? saved.values.circulation || "" : selectedRow.dataset.circulation || "";
+      fields.isbn.value = saved ? saved.values.isbn || "" : selectedRow.dataset.isbn || "";
+      fields.issn.value = saved ? saved.values.issn || "" : selectedRow.dataset.issn || "";
+      fields.doi.value = saved ? saved.values.doi || "" : selectedRow.dataset.doi || "";
+      fields.url.value = saved ? saved.values.url || "" : selectedRow.dataset.url || "";
+      fields.accessDate.value = saved ? saved.values.accessDate || "" : selectedRow.dataset.accessDate || "";
+      fields.contentType.value = saved ? saved.values.contentType || "" : selectedRow.dataset.contentType || "";
+      fields.mediaType.value = saved ? saved.values.mediaType || "" : selectedRow.dataset.mediaType || "";
+      fields.carrierType.value = saved ? saved.values.carrierType || "" : selectedRow.dataset.carrierType || "";
+      fields.articlePages.value = saved ? saved.values.articlePages || "" : selectedRow.dataset.articlePages || "";
+      fields.pageStart.value = saved ? saved.values.pageStart || "" : selectedRow.dataset.pageStart || "";
+      fields.pageEnd.value = saved ? saved.values.pageEnd || "" : selectedRow.dataset.pageEnd || "";
+      allFieldsPanel.classList.remove("is-open");
+      toggleAllFields.textContent = "Все поля";
+      citation.textContent = selectedRow.textContent.trim();
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+    });
+
+    Object.keys(fields).forEach(function (key) {
+      fields[key].addEventListener("input", function () {
+        dirty = true;
+      });
+      fields[key].addEventListener("change", function () {
+        dirty = true;
+      });
+    });
+
+    document.getElementById("cancel-edit").addEventListener("click", function () {
+      closeModal(false);
+    });
+    document.getElementById("accept-edit").addEventListener("click", function () {
+      closeModal(true);
+    });
+    toggleAllFields.addEventListener("click", function () {
+      allFieldsPanel.classList.toggle("is-open");
+      toggleAllFields.textContent = allFieldsPanel.classList.contains("is-open") ? "Скрыть все поля" : "Все поля";
+    });
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) closeModal(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (!modal.classList.contains("is-open")) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal(false);
+      } else if (event.key === "Enter" && (event.metaKey || event.ctrlKey || event.target.tagName !== "TEXTAREA")) {
+        event.preventDefault();
+        closeModal(true);
+      }
+    });
+
+    function closeModal(accept) {
+      if (accept && activeItem && dirty) {
+        markItemChanged(activeItem);
+        var edits = readSavedEdits();
+        edits[activeItemId] = {
+          accepted_at: new Date().toISOString(),
+          selected: activeSelected,
+          values: fieldValues()
+        };
+        writeSavedEdits(edits);
+        postReviewState({
+          stage: "stage2",
+          action: "save",
+          item_id: activeItemId,
+          selected: activeSelected,
+          candidate_id: activeItem.dataset.candidateId || "",
+          editor_source_id: activeItem.dataset.editorSourceId || "",
+          values: fieldValues()
+        });
+      }
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    restoreSavedEdits();
+  </script>
+</body>
+</html>

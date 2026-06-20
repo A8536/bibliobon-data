@@ -1,0 +1,26 @@
+{
+  "source_journal": {
+    "id": "journal-002631",
+    "title": "Музейный вестник.— Вып. VIII"
+  },
+  "target_journal": {
+    "id": "journal-002630",
+    "title": "Музейный вестник.— Вып. I"
+  },
+  "backup_path": "/Users/oleg/Projects/data/bibliobon-data/data/backups/editor.before-journal-normalization.20260619-214731.sqlite",
+  "moved_issues": [
+    {
+      "source_issue_id": "journal-issue-011523",
+      "source_label": "Музейный вестник.— Вып. VIII, 2017, № Вып. VIII",
+      "new_label": "Музейный вестник.— Вып. I, 2017, № Вып. VIII",
+      "article_count": 1,
+      "placement_count": 1
+    }
+  ],
+  "merged_issues": [],
+  "skipped_issues": [],
+  "moved_articles": 0,
+  "moved_placements": 0,
+  "user": "editor",
+  "timestamp": "2026-06-19T21:47:31.277842+00:00"
+}

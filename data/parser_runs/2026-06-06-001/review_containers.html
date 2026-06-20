@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Контейнеры 2026-06-06-001</title>
+  <style>
+    :root {
+      --catalog-bg: #f4f4f4;
+      --catalog-surface: #ffffff;
+      --catalog-border: #dddddd;
+      --catalog-ink: #242424;
+      --catalog-muted: #6f6f6f;
+      --catalog-accent: #be373b;
+      --font-family: "San Francisco", "Roboto", Arial, sans-serif;
+      --heading-font-family: "Scada", var(--font-family);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--catalog-bg);
+      color: var(--catalog-ink);
+      font: 16px/1.35 var(--font-family);
+    }
+    .wrap {
+      width: min(1230px, calc(100% - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 26px 30px 56px;
+      background: var(--catalog-surface);
+    }
+    h1 {
+      margin: 0;
+      font-family: var(--heading-font-family);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      font-family: var(--heading-font-family);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 850px;
+      margin: 12px 0 0;
+      color: var(--catalog-muted);
+      font-size: 17px;
+    }
+    .stage-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin: 18px 0 22px;
+    }
+    .stage-link {
+      min-height: 34px;
+      padding: 7px 12px;
+      border: 1px solid var(--catalog-ink);
+      color: #fff;
+      background: var(--catalog-ink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .review-section {
+      margin-top: 24px;
+      border: 1px solid var(--catalog-border);
+      background: #fff;
+    }
+    .results-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--catalog-border);
+      color: var(--catalog-muted);
+      background: #fff;
+    }
+    .bibliography-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .bibliography-item {
+      padding: 14px 18px 15px;
+      border-bottom: 1px solid var(--catalog-border);
+    }
+    .bibliography-item:last-child { border-bottom: 0; }
+    .pair-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .citation-row {
+      padding: 2px 4px;
+      color: var(--catalog-ink);
+      font-size: 10pt;
+      line-height: 1.22;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
+    }
+    .candidate-citation { color: var(--catalog-muted); }
+    .record-prefix {
+      color: var(--catalog-ink);
+      font-weight: 800;
+    }
+    .field {
+      border-bottom: 1px solid #9aa0a6;
+      text-decoration: underline;
+      text-decoration-color: #9aa0a6;
+      text-underline-offset: 3px;
+    }
+    .field-note {
+      margin-top: 8px;
+      color: var(--catalog-muted);
+      font-size: 13px;
+    }
+    .pair-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 9px;
+      color: var(--catalog-muted);
+      font-size: 13px;
+    }
+    .pair-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-content: center;
+    }
+    .issue-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .issue-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 16px;
+      padding-top: 10px;
+      border-top: 1px solid var(--catalog-border);
+    }
+    .choice-panel {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid var(--catalog-border);
+      background: #fff;
+    }
+    .choice-panel.is-open { display: block; }
+    .choice-search {
+      width: 100%;
+      min-height: 32px;
+      margin-bottom: 8px;
+      padding: 6px 8px;
+      border: 1px solid var(--catalog-border);
+      font: inherit;
+    }
+    .choice-list {
+      display: grid;
+      gap: 6px;
+      max-height: 230px;
+      overflow: auto;
+    }
+    .choice-button {
+      text-align: left;
+      font-weight: 400;
+    }
+    .service-button {
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid var(--catalog-border);
+      border-radius: 0;
+      color: var(--catalog-muted);
+      background: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-align: center;
+    }
+    .service-button.is-selected {
+      border-color: #188038;
+      color: #188038;
+    }
+    .service-button.is-danger {
+      border-color: var(--catalog-accent);
+      color: var(--catalog-accent);
+    }
+    .empty-state {
+      padding: 18px;
+      color: var(--catalog-muted);
+    }
+    code { background: #f1f3f4; padding: 1px 4px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Контейнеры</h1>
+    <p class="lede">Run <code>2026-06-06-001</code>. Сначала подтверждаются журналы, выпуски и сборники, чтобы на следующем этапе статьи уже показывались с правильной привязкой.</p>
+    <div class="stage-actions">
+      <a class="stage-link" href="../review_authors.html/">Перейти к авторам</a>
+    </div>
+    <section class="review-section">
+      <div class="results-header">
+        <h2>Нужно подтвердить</h2>
+        <div>Контейнеры, где нужно выбрать существующую запись или разрешить создание новой: <strong>0</strong></div>
+      </div>
+      <ul class="bibliography-list">
+        <li class="empty-state">Нет контейнеров, требующих ручного решения.</li>
+      </ul>
+    </section>
+    <section class="review-section">
+      <div class="results-header">
+        <h2>Найдены автоматически</h2>
+        <div>Контейнеры, где журнал/выпуск или сборник уже найден в базе: <strong>0</strong></div>
+      </div>
+      <ul class="bibliography-list">
+        <li class="empty-state">Нет автоматически найденных контейнеров.</li>
+      </ul>
+    </section>
+  </main>
+  <script>
+    var stateUrl = "../state/";
+
+    function csrfToken() {
+      var cookies = document.cookie.split(";").map(function (item) { return item.trim(); });
+      for (var i = 0; i < cookies.length; i += 1) {
+        if (cookies[i].indexOf("bibliobon_data_editor_csrftoken=") === 0) {
+          return decodeURIComponent(cookies[i].split("=").slice(1).join("="));
+        }
+        if (cookies[i].indexOf("csrftoken=") === 0) {
+          return decodeURIComponent(cookies[i].split("=").slice(1).join("="));
+        }
+      }
+      return "";
+    }
+
+    function postReviewState(payload) {
+      return fetch(stateUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken()
+        },
+        body: JSON.stringify(payload)
+      }).then(function (response) {
+        if (!response.ok) throw new Error("state save failed");
+        return response;
+      }).catch(function () {
+        document.body.classList.add("state-save-error");
+        alert("Не удалось сохранить решение. Обновите страницу и попробуйте ещё раз.");
+      });
+    }
+
+    function restoreStage0State() {
+      fetch(stateUrl)
+        .then(function (response) { return response.ok ? response.json() : null; })
+        .then(function (state) {
+          if (!state || !state.stage0) return;
+          Object.keys(state.stage0).forEach(function (itemId) {
+            var saved = state.stage0[itemId];
+            var selector = '.service-button[data-item-id="' + CSS.escape(itemId) + '"][data-decision="' + CSS.escape(saved.decision || "") + '"]';
+            var candidates = Array.prototype.slice.call(document.querySelectorAll(selector));
+            var button = candidates.find(function (candidate) {
+              if (saved.issue_id && candidate.dataset.issueId !== saved.issue_id) return false;
+              if (saved.periodical_id && candidate.dataset.periodicalId !== saved.periodical_id) return false;
+              if (saved.collection_id && candidate.dataset.collectionId !== saved.collection_id) return false;
+              return true;
+            }) || candidates[0];
+            if (button) markDecision(button, true);
+          });
+        })
+        .catch(function () {});
+    }
+
+    function markDecision(button, skipSave) {
+      var item = button.closest(".bibliography-item");
+      var scope = button.closest(".issue-item") || item;
+      scope.querySelectorAll(".service-button").forEach(function (candidate) {
+        candidate.classList.remove("is-selected");
+      });
+      button.classList.add("is-selected");
+      if (skipSave) return;
+      postReviewState({
+        stage: "stage0",
+        item_id: button.dataset.itemId || item.dataset.candidateId || "",
+        decision: button.dataset.decision || "",
+        candidate_id: button.dataset.candidateId || item.dataset.candidateId || "",
+        container_kind: item.dataset.containerKind || "",
+        container_action: item.dataset.containerAction || "",
+        periodical_id: button.dataset.periodicalId || item.dataset.periodicalId || "",
+        issue_id: button.dataset.issueId || item.dataset.issueId || "",
+        collection_id: button.dataset.collectionId || item.dataset.collectionId || ""
+      });
+    }
+
+    document.addEventListener("click", function (event) {
+      var panelButton = event.target.closest(".service-button[data-open-panel]");
+      if (panelButton) {
+        var scope = panelButton.closest(".issue-item") || panelButton.closest(".bibliography-item");
+        var panel = scope.querySelector(".choice-panel");
+        if (panel) panel.classList.toggle("is-open");
+        return;
+      }
+      var button = event.target.closest(".service-button[data-decision]");
+      if (!button) return;
+      markDecision(button);
+    });
+
+    document.addEventListener("input", function (event) {
+      var search = event.target.closest(".choice-search");
+      if (!search) return;
+      var query = search.value.toLowerCase();
+      var panel = search.closest(".choice-panel");
+      panel.querySelectorAll(".choice-button").forEach(function (button) {
+        button.style.display = button.textContent.toLowerCase().indexOf(query) === -1 ? "none" : "";
+      });
+    });
+    restoreStage0State();
+  </script>
+</body>
+</html>

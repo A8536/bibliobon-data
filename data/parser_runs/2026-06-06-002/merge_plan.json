@@ -1,0 +1,10 @@
+{
+  "apply_allowed": false,
+  "candidate_count": 0,
+  "created_at": "2026-06-06T14:03:35+00:00",
+  "editor_db": "/Users/oleg/Projects/data/bibliobon-data/data/editor.sqlite",
+  "items": [],
+  "resolved_candidate_count": 2,
+  "run_dir": "/Users/oleg/Projects/data/bibliobon-data/data/parser_runs/2026-06-06-002",
+  "staging_only": true
+}

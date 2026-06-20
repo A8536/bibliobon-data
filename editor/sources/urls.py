@@ -1,0 +1,53 @@
+from django.urls import path
+
+from . import views
+
+
+app_name = "sources"
+
+urlpatterns = [
+    path("", views.dashboard, name="dashboard"),
+    path("create/", views.quick_create, name="quick_create"),
+    path("service/", views.service_tools, name="service_tools"),
+    path("imports/", views.import_batch_list, name="import_batch_list"),
+    path("imports/cleanup/", views.import_batch_cleanup, name="import_batch_cleanup"),
+    path("imports/cleanup/applied/", views.import_batch_cleanup_applied, name="import_batch_cleanup_applied"),
+    path("imports/new/", views.import_batch_new, name="import_batch_new"),
+    path("imports/<int:pk>/", views.import_batch_detail, name="import_batch_detail"),
+    path("imports/<int:pk>/parse/", views.import_batch_parse, name="import_batch_parse"),
+    path("imports/<int:pk>/review/", views.import_batch_review, name="import_batch_review"),
+    path("imports/<int:pk>/authors/", views.import_author_review, name="import_author_review"),
+    path("imports/<int:pk>/groups/", views.import_batch_groups, name="import_batch_groups"),
+    path("imports/<int:pk>/groups/<int:group_id>/", views.import_group_detail, name="import_group_detail"),
+    path("imports/<int:pk>/groups/<int:group_id>/articles/<int:entity_id>/action/", views.import_group_article_action, name="import_group_article_action"),
+    path("imports/<int:pk>/items/<int:item_id>/", views.import_item_detail, name="import_item_detail"),
+    path("imports/<int:pk>/items/<int:item_id>/parse-edit/", views.import_item_parse_edit, name="import_item_parse_edit"),
+    path("imports/<int:pk>/items/<int:item_id>/decision/", views.import_item_decision, name="import_item_decision"),
+    path("imports/<int:pk>/entities/<int:entity_id>/decision/", views.import_entity_decision, name="import_entity_decision"),
+    path("imports/<int:pk>/groups/<int:group_id>/decision/", views.import_group_decision, name="import_group_decision"),
+    path("imports/<int:pk>/plan/", views.import_batch_plan, name="import_batch_plan"),
+    path("imports/<int:pk>/apply/", views.import_batch_apply, name="import_batch_apply"),
+    path("imports/<int:pk>/result/", views.import_batch_result, name="import_batch_result"),
+    path("imports/<int:pk>/result/<int:log_id>/", views.import_batch_result, name="import_batch_result_log"),
+    path("imports/<int:pk>/cancel/", views.import_batch_cancel, name="import_batch_cancel"),
+    path("parser/", views.parser_batches, name="parser_batches"),
+    path("parser/runs/<str:run_id>/apply/", views.parser_apply_request, name="parser_apply_request"),
+    path("parser/runs/<str:run_id>/state/", views.parser_review_state, name="parser_review_state"),
+    path("parser/runs/<str:run_id>/<str:page_name>/", views.parser_run_page, name="parser_run_page"),
+    path("works/", views.work_list, name="work_list"),
+    path("works/<str:pk>/inspect/", views.work_inspect, name="work_inspect"),
+    path("works/<str:pk>/relations/", views.work_relations, name="work_relations"),
+    path("works/<str:pk>/delete/", views.delete_work, name="delete_work"),
+    path("works/<str:pk>/duplicate/", views.duplicate_work, name="duplicate_work"),
+    path("works/<str:pk>/detach-to-book/", views.detach_work_to_book, name="detach_work_to_book"),
+    path("issues/<str:issue_id>/convert-to-collection/", views.issue_convert_to_collection, name="issue_convert_to_collection"),
+    path("relations/", views.relation_tool, name="relation_tool"),
+    path("sections/", views.section_list, name="section_list"),
+    path("periodicals/", views.periodical_list, name="periodical_list"),
+    path("journals/normalize/", views.journal_normalize, name="journal_normalize"),
+    path("journals/<str:pk>/issues/<str:issue_id>/", views.journal_issue_detail, name="journal_issue_detail"),
+    path("journals/<str:pk>/", views.journal_detail, name="journal_detail"),
+    path("journals/<str:pk>/convert-single-article/", views.convert_single_journal_article, name="convert_single_journal_article"),
+    path("collections/<str:pk>/", views.collection_detail, name="collection_detail"),
+    path("collections/<str:pk>/convert-single-article/", views.convert_single_collection_article, name="convert_single_collection_article"),
+]

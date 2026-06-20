@@ -1,0 +1,165 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Связи · Bibliobon{% endblock %}
+
+{% block content %}
+<h1>Редактор связей</h1>
+
+<nav class="action-tabs">
+  <a href="{% url 'sources:relation_tool' %}">Связать издания</a>
+  <a href="{% url 'sources:relation_tool' %}?left=journal">Переделать / объединить журналы</a>
+  <a href="{% url 'sources:relation_tool' %}?left=container_work&amp;right=container_work">Объединить сборники</a>
+</nav>
+
+<form class="relation-layout" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="target_kind" value="{{ right_kind }}">
+
+  <section class="relation-pane">
+    <div class="pane-header">
+      <h2>
+        {% if left_kind == "journal" %}Журналы{% elif left_kind == "container_work" %}Сборники{% else %}Библиографические записи{% endif %}
+      </h2>
+      <span>{{ result_count }}</span>
+    </div>
+    <div class="pane-filters">
+      <select name="left" form="left-filter-form">
+        {% for key, label in left_kinds.items %}
+          <option value="{{ key }}" {% if left_kind == key %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+      <input type="search" name="q" value="{{ filters.q }}" form="left-filter-form" placeholder="Поиск по записям">
+      {% if left_kind == "work" %}
+        <select name="type" form="left-filter-form">
+          <option value="">Все типы</option>
+          <option value="book" {% if filters.type == "book" %}selected{% endif %}>Самостоятельные</option>
+          <option value="article" {% if filters.type == "article" %}selected{% endif %}>Статьи / части</option>
+          <option value="unknown" {% if filters.type == "unknown" %}selected{% endif %}>Unknown</option>
+        </select>
+        <select name="authors" form="left-filter-form">
+          <option value="">С авторами и без</option>
+          <option value="with" {% if filters.authors == "with" %}selected{% endif %}>С авторами</option>
+          <option value="without" {% if filters.authors == "without" %}selected{% endif %}>Без авторов</option>
+        </select>
+        <select name="placement" form="left-filter-form">
+          <option value="">Любая привязка</option>
+          <option value="standalone" {% if filters.placement == "standalone" %}selected{% endif %}>Без ArticlePlacement</option>
+          <option value="journal" {% if filters.placement == "journal" %}selected{% endif %}>В журнале</option>
+          <option value="container" {% if filters.placement == "container" %}selected{% endif %}>В сборнике</option>
+          <option value="unplaced_article" {% if filters.placement == "unplaced_article" %}selected{% endif %}>Статья без контейнера</option>
+        </select>
+      {% endif %}
+      <button type="submit" form="left-filter-form">Фильтр</button>
+    </div>
+
+    <div class="relation-list">
+      {% for item in page_obj %}
+        <label class="relation-row">
+          <input type="checkbox" name="selected_ids" value="{{ item.pk }}">
+          <span>
+            {% if left_kind == "journal" %}
+              <strong>{{ item.title|truncatechars:160 }}</strong>
+              <small><span class="mono">{{ item.journal_id }}</span> · выпусков: {{ item.issue_count }} · статей: {{ item.article_count }}</small>
+            {% else %}
+              <strong>{% if item.historical_source_number %}{{ item.historical_source_number }}. {% endif %}{{ item.title|truncatechars:160 }}</strong>
+              <small>
+                <span class="mono">{{ item.work_id }}</span>
+                {% if left_kind == "container_work" %}
+                  · сборник · статей: {{ item.article_count }}
+                {% else %}
+                  · {{ item.work_type }}
+                  {% if item.inferred_year %} · {{ item.inferred_year }}{% endif %}
+                  {% if item.article.journal_issue %} · {{ item.article.journal_issue.journal.title }}{% endif %}
+                  {% if item.article.container_work %} · {{ item.article.container_work.title|truncatechars:80 }}{% endif %}
+                {% endif %}
+              </small>
+            {% endif %}
+          </span>
+        </label>
+      {% endfor %}
+    </div>
+
+    {% if page_obj.has_other_pages %}
+      <nav class="pagination">
+        {% if page_obj.has_previous %}
+          <a href="?left={{ left_kind }}&q={{ filters.q }}&type={{ filters.type }}&authors={{ filters.authors }}&placement={{ filters.placement }}&right={{ right_kind }}&rq={{ right_query }}&page={{ page_obj.previous_page_number }}">Назад</a>
+        {% endif %}
+        <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+          <a href="?left={{ left_kind }}&q={{ filters.q }}&type={{ filters.type }}&authors={{ filters.authors }}&placement={{ filters.placement }}&right={{ right_kind }}&rq={{ right_query }}&page={{ page_obj.next_page_number }}">Вперед</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </section>
+
+  <section class="relation-pane">
+    <div class="pane-header">
+      <h2>Цель связи</h2>
+      <button type="submit" name="action" value="link">Установить связь</button>
+    </div>
+    <div class="relation-actions">
+      {% if left_kind == "work" %}
+        <button type="submit" name="action" value="works_to_journal">Сделать журналом</button>
+        <button type="submit" name="action" value="works_to_collection">Сделать сборником</button>
+        <button type="submit" name="action" value="works_to_book">Сделать обычной книгой</button>
+        <button type="submit" name="action" value="detach_to_book">В книгу</button>
+        <button type="submit" name="action" value="delete_works">Удалить выбранные записи</button>
+      {% elif left_kind == "journal" %}
+        <input type="text" name="action_title" placeholder="Название сборника, если нужно заменить">
+        <button type="submit" name="action" value="journals_to_collection">Переделать журнал / объединить журналы в сборник</button>
+      {% elif left_kind == "container_work" %}
+        <button type="submit" name="action" value="merge_collections">Объединить сборники с выбранным справа</button>
+      {% endif %}
+    </div>
+    <div class="pane-filters">
+      <select name="right" form="right-filter-form">
+        {% for key, label in right_kinds.items %}
+          <option value="{{ key }}" {% if right_kind == key %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+      <input type="search" name="rq" value="{{ right_query }}" form="right-filter-form" placeholder="Поиск справа">
+      <input type="hidden" name="q" value="{{ filters.q }}" form="right-filter-form">
+      <input type="hidden" name="left" value="{{ left_kind }}" form="right-filter-form">
+      <input type="hidden" name="type" value="{{ filters.type }}" form="right-filter-form">
+      <input type="hidden" name="authors" value="{{ filters.authors }}" form="right-filter-form">
+      <input type="hidden" name="placement" value="{{ filters.placement }}" form="right-filter-form">
+      <button type="submit" form="right-filter-form">Показать</button>
+    </div>
+
+    <div class="relation-list">
+      {% for target in targets %}
+        <label class="relation-row target-row">
+          <input type="radio" name="target_id" value="{{ target.pk }}">
+          <span>
+            <strong>
+              {% if right_kind == "journal_issue" %}
+                {{ target.journal.title }}{% if target.year %}, {{ target.year }}{% endif %}{% if target.issue_number %}, № {{ target.issue_number }}{% endif %}{% if target.volume %}, т. {{ target.volume }}{% endif %}
+              {% elif right_kind == "author" %}
+                {{ target.display_name }}
+              {% elif right_kind == "language" %}
+                {{ target.code }} — {{ target.title }}
+              {% else %}
+                {{ target.title }}
+              {% endif %}
+            </strong>
+            <small>
+              <span class="mono">{{ target.pk }}</span>
+              {% if right_kind == "journal_issue" or right_kind == "container_work" %} · статей: {{ target.article_count }}{% endif %}
+              {% if right_kind == "author" or right_kind == "tag" or right_kind == "section" or right_kind == "language" %} · записей: {{ target.work_count }}{% endif %}
+            </small>
+          </span>
+        </label>
+      {% empty %}
+        <div class="empty-state">Ничего не найдено.</div>
+      {% endfor %}
+    </div>
+  </section>
+</form>
+
+<form id="left-filter-form" method="get">
+  <input type="hidden" name="right" value="{{ right_kind }}">
+  <input type="hidden" name="rq" value="{{ right_query }}">
+</form>
+
+<form id="right-filter-form" method="get"></form>
+{% endblock %}

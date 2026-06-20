@@ -1,0 +1,422 @@
+[
+  {
+    "article_id": "article-029591",
+    "article_publication_details": "— 1919. — № 11. — С. 4. Дополнения к статье С. Кистенева. О выпуске в обращение в Пскове городских бон в 1 и 5 рублей и областных денег в 50 рублей.",
+    "article_source_django_id": 29591,
+    "container_publication_details": "— 1919. — № 11. — С. 4.",
+    "container_source_django_id": 10177,
+    "container_type": "journal_issue",
+    "work_id": "work-044725",
+    "work_source_django_id": 44725
+  },
+  {
+    "article_id": "article-029648",
+    "article_publication_details": "— Севастополь, 1924. — № 4–5. — С. 3.",
+    "article_source_django_id": 29648,
+    "container_publication_details": "— Севастополь, 1924. — № 4–5. — С. 37.",
+    "container_source_django_id": 10210,
+    "container_type": "journal_issue",
+    "work_id": "work-044782",
+    "work_source_django_id": 44782
+  },
+  {
+    "article_id": "article-029727",
+    "article_publication_details": "— Новочеркасск, 1922. — № 5–6. — С. 61.",
+    "article_source_django_id": 29727,
+    "container_publication_details": "— Новочеркасск, 1922. — № 5–6. — С. 61–62.",
+    "container_source_django_id": 10270,
+    "container_type": "journal_issue",
+    "work_id": "work-044861",
+    "work_source_django_id": 44861
+  },
+  {
+    "article_id": "article-029731",
+    "article_publication_details": "— Новочеркасск, 1922. — № 5–6. — С. 61.",
+    "article_source_django_id": 29731,
+    "container_publication_details": "— Новочеркасск, 1922. — № 5–6. — С. 61–62.",
+    "container_source_django_id": 10270,
+    "container_type": "journal_issue",
+    "work_id": "work-044865",
+    "work_source_django_id": 44865
+  },
+  {
+    "article_id": "article-030282",
+    "article_publication_details": "— 1998. — № 10 (12). — июнь. — С. 10: ил.",
+    "article_source_django_id": 30282,
+    "container_publication_details": "— 1998. — № 10 (12). — июнь. — С. 10.",
+    "container_source_django_id": 10526,
+    "container_type": "journal_issue",
+    "work_id": "work-046294",
+    "work_source_django_id": 46294
+  },
+  {
+    "article_id": "article-030285",
+    "article_publication_details": "— 1998. — № 1 (3). — январь. — С. 11: ил.",
+    "article_source_django_id": 30285,
+    "container_publication_details": "— 1998. — № 1 (3). — январь. — С. 11.",
+    "container_source_django_id": 10523,
+    "container_type": "journal_issue",
+    "work_id": "work-046297",
+    "work_source_django_id": 46297
+  },
+  {
+    "article_id": "article-030287",
+    "article_publication_details": "— 1998. — № 10 (12). — июнь. — С. 10: ил.",
+    "article_source_django_id": 30287,
+    "container_publication_details": "— 1998. — № 10 (12). — июнь. — С. 10.",
+    "container_source_django_id": 10526,
+    "container_type": "journal_issue",
+    "work_id": "work-046299",
+    "work_source_django_id": 46299
+  },
+  {
+    "article_id": "article-030291",
+    "article_publication_details": "— 1998. — № 11 (13). — октябрь. — С. 11.",
+    "article_source_django_id": 30291,
+    "container_publication_details": "— 1998. — № 11 (13). — октябрь. — С. 11: ил.",
+    "container_source_django_id": 10527,
+    "container_type": "journal_issue",
+    "work_id": "work-046303",
+    "work_source_django_id": 46303
+  },
+  {
+    "article_id": "article-030293",
+    "article_publication_details": "— 1998. — № 1 (3). — январь. — С. 11: ил.",
+    "article_source_django_id": 30293,
+    "container_publication_details": "— 1998. — № 1 (3). — январь. — С. 11.",
+    "container_source_django_id": 10523,
+    "container_type": "journal_issue",
+    "work_id": "work-046305",
+    "work_source_django_id": 46305
+  },
+  {
+    "article_id": "article-030538",
+    "article_publication_details": "— Вып. 7. — С. 68–93.",
+    "article_source_django_id": 30538,
+    "container_publication_details": "— Вологда, 2000. — Вып. 7. — С. 68–93.",
+    "container_source_django_id": 10651,
+    "container_type": "journal_issue",
+    "work_id": "work-046550",
+    "work_source_django_id": 46550
+  },
+  {
+    "article_id": "article-030539",
+    "article_publication_details": "— Вып. 9. — С. 166–178.",
+    "article_source_django_id": 30539,
+    "container_publication_details": "— Вологда, 2003. — Вып. 9. — С. 166–178.",
+    "container_source_django_id": 10652,
+    "container_type": "journal_issue",
+    "work_id": "work-046551",
+    "work_source_django_id": 46551
+  },
+  {
+    "article_id": "article-030540",
+    "article_publication_details": "— Вып. 6. — С. 36–45.",
+    "article_source_django_id": 30540,
+    "container_publication_details": "— Вологда, 1999. — Вып. 6. — С. 36–45.",
+    "container_source_django_id": 10653,
+    "container_type": "journal_issue",
+    "work_id": "work-046552",
+    "work_source_django_id": 46552
+  },
+  {
+    "article_id": "article-030542",
+    "article_publication_details": "— Вып. 8. — С. 57–69.",
+    "article_source_django_id": 30542,
+    "container_publication_details": "— Вологда, 2001. — Вып. 8. — С. 57–69.",
+    "container_source_django_id": 10655,
+    "container_type": "journal_issue",
+    "work_id": "work-046554",
+    "work_source_django_id": 46554
+  },
+  {
+    "article_id": "article-030543",
+    "article_publication_details": "— Вып. 2. — С. 32.",
+    "article_source_django_id": 30543,
+    "container_publication_details": "— Вологда, 1995. — Вып. 2. — С. 32.",
+    "container_source_django_id": 10656,
+    "container_type": "journal_issue",
+    "work_id": "work-046555",
+    "work_source_django_id": 46555
+  },
+  {
+    "article_id": "article-030640",
+    "article_publication_details": "— 1995. — № 5; № 6.",
+    "article_source_django_id": 30640,
+    "container_publication_details": "— 1995. — № 5.",
+    "container_source_django_id": 10678,
+    "container_type": "journal_issue",
+    "work_id": "work-046652",
+    "work_source_django_id": 46652
+  },
+  {
+    "article_id": "article-030666",
+    "article_publication_details": "— 1991. — № 5; № 6; № 7; № 8.",
+    "article_source_django_id": 30666,
+    "container_publication_details": "— 1991. — № 5.",
+    "container_source_django_id": 10688,
+    "container_type": "journal_issue",
+    "work_id": "work-046679",
+    "work_source_django_id": 46679
+  },
+  {
+    "article_id": "article-030668",
+    "article_publication_details": "— 1996. — № 2; № 3; № 4; № 5.",
+    "article_source_django_id": 30668,
+    "container_publication_details": "— 1996. — № 2; № 3; № 4.",
+    "container_source_django_id": 10669,
+    "container_type": "journal_issue",
+    "work_id": "work-046681",
+    "work_source_django_id": 46681
+  },
+  {
+    "article_id": "article-030677",
+    "article_publication_details": "— 1995. — № 10; 1996. — № 1; («СФ № 6 (22).) 1996. — № 2.",
+    "article_source_django_id": 30677,
+    "container_publication_details": "— 1995. — № 10; 1996. — № 1.",
+    "container_source_django_id": 10668,
+    "container_type": "journal_issue",
+    "work_id": "work-046690",
+    "work_source_django_id": 46690
+  },
+  {
+    "article_id": "article-030679",
+    "article_publication_details": "— 1996. — № 9; (СК № 1–3, 1929) 1996. — № 10.",
+    "article_source_django_id": 30679,
+    "container_publication_details": "— 1996. — № 9.",
+    "container_source_django_id": 10675,
+    "container_type": "journal_issue",
+    "work_id": "work-046692",
+    "work_source_django_id": 46692
+  },
+  {
+    "article_id": "article-030686",
+    "article_publication_details": "— 1991. — № 4; 1994. — № 8; 1995. — № 1; № 2; № 3; № 4; № 5.",
+    "article_source_django_id": 30686,
+    "container_publication_details": "— 1991. — № 4.",
+    "container_source_django_id": 10698,
+    "container_type": "journal_issue",
+    "work_id": "work-046699",
+    "work_source_django_id": 46699
+  },
+  {
+    "article_id": "article-030687",
+    "article_publication_details": "— 1994. — № 6; № 7.",
+    "article_source_django_id": 30687,
+    "container_publication_details": "— 1994. — № 6.",
+    "container_source_django_id": 10660,
+    "container_type": "journal_issue",
+    "work_id": "work-046700",
+    "work_source_django_id": 46700
+  },
+  {
+    "article_id": "article-030695",
+    "article_publication_details": "— 1997. — № 3; 1998. — № 1–2.",
+    "article_source_django_id": 30695,
+    "container_publication_details": "— 1997. — № 3.",
+    "container_source_django_id": 10683,
+    "container_type": "journal_issue",
+    "work_id": "work-046708",
+    "work_source_django_id": 46708
+  },
+  {
+    "article_id": "article-030701",
+    "article_publication_details": "— 1991. — № 7; № 8; № 9.",
+    "article_source_django_id": 30701,
+    "container_publication_details": "— 1991. — № 7.",
+    "container_source_django_id": 10690,
+    "container_type": "journal_issue",
+    "work_id": "work-046714",
+    "work_source_django_id": 46714
+  },
+  {
+    "article_id": "article-030719",
+    "article_publication_details": "— 1991. — № 12; 1994. — № 1; 1994. — № 2.",
+    "article_source_django_id": 30719,
+    "container_publication_details": "— 1991. — № 12.",
+    "container_source_django_id": 10699,
+    "container_type": "journal_issue",
+    "work_id": "work-046732",
+    "work_source_django_id": 46732
+  },
+  {
+    "article_id": "article-030722",
+    "article_publication_details": "— 1990. — № 1; № 2; 1991. — № 1; № 2",
+    "article_source_django_id": 30722,
+    "container_publication_details": "— 1990. — № 1.",
+    "container_source_django_id": 10702,
+    "container_type": "journal_issue",
+    "work_id": "work-046735",
+    "work_source_django_id": 46735
+  },
+  {
+    "article_id": "article-030774",
+    "article_publication_details": "— 1994. — № 3; № 4.",
+    "article_source_django_id": 30774,
+    "container_publication_details": "— 1994. — № 3.",
+    "container_source_django_id": 10692,
+    "container_type": "journal_issue",
+    "work_id": "work-046787",
+    "work_source_django_id": 46787
+  },
+  {
+    "article_id": "article-030805",
+    "article_publication_details": "— 1995. — № 6; № 7; № 8; № 9; № 10; 1996. — № 1; № 2; № 3.",
+    "article_source_django_id": 30805,
+    "container_publication_details": "— 1995. — № 6.",
+    "container_source_django_id": 10679,
+    "container_type": "journal_issue",
+    "work_id": "work-046818",
+    "work_source_django_id": 46818
+  },
+  {
+    "article_id": "article-030806",
+    "article_publication_details": "— 1995. — № 6; №7.",
+    "article_source_django_id": 30806,
+    "container_publication_details": "— 1995. — № 6.",
+    "container_source_django_id": 10679,
+    "container_type": "journal_issue",
+    "work_id": "work-046819",
+    "work_source_django_id": 46819
+  },
+  {
+    "article_id": "article-031277",
+    "article_publication_details": "— 2020. — № 1. — С. 20–21. (дополнение к статье П. Соболева).",
+    "article_source_django_id": 31277,
+    "container_publication_details": "— 2020. — № 1. — С. 20–21.",
+    "container_source_django_id": 10907,
+    "container_type": "journal_issue",
+    "work_id": "work-047291",
+    "work_source_django_id": 47291
+  },
+  {
+    "article_id": "article-031697",
+    "article_publication_details": "— 1996. — № 7. — С. 2.",
+    "article_source_django_id": 31697,
+    "container_publication_details": "— 1996. — № 7.",
+    "container_source_django_id": 10959,
+    "container_type": "journal_issue",
+    "work_id": "work-047711",
+    "work_source_django_id": 47711
+  },
+  {
+    "article_id": "article-031712",
+    "article_publication_details": "— 1997. — № 5 (27).",
+    "article_source_django_id": 31712,
+    "container_publication_details": "— 1997. — № 5 (27). — С.2 .",
+    "container_source_django_id": 10947,
+    "container_type": "journal_issue",
+    "work_id": "work-047727",
+    "work_source_django_id": 47727
+  },
+  {
+    "article_id": "article-031737",
+    "article_publication_details": "— 1999. — № 7 (70). — С. 2.",
+    "article_source_django_id": 31737,
+    "container_publication_details": "— 1999. — № 7 (70).",
+    "container_source_django_id": 10991,
+    "container_type": "journal_issue",
+    "work_id": "work-047752",
+    "work_source_django_id": 47752
+  },
+  {
+    "article_id": "article-031739",
+    "article_publication_details": "— 1999. — № 8 (71). — С. 2.",
+    "article_source_django_id": 31739,
+    "container_publication_details": "— 1999. — № 8 (71).",
+    "container_source_django_id": 10992,
+    "container_type": "journal_issue",
+    "work_id": "work-047754",
+    "work_source_django_id": 47754
+  },
+  {
+    "article_id": "article-031754",
+    "article_publication_details": "— 1997. — № 9 (31). — С. 2.",
+    "article_source_django_id": 31754,
+    "container_publication_details": "— 1997. — № 9 (31).",
+    "container_source_django_id": 10949,
+    "container_type": "journal_issue",
+    "work_id": "work-047769",
+    "work_source_django_id": 47769
+  },
+  {
+    "article_id": "article-031777",
+    "article_publication_details": "— 1999. — № 5; № 6.",
+    "article_source_django_id": 31777,
+    "container_publication_details": "— 1999. — № 5.",
+    "container_source_django_id": 11014,
+    "container_type": "journal_issue",
+    "work_id": "work-047792",
+    "work_source_django_id": 47792
+  },
+  {
+    "article_id": "article-031784",
+    "article_publication_details": "— 1998. — № 2; № 3.",
+    "article_source_django_id": 31784,
+    "container_publication_details": "— 1998. — № 2.",
+    "container_source_django_id": 11022,
+    "container_type": "journal_issue",
+    "work_id": "work-047799",
+    "work_source_django_id": 47799
+  },
+  {
+    "article_id": "article-031815",
+    "article_publication_details": "— 1999. — № 4; № 5.",
+    "article_source_django_id": 31815,
+    "container_publication_details": "— 1999. — № 4.",
+    "container_source_django_id": 11013,
+    "container_type": "journal_issue",
+    "work_id": "work-047830",
+    "work_source_django_id": 47830
+  },
+  {
+    "article_id": "article-031946",
+    "article_publication_details": "— 2005. — № 12 (32).",
+    "article_source_django_id": 31946,
+    "container_publication_details": "— 2005. — № 12 (32). Знаменитый водяной знак «Богатыри» был изготовлен на бумаге ручного отлива.",
+    "container_source_django_id": 11143,
+    "container_type": "journal_issue",
+    "work_id": "work-047962",
+    "work_source_django_id": 47962
+  },
+  {
+    "article_id": "article-032674",
+    "article_publication_details": "— С. 121–122. — Тираж 2000 экз. Статья, 0,05 п.л.",
+    "article_source_django_id": 32674,
+    "container_publication_details": "— Рязань: Изд-во «Поверенный», 2002 — С. 121–122. — Тираж 2000 экз. Статья, 0,05 п.л.",
+    "container_source_django_id": 11664,
+    "container_type": "journal_issue",
+    "work_id": "work-048700",
+    "work_source_django_id": 48700
+  },
+  {
+    "article_id": "article-033062",
+    "article_publication_details": "— № 27. — С. 13–15: ил.",
+    "article_source_django_id": 33062,
+    "container_publication_details": "— 2008. — № 27. — С. 13–15: ил.",
+    "container_source_django_id": 11720,
+    "container_type": "journal_issue",
+    "work_id": "work-049113",
+    "work_source_django_id": 49113
+  },
+  {
+    "article_id": "article-034016",
+    "article_publication_details": "— 1997. — № 4 (26).",
+    "article_source_django_id": 34016,
+    "container_publication_details": "— 1997. — № 4 (26). — С. 2.",
+    "container_source_django_id": 10972,
+    "container_type": "journal_issue",
+    "work_id": "work-047725",
+    "work_source_django_id": 47725
+  },
+  {
+    "article_id": "article-034018",
+    "article_publication_details": "— 1991. — № 12. — С. 50–57: ил.",
+    "article_source_django_id": 34018,
+    "container_publication_details": "— 1991. — № 12.",
+    "container_source_django_id": 11445,
+    "container_type": "journal_issue",
+    "work_id": "work-048310",
+    "work_source_django_id": 48310
+  }
+]

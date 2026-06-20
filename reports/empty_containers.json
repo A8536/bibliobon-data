@@ -1,0 +1,462 @@
+{
+  "empty_journal_issues": [
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11575,
+      "journal_source_django_id": 2680,
+      "journal_title": "90 год Віцебскаму абласному краязнаўчаму музею. Матэрыялы навуковай канферэнцыі, Віцебск, 30–31 кастрычніка 2008 гг",
+      "volume": "",
+      "year": 2009
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11729,
+      "journal_source_django_id": 2794,
+      "journal_title": "«Железнодорожный транспорт: наука, техника, образование» : V Всерос. науч.-практ. конф. 24 ноября 2015 г",
+      "volume": "",
+      "year": 2015
+    },
+    {
+      "issue_number": "4",
+      "journal_issue_source_django_id": 11946,
+      "journal_source_django_id": 2814,
+      "journal_title": "«Нумбон»",
+      "volume": "",
+      "year": 1994
+    },
+    {
+      "issue_number": "4 (26)",
+      "journal_issue_source_django_id": 11948,
+      "journal_source_django_id": 2815,
+      "journal_title": "«Таганский бонист»",
+      "volume": "",
+      "year": 1997
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11697,
+      "journal_source_django_id": 2767,
+      "journal_title": "Альбомная серия «Энциклопедия Забайкалья». Т. 3. «Сретенск»",
+      "volume": "",
+      "year": 2014
+    },
+    {
+      "issue_number": "22",
+      "journal_issue_source_django_id": 11569,
+      "journal_source_django_id": 2675,
+      "journal_title": "Амурский краевед.—), 2005",
+      "volume": "",
+      "year": 2005
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11701,
+      "journal_source_django_id": 2771,
+      "journal_title": "Антанта и Врангель.— М.: ГИЗ, 1932",
+      "volume": "",
+      "year": 1932
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11517,
+      "journal_source_django_id": 2627,
+      "journal_title": "Архив истории, науки и техники",
+      "volume": "",
+      "year": 1934
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10119,
+      "journal_source_django_id": 2428,
+      "journal_title": "Архив русской революции. — Т. 8",
+      "volume": "",
+      "year": 1923
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11581,
+      "journal_source_django_id": 2686,
+      "journal_title": "Архіварыус: зб. навук. паведамл. і арт.; Вып. 12 / рэд. Ю.М. Бохан [і інш.]",
+      "volume": "",
+      "year": 2014
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10121,
+      "journal_source_django_id": 2430,
+      "journal_title": "Банк России; сост. А.В. Бугров, С.В. Татаринов",
+      "volume": "",
+      "year": 2011
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11584,
+      "journal_source_django_id": 2689,
+      "journal_title": "Беларускія архівы на мяжы тысячагоддзяў: здабыткі і страты: матэрыялы навукова-практычнай канферэнцыі, прысвечанай 80-годдзю Нацыянальнага гістарычнага архіва Беларусі (Мінск, 28 чэрвеня 2018 г.) / рэдкал.: В.І. Кураш (старшыня) [і інш.]",
+      "volume": "",
+      "year": 2019
+    },
+    {
+      "issue_number": "43",
+      "journal_issue_source_django_id": 11604,
+      "journal_source_django_id": 2704,
+      "journal_title": "Бюллетень семинара по геральдике и вспомогательным историческим дисциплинам Кафедры источниковедения и вспомогательных исторических дисциплин Историко-архивного института РГГУ. Заседание 19 марта 2008 гг",
+      "volume": "",
+      "year": 2008
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11597,
+      "journal_source_django_id": 2697,
+      "journal_title": "В.Н. Руденко: товарищ офицер, товарищ по партии, земляк… — Екатеринбург, 2008",
+      "volume": "",
+      "year": 2008
+    },
+    {
+      "issue_number": "17",
+      "journal_issue_source_django_id": 11673,
+      "journal_source_django_id": 2751,
+      "journal_title": "Вiсн. Киiв. ун-та. Сер. История",
+      "volume": "",
+      "year": 1975
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11637,
+      "journal_source_django_id": 2718,
+      "journal_title": "ВЛКСМ — молодёжное братство: докл. Всерос. науч.-практ. конф., посвящ. 90-летию со дня образования ВЛКСМ (Омск, 29–30 октября 2008 г.): в 2 ч. Ч. 1",
+      "volume": "",
+      "year": 2008
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11719,
+      "journal_source_django_id": 2785,
+      "journal_title": "ВНК10",
+      "volume": "",
+      "year": null
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11718,
+      "journal_source_django_id": 2784,
+      "journal_title": "ВНК10. — Стендовый доклад",
+      "volume": "",
+      "year": null
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11717,
+      "journal_source_django_id": 2783,
+      "journal_title": "ВНК13. — Стендовый доклад",
+      "volume": "",
+      "year": null
+    },
+    {
+      "issue_number": "38–39",
+      "journal_issue_source_django_id": 10082,
+      "journal_source_django_id": 2410,
+      "journal_title": "Вестник Азии",
+      "volume": "",
+      "year": null
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11651,
+      "journal_source_django_id": 2730,
+      "journal_title": "Визуализация политического: феномены, смыслы, потенциал / УрО РАН; ПФИЦ УрО РАН; под ред. И.К. Кирьянова, К.В. Киселева, В.С. Ковина",
+      "volume": "",
+      "year": 2019
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11700,
+      "journal_source_django_id": 2770,
+      "journal_title": "Записки Гродековского музея",
+      "volume": "",
+      "year": 2001
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11727,
+      "journal_source_django_id": 2792,
+      "journal_title": "Иванов П.В., Белявцев А.И. Денежные знаки необязательного обращения. ПФО. Нижегородская область, Республики Башкортостан, Марий Эл, Мордовия. Книга V",
+      "volume": "",
+      "year": 2015
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10299,
+      "journal_source_django_id": 2477,
+      "journal_title": "Известия 26 января 1968 г",
+      "volume": "",
+      "year": 1968
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10303,
+      "journal_source_django_id": 2481,
+      "journal_title": "Известия. 16 марта 1979",
+      "volume": "",
+      "year": 1979
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11711,
+      "journal_source_django_id": 2781,
+      "journal_title": "Исторический музей. Великая Отечественная война. Исследования. Документы",
+      "volume": "",
+      "year": 2015
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11710,
+      "journal_source_django_id": 2780,
+      "journal_title": "Исторический музей. Первая мировая война. Исследования. Документы",
+      "volume": "",
+      "year": 2014
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11709,
+      "journal_source_django_id": 2779,
+      "journal_title": "Исторический музей. Шедевры и реликвии",
+      "volume": "",
+      "year": 2013
+    },
+    {
+      "issue_number": "2",
+      "journal_issue_source_django_id": 10598,
+      "journal_source_django_id": 2523,
+      "journal_title": "Лавка коллекционера",
+      "volume": "",
+      "year": 2009
+    },
+    {
+      "issue_number": "1 (92–94)",
+      "journal_issue_source_django_id": 10565,
+      "journal_source_django_id": 2524,
+      "journal_title": "Лавка коллекционера.— 2009–2010",
+      "volume": "",
+      "year": 2009
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11511,
+      "journal_source_django_id": 2621,
+      "journal_title": "Лебина Н.Б. Повседневность эпохи космоса и кукурузы: Деструкция большого стиля: Ленинград, 1950–1960-е годы. Изд. 2-е, испр. и доп",
+      "volume": "",
+      "year": 2021
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10654,
+      "journal_source_django_id": 2532,
+      "journal_title": "МНА «Монета».— Вологда, 2003",
+      "volume": "",
+      "year": 2003
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10644,
+      "journal_source_django_id": 2526,
+      "journal_title": "Миниатюра. 2001",
+      "volume": "",
+      "year": 2001
+    },
+    {
+      "issue_number": "28 (68)",
+      "journal_issue_source_django_id": 10646,
+      "journal_source_django_id": 2527,
+      "journal_title": "Миниатюра. 2005",
+      "volume": "",
+      "year": 2005
+    },
+    {
+      "issue_number": "35",
+      "journal_issue_source_django_id": 10648,
+      "journal_source_django_id": 2528,
+      "journal_title": "Миниатюра. Сентябрь 1997",
+      "volume": "",
+      "year": 1997
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11576,
+      "journal_source_django_id": 2681,
+      "journal_title": "Навукова-даследчая дзейнасць Беларускага Дзяржаўнага музея народнай архітэктуры і побыту. Стан і перспектывы. Матэрыялы навукова-практычнай канферэнцыі, Мн., 2009 гг",
+      "volume": "",
+      "year": 2009
+    },
+    {
+      "issue_number": "3",
+      "journal_issue_source_django_id": 11615,
+      "journal_source_django_id": 2623,
+      "journal_title": "Новейшая история России",
+      "volume": "11",
+      "year": 2021
+    },
+    {
+      "issue_number": "340 от 28 июня 1918 г. (о выпуске 5 руб. донских денежных знаков) // Нумбон",
+      "journal_issue_source_django_id": 11947,
+      "journal_source_django_id": 2535,
+      "journal_title": "Нумбон",
+      "volume": "",
+      "year": 1918
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10300,
+      "journal_source_django_id": 2478,
+      "journal_title": "Польша, 1972 — № 4",
+      "volume": "",
+      "year": 1972
+    },
+    {
+      "issue_number": "1–2 (78–79)",
+      "journal_issue_source_django_id": 11892,
+      "journal_source_django_id": 2478,
+      "journal_title": "Польша, 1972 — № 4",
+      "volume": "",
+      "year": 1972
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10301,
+      "journal_source_django_id": 2479,
+      "journal_title": "Правда 17.1.1978",
+      "volume": "",
+      "year": 1978
+    },
+    {
+      "issue_number": "3–4 (115–116)",
+      "journal_issue_source_django_id": 11914,
+      "journal_source_django_id": 2479,
+      "journal_title": "Правда 17.1.1978",
+      "volume": "",
+      "year": 1978
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10304,
+      "journal_source_django_id": 2482,
+      "journal_title": "Русское слово 30.7 (12.8)1917",
+      "volume": "",
+      "year": 1917
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 11804,
+      "journal_source_django_id": 2809,
+      "journal_title": "Советский Филателист — Советский коллекционер",
+      "volume": "",
+      "year": 1928
+    },
+    {
+      "issue_number": "13-14",
+      "journal_issue_source_django_id": 10302,
+      "journal_source_django_id": 2480,
+      "journal_title": "Советский коллекционер № 13–14 1925",
+      "volume": "",
+      "year": 1925
+    },
+    {
+      "issue_number": "3–4 (121–122)",
+      "journal_issue_source_django_id": 11918,
+      "journal_source_django_id": 2480,
+      "journal_title": "Советский коллекционер № 13–14 1925",
+      "volume": "",
+      "year": 1979
+    },
+    {
+      "issue_number": "06",
+      "journal_issue_source_django_id": 10958,
+      "journal_source_django_id": 2543,
+      "journal_title": "Таганский бонист",
+      "volume": "",
+      "year": 1996
+    },
+    {
+      "issue_number": "",
+      "journal_issue_source_django_id": 10984,
+      "journal_source_django_id": 2543,
+      "journal_title": "Таганский бонист",
+      "volume": "",
+      "year": 1997
+    },
+    {
+      "issue_number": "06 (28)",
+      "journal_issue_source_django_id": 10996,
+      "journal_source_django_id": 2543,
+      "journal_title": "Таганский бонист",
+      "volume": "",
+      "year": 1997
+    }
+  ],
+  "empty_journals": [
+    {
+      "journal_source_django_id": 2805,
+      "title": "«Северо-Кавказский Коллекционер» за 1929 г"
+    },
+    {
+      "journal_source_django_id": 2806,
+      "title": "«Северо-Кавказский Коллекционер» за 1930 г"
+    },
+    {
+      "journal_source_django_id": 2807,
+      "title": "«Северо-Кавказский Коллекционер» за 1931 год"
+    },
+    {
+      "journal_source_django_id": 2808,
+      "title": "«Северо-Кавказский Коллекционер» за 1932 г"
+    },
+    {
+      "journal_source_django_id": 2786,
+      "title": "Вологодский коллекционер.— Вологда, 2011"
+    },
+    {
+      "journal_source_django_id": 2637,
+      "title": "Гербовед.— М., 1999"
+    },
+    {
+      "journal_source_django_id": 2556,
+      "title": "Дальний Восток.— Хабаровск, 1972"
+    },
+    {
+      "journal_source_django_id": 2591,
+      "title": "Деньги и кредит.— М., 1946"
+    },
+    {
+      "journal_source_django_id": 2717,
+      "title": "Известия Уральского федерального университета. Сер. 2: Гуманитарные науки"
+    },
+    {
+      "journal_source_django_id": 2726,
+      "title": "Красная горка.— Кемерово, 2016"
+    },
+    {
+      "journal_source_django_id": 2533,
+      "title": "МНА «Монета».— Вологда, 1995"
+    },
+    {
+      "journal_source_django_id": 2531,
+      "title": "МНА «Монета».— Вологда, 1999"
+    },
+    {
+      "journal_source_django_id": 2529,
+      "title": "МНА «Монета».— Вологда, 2000"
+    },
+    {
+      "journal_source_django_id": 2566,
+      "title": "Мир денег"
+    },
+    {
+      "journal_source_django_id": 2594,
+      "title": "Наука и жизнь.— № 12. 1985"
+    },
+    {
+      "journal_source_django_id": 2760,
+      "title": "Новейшая история. России"
+    }
+  ]
+}

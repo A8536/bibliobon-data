@@ -1,0 +1,7226 @@
+{
+  "counts": {
+    "findings": 0,
+    "inventory": 902
+  },
+  "findings": [],
+  "generated_for": "bibliobon_field_contract",
+  "inventory": [
+    {
+      "field": "language_id",
+      "full_name": "Language.language_id",
+      "note": "CharField",
+      "owner": "Language",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Language.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Language",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "code",
+      "full_name": "Language.code",
+      "note": "CharField",
+      "owner": "Language",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Language.title",
+      "note": "CharField",
+      "owner": "Language",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "description",
+      "full_name": "Language.description",
+      "note": "TextField",
+      "owner": "Language",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "Language.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "Language",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "section_id",
+      "full_name": "Section.section_id",
+      "note": "CharField",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Section.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_code",
+      "full_name": "Section.source_code",
+      "note": "CharField",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parent",
+      "full_name": "Section.parent",
+      "note": "ForeignKey",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Section.title",
+      "note": "CharField",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "description",
+      "full_name": "Section.description",
+      "note": "TextField",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "note",
+      "full_name": "Section.note",
+      "note": "TextField",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "Section.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "Section",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "Tag.tag_id",
+      "note": "CharField",
+      "owner": "Tag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Tag.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Tag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Tag.title",
+      "note": "CharField",
+      "owner": "Tag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "tag_type",
+      "full_name": "Tag.tag_type",
+      "note": "CharField",
+      "owner": "Tag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parent",
+      "full_name": "Tag.parent",
+      "note": "ForeignKey",
+      "owner": "Tag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "description",
+      "full_name": "Tag.description",
+      "note": "TextField",
+      "owner": "Tag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "Tag.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "Tag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "author_id",
+      "full_name": "Author.author_id",
+      "note": "CharField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Author.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "display_name",
+      "full_name": "Author.display_name",
+      "note": "CharField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "heading_name",
+      "full_name": "Author.heading_name",
+      "note": "CharField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_name",
+      "full_name": "Author.sort_name",
+      "note": "CharField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "aliases",
+      "full_name": "Author.aliases",
+      "note": "TextField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "person_dates",
+      "full_name": "Author.person_dates",
+      "note": "CharField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "authority_note",
+      "full_name": "Author.authority_note",
+      "note": "TextField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "note",
+      "full_name": "Author.note",
+      "note": "TextField",
+      "owner": "Author",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "journal_id",
+      "full_name": "Journal.journal_id",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Journal.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Journal.title",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "Journal.parallel_title",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "Journal.title_remainder",
+      "note": "TextField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "Journal.responsibility_statement",
+      "note": "TextField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "place",
+      "full_name": "Journal.place",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Journal.publisher",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issn",
+      "full_name": "Journal.issn",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "periodicity",
+      "full_name": "Journal.periodicity",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "numbering_start",
+      "full_name": "Journal.numbering_start",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "numbering_end",
+      "full_name": "Journal.numbering_end",
+      "note": "CharField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "start_year",
+      "full_name": "Journal.start_year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "end_year",
+      "full_name": "Journal.end_year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_history_note",
+      "full_name": "Journal.title_history_note",
+      "note": "TextField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "description",
+      "full_name": "Journal.description",
+      "note": "TextField",
+      "owner": "Journal",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "journal_issue_id",
+      "full_name": "JournalIssue.journal_issue_id",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "JournalIssue.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "journal",
+      "full_name": "JournalIssue.journal",
+      "note": "ForeignKey",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "JournalIssue.title",
+      "note": "TextField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "JournalIssue.parallel_title",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "JournalIssue.title_remainder",
+      "note": "TextField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "JournalIssue.responsibility_statement",
+      "note": "TextField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "year",
+      "full_name": "JournalIssue.year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "JournalIssue.publication_date",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issue_number",
+      "full_name": "JournalIssue.issue_number",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "volume",
+      "full_name": "JournalIssue.volume",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "part_number",
+      "full_name": "JournalIssue.part_number",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "gross_number",
+      "full_name": "JournalIssue.gross_number",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "date_text",
+      "full_name": "JournalIssue.date_text",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "chronology",
+      "full_name": "JournalIssue.chronology",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "enumeration",
+      "full_name": "JournalIssue.enumeration",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "JournalIssue.publication_place",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publisher",
+      "full_name": "JournalIssue.publisher",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_details",
+      "full_name": "JournalIssue.publication_details",
+      "note": "TextField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issn",
+      "full_name": "JournalIssue.issn",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "isbn",
+      "full_name": "JournalIssue.isbn",
+      "note": "CharField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "notes",
+      "full_name": "JournalIssue.notes",
+      "note": "TextField",
+      "owner": "JournalIssue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "work_id",
+      "full_name": "Work.work_id",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Work.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_sequence",
+      "full_name": "Work.source_sequence",
+      "note": "PositiveIntegerField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_number",
+      "full_name": "Work.source_number",
+      "note": "PositiveIntegerField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_page_marker",
+      "full_name": "Work.source_page_marker",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_section",
+      "full_name": "Work.source_section",
+      "note": "ForeignKey",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "language",
+      "full_name": "Work.language",
+      "note": "ForeignKey",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "work_type",
+      "full_name": "Work.work_type",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "is_container",
+      "full_name": "Work.is_container",
+      "note": "BooleanField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "raw_author_string",
+      "full_name": "Work.raw_author_string",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Work.title",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "Work.parallel_title",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "subtitle",
+      "full_name": "Work.subtitle",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "Work.title_remainder",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "volume_number",
+      "full_name": "Work.volume_number",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "part_number",
+      "full_name": "Work.part_number",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "part_title",
+      "full_name": "Work.part_title",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "responsibility_note",
+      "full_name": "Work.responsibility_note",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "Work.responsibility_statement",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "host_title",
+      "full_name": "Work.host_title",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "edition_statement",
+      "full_name": "Work.edition_statement",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "additional_edition_statement",
+      "full_name": "Work.additional_edition_statement",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "Work.publication_place",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Work.publisher",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "Work.publication_date",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "manufacture_place",
+      "full_name": "Work.manufacture_place",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "manufacturer",
+      "full_name": "Work.manufacturer",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "manufacture_date",
+      "full_name": "Work.manufacture_date",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "copyright_date",
+      "full_name": "Work.copyright_date",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "physical_description",
+      "full_name": "Work.physical_description",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "extent",
+      "full_name": "Work.extent",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "illustrations",
+      "full_name": "Work.illustrations",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "dimensions",
+      "full_name": "Work.dimensions",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "accompanying_material",
+      "full_name": "Work.accompanying_material",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "circulation",
+      "full_name": "Work.circulation",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "article_pages",
+      "full_name": "Work.article_pages",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "page_start",
+      "full_name": "Work.page_start",
+      "note": "PositiveIntegerField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "page_end",
+      "full_name": "Work.page_end",
+      "note": "PositiveIntegerField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_details",
+      "full_name": "Work.publication_details",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "series_statement",
+      "full_name": "Work.series_statement",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "notes",
+      "full_name": "Work.notes",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "bibliography_note",
+      "full_name": "Work.bibliography_note",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "index_note",
+      "full_name": "Work.index_note",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "contents_note",
+      "full_name": "Work.contents_note",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "isbn",
+      "full_name": "Work.isbn",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issn",
+      "full_name": "Work.issn",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "doi",
+      "full_name": "Work.doi",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "url",
+      "full_name": "Work.url",
+      "note": "URLField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "access_date",
+      "full_name": "Work.access_date",
+      "note": "DateField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "content_type",
+      "full_name": "Work.content_type",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "media_type",
+      "full_name": "Work.media_type",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "carrier_type",
+      "full_name": "Work.carrier_type",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "description_status",
+      "full_name": "Work.description_status",
+      "note": "CharField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "public_review",
+      "full_name": "Work.public_review",
+      "note": "TextField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "inferred_year",
+      "full_name": "Work.inferred_year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "authors",
+      "full_name": "Work.authors",
+      "note": "ManyToManyField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "tags",
+      "full_name": "Work.tags",
+      "note": "ManyToManyField",
+      "owner": "Work",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "book_id",
+      "full_name": "Book.book_id",
+      "note": "CharField",
+      "owner": "Book",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Book.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Book",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "work",
+      "full_name": "Book.work",
+      "note": "OneToOneField",
+      "owner": "Book",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "edition",
+      "full_name": "Book.edition",
+      "note": "CharField",
+      "owner": "Book",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "page_count",
+      "full_name": "Book.page_count",
+      "note": "CharField",
+      "owner": "Book",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "isbn",
+      "full_name": "Book.isbn",
+      "note": "CharField",
+      "owner": "Book",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "collection_id",
+      "full_name": "Collection.collection_id",
+      "note": "CharField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Collection.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parent_work",
+      "full_name": "Collection.parent_work",
+      "note": "OneToOneField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Collection.title",
+      "note": "CharField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_details",
+      "full_name": "Collection.publication_details",
+      "note": "TextField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "year",
+      "full_name": "Collection.year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "place",
+      "full_name": "Collection.place",
+      "note": "CharField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Collection.publisher",
+      "note": "CharField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_text",
+      "full_name": "Collection.source_text",
+      "note": "TextField",
+      "owner": "Collection",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "article_id",
+      "full_name": "Article.article_id",
+      "note": "CharField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Article.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "work",
+      "full_name": "Article.work",
+      "note": "OneToOneField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "container_work",
+      "full_name": "Article.container_work",
+      "note": "ForeignKey",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "collection",
+      "full_name": "Article.collection",
+      "note": "ForeignKey",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "journal_issue",
+      "full_name": "Article.journal_issue",
+      "note": "ForeignKey",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "pages",
+      "full_name": "Article.pages",
+      "note": "CharField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "pages_raw",
+      "full_name": "Article.pages_raw",
+      "note": "CharField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "page_start",
+      "full_name": "Article.page_start",
+      "note": "PositiveIntegerField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "page_end",
+      "full_name": "Article.page_end",
+      "note": "PositiveIntegerField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "location_note",
+      "full_name": "Article.location_note",
+      "note": "CharField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "placement_note",
+      "full_name": "Article.placement_note",
+      "note": "TextField",
+      "owner": "Article",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "group_id",
+      "full_name": "WorkGroup.group_id",
+      "note": "CharField",
+      "owner": "WorkGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "WorkGroup.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "WorkGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "WorkGroup.title",
+      "note": "CharField",
+      "owner": "WorkGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "group_type",
+      "full_name": "WorkGroup.group_type",
+      "note": "CharField",
+      "owner": "WorkGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "note",
+      "full_name": "WorkGroup.note",
+      "note": "TextField",
+      "owner": "WorkGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "id",
+      "full_name": "WorkGroupItem.id",
+      "note": "BigAutoField",
+      "owner": "WorkGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "group",
+      "full_name": "WorkGroupItem.group",
+      "note": "ForeignKey",
+      "owner": "WorkGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "work",
+      "full_name": "WorkGroupItem.work",
+      "note": "ForeignKey",
+      "owner": "WorkGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "WorkGroupItem.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "WorkGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "id",
+      "full_name": "WorkAuthor.id",
+      "note": "BigAutoField",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "work",
+      "full_name": "WorkAuthor.work",
+      "note": "ForeignKey",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "author",
+      "full_name": "WorkAuthor.author",
+      "note": "ForeignKey",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "WorkAuthor.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "role",
+      "full_name": "WorkAuthor.role",
+      "note": "CharField",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_text",
+      "full_name": "WorkAuthor.source_text",
+      "note": "CharField",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "name_as_printed",
+      "full_name": "WorkAuthor.name_as_printed",
+      "note": "CharField",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "include_in_responsibility",
+      "full_name": "WorkAuthor.include_in_responsibility",
+      "note": "BooleanField",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "is_primary_heading",
+      "full_name": "WorkAuthor.is_primary_heading",
+      "note": "BooleanField",
+      "owner": "WorkAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "id",
+      "full_name": "WorkTag.id",
+      "note": "BigAutoField",
+      "owner": "WorkTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "work",
+      "full_name": "WorkTag.work",
+      "note": "ForeignKey",
+      "owner": "WorkTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "tag",
+      "full_name": "WorkTag.tag",
+      "note": "ForeignKey",
+      "owner": "WorkTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "WorkTag.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "WorkTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_text",
+      "full_name": "WorkTag.source_text",
+      "note": "CharField",
+      "owner": "WorkTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_id",
+      "full_name": "Source.source_id",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Source.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "legacy_work",
+      "full_name": "Source.legacy_work",
+      "note": "OneToOneField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_sequence",
+      "full_name": "Source.source_sequence",
+      "note": "PositiveIntegerField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_number",
+      "full_name": "Source.source_number",
+      "note": "PositiveIntegerField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_page_marker",
+      "full_name": "Source.source_page_marker",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_type",
+      "full_name": "Source.source_type",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "section",
+      "full_name": "Source.section",
+      "note": "ForeignKey",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "language",
+      "full_name": "Source.language",
+      "note": "ForeignKey",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "raw_author_string",
+      "full_name": "Source.raw_author_string",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Source.title",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "Source.parallel_title",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "subtitle",
+      "full_name": "Source.subtitle",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "Source.title_remainder",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "volume_number",
+      "full_name": "Source.volume_number",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "part_number",
+      "full_name": "Source.part_number",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "part_title",
+      "full_name": "Source.part_title",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "Source.responsibility_statement",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "edition_statement",
+      "full_name": "Source.edition_statement",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "additional_edition_statement",
+      "full_name": "Source.additional_edition_statement",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "Source.publication_place",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Source.publisher",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "Source.publication_date",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "inferred_year",
+      "full_name": "Source.inferred_year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "manufacture_place",
+      "full_name": "Source.manufacture_place",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "manufacturer",
+      "full_name": "Source.manufacturer",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "manufacture_date",
+      "full_name": "Source.manufacture_date",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "copyright_date",
+      "full_name": "Source.copyright_date",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "extent",
+      "full_name": "Source.extent",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "illustrations",
+      "full_name": "Source.illustrations",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "dimensions",
+      "full_name": "Source.dimensions",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "accompanying_material",
+      "full_name": "Source.accompanying_material",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "circulation",
+      "full_name": "Source.circulation",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "series_statement",
+      "full_name": "Source.series_statement",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "notes",
+      "full_name": "Source.notes",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "bibliography_note",
+      "full_name": "Source.bibliography_note",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "index_note",
+      "full_name": "Source.index_note",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "contents_note",
+      "full_name": "Source.contents_note",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "isbn",
+      "full_name": "Source.isbn",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issn",
+      "full_name": "Source.issn",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "doi",
+      "full_name": "Source.doi",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "url",
+      "full_name": "Source.url",
+      "note": "URLField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "access_date",
+      "full_name": "Source.access_date",
+      "note": "DateField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "content_type",
+      "full_name": "Source.content_type",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "media_type",
+      "full_name": "Source.media_type",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "carrier_type",
+      "full_name": "Source.carrier_type",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "Source.raw_publication_details",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "raw_host_title",
+      "full_name": "Source.raw_host_title",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "public_review",
+      "full_name": "Source.public_review",
+      "note": "TextField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "data_source",
+      "full_name": "Source.data_source",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "first_seen_at",
+      "full_name": "Source.first_seen_at",
+      "note": "DateTimeField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "Source.updated_at",
+      "note": "DateTimeField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "description_status",
+      "full_name": "Source.description_status",
+      "note": "CharField",
+      "owner": "Source",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "id",
+      "full_name": "SourceAuthor.id",
+      "note": "BigAutoField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source",
+      "full_name": "SourceAuthor.source",
+      "note": "ForeignKey",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "author",
+      "full_name": "SourceAuthor.author",
+      "note": "ForeignKey",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "SourceAuthor.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "role",
+      "full_name": "SourceAuthor.role",
+      "note": "CharField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_text",
+      "full_name": "SourceAuthor.source_text",
+      "note": "CharField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "name_as_printed",
+      "full_name": "SourceAuthor.name_as_printed",
+      "note": "CharField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "include_in_responsibility",
+      "full_name": "SourceAuthor.include_in_responsibility",
+      "note": "BooleanField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "is_primary_heading",
+      "full_name": "SourceAuthor.is_primary_heading",
+      "note": "BooleanField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "created_at",
+      "full_name": "SourceAuthor.created_at",
+      "note": "DateTimeField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "SourceAuthor.updated_at",
+      "note": "DateTimeField",
+      "owner": "SourceAuthor",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "id",
+      "full_name": "SourceTag.id",
+      "note": "BigAutoField",
+      "owner": "SourceTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source",
+      "full_name": "SourceTag.source",
+      "note": "ForeignKey",
+      "owner": "SourceTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "tag",
+      "full_name": "SourceTag.tag",
+      "note": "ForeignKey",
+      "owner": "SourceTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "SourceTag.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "SourceTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_text",
+      "full_name": "SourceTag.source_text",
+      "note": "CharField",
+      "owner": "SourceTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "created_at",
+      "full_name": "SourceTag.created_at",
+      "note": "DateTimeField",
+      "owner": "SourceTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "SourceTag.updated_at",
+      "note": "DateTimeField",
+      "owner": "SourceTag",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "periodical_id",
+      "full_name": "Periodical.periodical_id",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Periodical.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "legacy_journal",
+      "full_name": "Periodical.legacy_journal",
+      "note": "OneToOneField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Periodical.title",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "Periodical.parallel_title",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "Periodical.title_remainder",
+      "note": "TextField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "Periodical.responsibility_statement",
+      "note": "TextField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "place",
+      "full_name": "Periodical.place",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Periodical.publisher",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issn",
+      "full_name": "Periodical.issn",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "periodicity",
+      "full_name": "Periodical.periodicity",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "numbering_start",
+      "full_name": "Periodical.numbering_start",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "numbering_end",
+      "full_name": "Periodical.numbering_end",
+      "note": "CharField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "start_year",
+      "full_name": "Periodical.start_year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "end_year",
+      "full_name": "Periodical.end_year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_history_note",
+      "full_name": "Periodical.title_history_note",
+      "note": "TextField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "description",
+      "full_name": "Periodical.description",
+      "note": "TextField",
+      "owner": "Periodical",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issue_id",
+      "full_name": "Issue.issue_id",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "Issue.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "legacy_journal_issue",
+      "full_name": "Issue.legacy_journal_issue",
+      "note": "OneToOneField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "legacy_container_work",
+      "full_name": "Issue.legacy_container_work",
+      "note": "OneToOneField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issue_type",
+      "full_name": "Issue.issue_type",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "periodical",
+      "full_name": "Issue.periodical",
+      "note": "ForeignKey",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source",
+      "full_name": "Issue.source",
+      "note": "ForeignKey",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "Issue.title",
+      "note": "TextField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "Issue.parallel_title",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "Issue.title_remainder",
+      "note": "TextField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "Issue.responsibility_statement",
+      "note": "TextField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "year",
+      "full_name": "Issue.year",
+      "note": "PositiveSmallIntegerField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "Issue.publication_date",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issue_number",
+      "full_name": "Issue.issue_number",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "volume",
+      "full_name": "Issue.volume",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "part_number",
+      "full_name": "Issue.part_number",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "gross_number",
+      "full_name": "Issue.gross_number",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "chronology",
+      "full_name": "Issue.chronology",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "enumeration",
+      "full_name": "Issue.enumeration",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "Issue.publication_place",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Issue.publisher",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "publication_details",
+      "full_name": "Issue.publication_details",
+      "note": "TextField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issn",
+      "full_name": "Issue.issn",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "isbn",
+      "full_name": "Issue.isbn",
+      "note": "CharField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "notes",
+      "full_name": "Issue.notes",
+      "note": "TextField",
+      "owner": "Issue",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "placement_id",
+      "full_name": "ArticlePlacement.placement_id",
+      "note": "CharField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "ArticlePlacement.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "legacy_article",
+      "full_name": "ArticlePlacement.legacy_article",
+      "note": "OneToOneField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source",
+      "full_name": "ArticlePlacement.source",
+      "note": "OneToOneField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "issue",
+      "full_name": "ArticlePlacement.issue",
+      "note": "ForeignKey",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "pages_raw",
+      "full_name": "ArticlePlacement.pages_raw",
+      "note": "CharField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "page_start",
+      "full_name": "ArticlePlacement.page_start",
+      "note": "PositiveIntegerField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "page_end",
+      "full_name": "ArticlePlacement.page_end",
+      "note": "PositiveIntegerField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "location_note",
+      "full_name": "ArticlePlacement.location_note",
+      "note": "CharField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "placement_note",
+      "full_name": "ArticlePlacement.placement_note",
+      "note": "TextField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "created_at",
+      "full_name": "ArticlePlacement.created_at",
+      "note": "DateTimeField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "ArticlePlacement.updated_at",
+      "note": "DateTimeField",
+      "owner": "ArticlePlacement",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "group_id",
+      "full_name": "SourceGroup.group_id",
+      "note": "CharField",
+      "owner": "SourceGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "SourceGroup.source_django_id",
+      "note": "PositiveIntegerField",
+      "owner": "SourceGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "legacy_work_group",
+      "full_name": "SourceGroup.legacy_work_group",
+      "note": "OneToOneField",
+      "owner": "SourceGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "title",
+      "full_name": "SourceGroup.title",
+      "note": "CharField",
+      "owner": "SourceGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "group_type",
+      "full_name": "SourceGroup.group_type",
+      "note": "CharField",
+      "owner": "SourceGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "note",
+      "full_name": "SourceGroup.note",
+      "note": "TextField",
+      "owner": "SourceGroup",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "id",
+      "full_name": "SourceGroupItem.id",
+      "note": "BigAutoField",
+      "owner": "SourceGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "group",
+      "full_name": "SourceGroupItem.group",
+      "note": "ForeignKey",
+      "owner": "SourceGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "source",
+      "full_name": "SourceGroupItem.source",
+      "note": "ForeignKey",
+      "owner": "SourceGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "SourceGroupItem.sort_order",
+      "note": "PositiveIntegerField",
+      "owner": "SourceGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "created_at",
+      "full_name": "SourceGroupItem.created_at",
+      "note": "DateTimeField",
+      "owner": "SourceGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "SourceGroupItem.updated_at",
+      "note": "DateTimeField",
+      "owner": "SourceGroupItem",
+      "status": "present",
+      "surface": "model"
+    },
+    {
+      "field": "language_id",
+      "full_name": "Languages.language_id",
+      "note": "",
+      "owner": "Languages",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "code",
+      "full_name": "Languages.code",
+      "note": "",
+      "owner": "Languages",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title",
+      "full_name": "Languages.title",
+      "note": "",
+      "owner": "Languages",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "description",
+      "full_name": "Languages.description",
+      "note": "",
+      "owner": "Languages",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "Languages.sort_order",
+      "note": "",
+      "owner": "Languages",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "section_id",
+      "full_name": "Sections.section_id",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "source_code",
+      "full_name": "Sections.source_code",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "parent_section_id",
+      "full_name": "Sections.parent_section_id",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "parent_source_code",
+      "full_name": "Sections.parent_source_code",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title",
+      "full_name": "Sections.title",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "note",
+      "full_name": "Sections.note",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "description",
+      "full_name": "Sections.description",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "Sections.sort_order",
+      "note": "",
+      "owner": "Sections",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "Tags.tag_id",
+      "note": "",
+      "owner": "Tags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title",
+      "full_name": "Tags.title",
+      "note": "",
+      "owner": "Tags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "tag_type",
+      "full_name": "Tags.tag_type",
+      "note": "",
+      "owner": "Tags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "parent_tag_id",
+      "full_name": "Tags.parent_tag_id",
+      "note": "",
+      "owner": "Tags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "parent_title",
+      "full_name": "Tags.parent_title",
+      "note": "",
+      "owner": "Tags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "description",
+      "full_name": "Tags.description",
+      "note": "",
+      "owner": "Tags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "Tags.sort_order",
+      "note": "",
+      "owner": "Tags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_id",
+      "full_name": "Works.work_id",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "source_sequence",
+      "full_name": "Works.source_sequence",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "source_number",
+      "full_name": "Works.source_number",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_type",
+      "full_name": "Works.work_type",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "container_index",
+      "full_name": "Works.container_index",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "section_id",
+      "full_name": "Works.section_id",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "section_code",
+      "full_name": "Works.section_code",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "language_id",
+      "full_name": "Works.language_id",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "language_code",
+      "full_name": "Works.language_code",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "raw_author_string",
+      "full_name": "Works.raw_author_string",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "linked_authors",
+      "full_name": "Works.linked_authors",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title",
+      "full_name": "Works.title",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "Works.parallel_title",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "subtitle",
+      "full_name": "Works.subtitle",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "Works.title_remainder",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "volume_number",
+      "full_name": "Works.volume_number",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "part_number",
+      "full_name": "Works.part_number",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "part_title",
+      "full_name": "Works.part_title",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "Works.responsibility_statement",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "edition_statement",
+      "full_name": "Works.edition_statement",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "additional_edition_statement",
+      "full_name": "Works.additional_edition_statement",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "Works.publication_place",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Works.publisher",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "Works.publication_date",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "year",
+      "full_name": "Works.year",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "extent",
+      "full_name": "Works.extent",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "illustrations",
+      "full_name": "Works.illustrations",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "dimensions",
+      "full_name": "Works.dimensions",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "accompanying_material",
+      "full_name": "Works.accompanying_material",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "circulation",
+      "full_name": "Works.circulation",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "physical_description",
+      "full_name": "Works.physical_description",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "article_pages",
+      "full_name": "Works.article_pages",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "page_start",
+      "full_name": "Works.page_start",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "page_end",
+      "full_name": "Works.page_end",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "series_statement",
+      "full_name": "Works.series_statement",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "notes",
+      "full_name": "Works.notes",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "Works.raw_publication_details",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "data_source",
+      "full_name": "Works.data_source",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "first_seen_at",
+      "full_name": "Works.first_seen_at",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "Works.updated_at",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "description_status",
+      "full_name": "Works.description_status",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "public_review",
+      "full_name": "Works.public_review",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "isbn",
+      "full_name": "Works.isbn",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "issn",
+      "full_name": "Works.issn",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "doi",
+      "full_name": "Works.doi",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "url",
+      "full_name": "Works.url",
+      "note": "",
+      "owner": "Works",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "author_id",
+      "full_name": "Authors.author_id",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "display_name",
+      "full_name": "Authors.display_name",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "heading_name",
+      "full_name": "Authors.heading_name",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "sort_name",
+      "full_name": "Authors.sort_name",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "aliases",
+      "full_name": "Authors.aliases",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "person_dates",
+      "full_name": "Authors.person_dates",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "authority_note",
+      "full_name": "Authors.authority_note",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "note",
+      "full_name": "Authors.note",
+      "note": "",
+      "owner": "Authors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_id",
+      "full_name": "WorkAuthors.work_id",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_title",
+      "full_name": "WorkAuthors.work_title",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "author_id",
+      "full_name": "WorkAuthors.author_id",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "author_display_name",
+      "full_name": "WorkAuthors.author_display_name",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "WorkAuthors.sort_order",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "role",
+      "full_name": "WorkAuthors.role",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "source_text",
+      "full_name": "WorkAuthors.source_text",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "name_as_printed",
+      "full_name": "WorkAuthors.name_as_printed",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "include_in_responsibility",
+      "full_name": "WorkAuthors.include_in_responsibility",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "is_primary_heading",
+      "full_name": "WorkAuthors.is_primary_heading",
+      "note": "",
+      "owner": "WorkAuthors",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_id",
+      "full_name": "WorkTags.work_id",
+      "note": "",
+      "owner": "WorkTags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_title",
+      "full_name": "WorkTags.work_title",
+      "note": "",
+      "owner": "WorkTags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "WorkTags.tag_id",
+      "note": "",
+      "owner": "WorkTags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "tag_title",
+      "full_name": "WorkTags.tag_title",
+      "note": "",
+      "owner": "WorkTags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "WorkTags.sort_order",
+      "note": "",
+      "owner": "WorkTags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "source_text",
+      "full_name": "WorkTags.source_text",
+      "note": "",
+      "owner": "WorkTags",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "journal_id",
+      "full_name": "Journals.journal_id",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title",
+      "full_name": "Journals.title",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "Journals.parallel_title",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "Journals.title_remainder",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "Journals.responsibility_statement",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "place",
+      "full_name": "Journals.place",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "publisher",
+      "full_name": "Journals.publisher",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "issn",
+      "full_name": "Journals.issn",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "periodicity",
+      "full_name": "Journals.periodicity",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "numbering_start",
+      "full_name": "Journals.numbering_start",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "numbering_end",
+      "full_name": "Journals.numbering_end",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "start_year",
+      "full_name": "Journals.start_year",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "end_year",
+      "full_name": "Journals.end_year",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title_history_note",
+      "full_name": "Journals.title_history_note",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "description",
+      "full_name": "Journals.description",
+      "note": "",
+      "owner": "Journals",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "journal_issue_id",
+      "full_name": "JournalIssues.journal_issue_id",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "journal_id",
+      "full_name": "JournalIssues.journal_id",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "journal_title",
+      "full_name": "JournalIssues.journal_title",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title",
+      "full_name": "JournalIssues.title",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "year",
+      "full_name": "JournalIssues.year",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "JournalIssues.publication_date",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "issue_number",
+      "full_name": "JournalIssues.issue_number",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "volume",
+      "full_name": "JournalIssues.volume",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "part_number",
+      "full_name": "JournalIssues.part_number",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "gross_number",
+      "full_name": "JournalIssues.gross_number",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "date_text",
+      "full_name": "JournalIssues.date_text",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "chronology",
+      "full_name": "JournalIssues.chronology",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "enumeration",
+      "full_name": "JournalIssues.enumeration",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "JournalIssues.publication_place",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "publisher",
+      "full_name": "JournalIssues.publisher",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "JournalIssues.raw_publication_details",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "issn",
+      "full_name": "JournalIssues.issn",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "isbn",
+      "full_name": "JournalIssues.isbn",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "notes",
+      "full_name": "JournalIssues.notes",
+      "note": "",
+      "owner": "JournalIssues",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "article_id",
+      "full_name": "ArticlePlacements.article_id",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_id",
+      "full_name": "ArticlePlacements.work_id",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_title",
+      "full_name": "ArticlePlacements.work_title",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "container_id",
+      "full_name": "ArticlePlacements.container_id",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "container_type",
+      "full_name": "ArticlePlacements.container_type",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "container_title",
+      "full_name": "ArticlePlacements.container_title",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "pages_raw",
+      "full_name": "ArticlePlacements.pages_raw",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "location_note",
+      "full_name": "ArticlePlacements.location_note",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "placement_note",
+      "full_name": "ArticlePlacements.placement_note",
+      "note": "",
+      "owner": "ArticlePlacements",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "group_id",
+      "full_name": "WorkGroups.group_id",
+      "note": "",
+      "owner": "WorkGroups",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "title",
+      "full_name": "WorkGroups.title",
+      "note": "",
+      "owner": "WorkGroups",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "group_type",
+      "full_name": "WorkGroups.group_type",
+      "note": "",
+      "owner": "WorkGroups",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "note",
+      "full_name": "WorkGroups.note",
+      "note": "",
+      "owner": "WorkGroups",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "group_id",
+      "full_name": "WorkGroupItems.group_id",
+      "note": "",
+      "owner": "WorkGroupItems",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "group_title",
+      "full_name": "WorkGroupItems.group_title",
+      "note": "",
+      "owner": "WorkGroupItems",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_id",
+      "full_name": "WorkGroupItems.work_id",
+      "note": "",
+      "owner": "WorkGroupItems",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "work_title",
+      "full_name": "WorkGroupItems.work_title",
+      "note": "",
+      "owner": "WorkGroupItems",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "WorkGroupItems.sort_order",
+      "note": "",
+      "owner": "WorkGroupItems",
+      "status": "present",
+      "surface": "google_sheet"
+    },
+    {
+      "field": "language_id",
+      "full_name": "languages.language_id",
+      "note": "",
+      "owner": "languages",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "languages.source_django_id",
+      "note": "",
+      "owner": "languages",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "code",
+      "full_name": "languages.code",
+      "note": "",
+      "owner": "languages",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "languages.title",
+      "note": "",
+      "owner": "languages",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "description",
+      "full_name": "languages.description",
+      "note": "",
+      "owner": "languages",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "languages.sort_order",
+      "note": "",
+      "owner": "languages",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "section_id",
+      "full_name": "sections.section_id",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "sections.source_django_id",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_code",
+      "full_name": "sections.source_code",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "parent_id",
+      "full_name": "sections.parent_id",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "sections.title",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "description",
+      "full_name": "sections.description",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "note",
+      "full_name": "sections.note",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "sections.sort_order",
+      "note": "",
+      "owner": "sections",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "tags.tag_id",
+      "note": "",
+      "owner": "tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "tags.source_django_id",
+      "note": "",
+      "owner": "tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "tags.title",
+      "note": "",
+      "owner": "tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "tag_type",
+      "full_name": "tags.tag_type",
+      "note": "",
+      "owner": "tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "parent_id",
+      "full_name": "tags.parent_id",
+      "note": "",
+      "owner": "tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "description",
+      "full_name": "tags.description",
+      "note": "",
+      "owner": "tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "tags.sort_order",
+      "note": "",
+      "owner": "tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "author_id",
+      "full_name": "authors.author_id",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "authors.source_django_id",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "display_name",
+      "full_name": "authors.display_name",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "heading_name",
+      "full_name": "authors.heading_name",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "sort_name",
+      "full_name": "authors.sort_name",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "aliases",
+      "full_name": "authors.aliases",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "person_dates",
+      "full_name": "authors.person_dates",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "authority_note",
+      "full_name": "authors.authority_note",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "note",
+      "full_name": "authors.note",
+      "note": "",
+      "owner": "authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_id",
+      "full_name": "sources.source_id",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "sources.source_django_id",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "legacy_work_id",
+      "full_name": "sources.legacy_work_id",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_sequence",
+      "full_name": "sources.source_sequence",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_number",
+      "full_name": "sources.source_number",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_page_marker",
+      "full_name": "sources.source_page_marker",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_type",
+      "full_name": "sources.source_type",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "section_id",
+      "full_name": "sources.section_id",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "language_id",
+      "full_name": "sources.language_id",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "raw_author_string",
+      "full_name": "sources.raw_author_string",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "sources.title",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "sources.parallel_title",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "subtitle",
+      "full_name": "sources.subtitle",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "sources.title_remainder",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "volume_number",
+      "full_name": "sources.volume_number",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "part_number",
+      "full_name": "sources.part_number",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "part_title",
+      "full_name": "sources.part_title",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "sources.responsibility_statement",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "edition_statement",
+      "full_name": "sources.edition_statement",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "additional_edition_statement",
+      "full_name": "sources.additional_edition_statement",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "sources.publication_place",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "publisher",
+      "full_name": "sources.publisher",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "sources.publication_date",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "inferred_year",
+      "full_name": "sources.inferred_year",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "manufacture_place",
+      "full_name": "sources.manufacture_place",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "manufacturer",
+      "full_name": "sources.manufacturer",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "manufacture_date",
+      "full_name": "sources.manufacture_date",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "copyright_date",
+      "full_name": "sources.copyright_date",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "extent",
+      "full_name": "sources.extent",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "illustrations",
+      "full_name": "sources.illustrations",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "dimensions",
+      "full_name": "sources.dimensions",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "accompanying_material",
+      "full_name": "sources.accompanying_material",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "circulation",
+      "full_name": "sources.circulation",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "series_statement",
+      "full_name": "sources.series_statement",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "notes",
+      "full_name": "sources.notes",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "bibliography_note",
+      "full_name": "sources.bibliography_note",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "index_note",
+      "full_name": "sources.index_note",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "contents_note",
+      "full_name": "sources.contents_note",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "isbn",
+      "full_name": "sources.isbn",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "issn",
+      "full_name": "sources.issn",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "doi",
+      "full_name": "sources.doi",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "url",
+      "full_name": "sources.url",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "access_date",
+      "full_name": "sources.access_date",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "content_type",
+      "full_name": "sources.content_type",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "media_type",
+      "full_name": "sources.media_type",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "carrier_type",
+      "full_name": "sources.carrier_type",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "sources.raw_publication_details",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "raw_host_title",
+      "full_name": "sources.raw_host_title",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "public_review",
+      "full_name": "sources.public_review",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "data_source",
+      "full_name": "sources.data_source",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "first_seen_at",
+      "full_name": "sources.first_seen_at",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "sources.updated_at",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "description_status",
+      "full_name": "sources.description_status",
+      "note": "",
+      "owner": "sources",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "id",
+      "full_name": "source_authors.id",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_id",
+      "full_name": "source_authors.source_id",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "author_id",
+      "full_name": "source_authors.author_id",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "source_authors.sort_order",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "role",
+      "full_name": "source_authors.role",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_text",
+      "full_name": "source_authors.source_text",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "name_as_printed",
+      "full_name": "source_authors.name_as_printed",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "include_in_responsibility",
+      "full_name": "source_authors.include_in_responsibility",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "is_primary_heading",
+      "full_name": "source_authors.is_primary_heading",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "created_at",
+      "full_name": "source_authors.created_at",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "source_authors.updated_at",
+      "note": "",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "id",
+      "full_name": "source_tags.id",
+      "note": "",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_id",
+      "full_name": "source_tags.source_id",
+      "note": "",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "source_tags.tag_id",
+      "note": "",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "source_tags.sort_order",
+      "note": "",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_text",
+      "full_name": "source_tags.source_text",
+      "note": "",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "created_at",
+      "full_name": "source_tags.created_at",
+      "note": "",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "source_tags.updated_at",
+      "note": "",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "periodical_id",
+      "full_name": "periodicals.periodical_id",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "periodicals.source_django_id",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "legacy_journal_id",
+      "full_name": "periodicals.legacy_journal_id",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "periodicals.title",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "periodicals.parallel_title",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "periodicals.title_remainder",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "periodicals.responsibility_statement",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "place",
+      "full_name": "periodicals.place",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "publisher",
+      "full_name": "periodicals.publisher",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "issn",
+      "full_name": "periodicals.issn",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "periodicity",
+      "full_name": "periodicals.periodicity",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "numbering_start",
+      "full_name": "periodicals.numbering_start",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "numbering_end",
+      "full_name": "periodicals.numbering_end",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "start_year",
+      "full_name": "periodicals.start_year",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "end_year",
+      "full_name": "periodicals.end_year",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title_history_note",
+      "full_name": "periodicals.title_history_note",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "description",
+      "full_name": "periodicals.description",
+      "note": "",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "issue_id",
+      "full_name": "issues.issue_id",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "issues.source_django_id",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "legacy_journal_issue_id",
+      "full_name": "issues.legacy_journal_issue_id",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "legacy_container_work_id",
+      "full_name": "issues.legacy_container_work_id",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "issue_type",
+      "full_name": "issues.issue_type",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "periodical_id",
+      "full_name": "issues.periodical_id",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_id",
+      "full_name": "issues.source_id",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "issues.title",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "issues.parallel_title",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "issues.title_remainder",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "issues.responsibility_statement",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "year",
+      "full_name": "issues.year",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "issues.publication_date",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "issue_number",
+      "full_name": "issues.issue_number",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "volume",
+      "full_name": "issues.volume",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "part_number",
+      "full_name": "issues.part_number",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "gross_number",
+      "full_name": "issues.gross_number",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "chronology",
+      "full_name": "issues.chronology",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "enumeration",
+      "full_name": "issues.enumeration",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "issues.publication_place",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "publisher",
+      "full_name": "issues.publisher",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "issues.raw_publication_details",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "issn",
+      "full_name": "issues.issn",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "isbn",
+      "full_name": "issues.isbn",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "notes",
+      "full_name": "issues.notes",
+      "note": "",
+      "owner": "issues",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "placement_id",
+      "full_name": "article_placements.placement_id",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "article_placements.source_django_id",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "legacy_article_id",
+      "full_name": "article_placements.legacy_article_id",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_id",
+      "full_name": "article_placements.source_id",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "issue_id",
+      "full_name": "article_placements.issue_id",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "pages_raw",
+      "full_name": "article_placements.pages_raw",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "page_start",
+      "full_name": "article_placements.page_start",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "page_end",
+      "full_name": "article_placements.page_end",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "location_note",
+      "full_name": "article_placements.location_note",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "placement_note",
+      "full_name": "article_placements.placement_note",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "created_at",
+      "full_name": "article_placements.created_at",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "article_placements.updated_at",
+      "note": "",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "group_id",
+      "full_name": "source_groups.group_id",
+      "note": "",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "source_groups.source_django_id",
+      "note": "",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "legacy_work_group_id",
+      "full_name": "source_groups.legacy_work_group_id",
+      "note": "",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "source_groups.title",
+      "note": "",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "group_type",
+      "full_name": "source_groups.group_type",
+      "note": "",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "note",
+      "full_name": "source_groups.note",
+      "note": "",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "id",
+      "full_name": "source_group_items.id",
+      "note": "",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "group_id",
+      "full_name": "source_group_items.group_id",
+      "note": "",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "source_id",
+      "full_name": "source_group_items.source_id",
+      "note": "",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "source_group_items.sort_order",
+      "note": "",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "created_at",
+      "full_name": "source_group_items.created_at",
+      "note": "",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "source_group_items.updated_at",
+      "note": "",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "site_contract"
+    },
+    {
+      "field": "placement_id",
+      "full_name": "article_placements.placement_id",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "article_placements.source_django_id",
+      "note": "INTEGER",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "legacy_article_id",
+      "full_name": "article_placements.legacy_article_id",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_id",
+      "full_name": "article_placements.source_id",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "issue_id",
+      "full_name": "article_placements.issue_id",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "pages_raw",
+      "full_name": "article_placements.pages_raw",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "page_start",
+      "full_name": "article_placements.page_start",
+      "note": "INTEGER",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "page_end",
+      "full_name": "article_placements.page_end",
+      "note": "INTEGER",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "location_note",
+      "full_name": "article_placements.location_note",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "placement_note",
+      "full_name": "article_placements.placement_note",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "created_at",
+      "full_name": "article_placements.created_at",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "article_placements.updated_at",
+      "note": "TEXT",
+      "owner": "article_placements",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "author_id",
+      "full_name": "authors.author_id",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "authors.source_django_id",
+      "note": "INTEGER",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "display_name",
+      "full_name": "authors.display_name",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "heading_name",
+      "full_name": "authors.heading_name",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "sort_name",
+      "full_name": "authors.sort_name",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "aliases",
+      "full_name": "authors.aliases",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "person_dates",
+      "full_name": "authors.person_dates",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "authority_note",
+      "full_name": "authors.authority_note",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "note",
+      "full_name": "authors.note",
+      "note": "TEXT",
+      "owner": "authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "key",
+      "full_name": "export_metadata.key",
+      "note": "TEXT",
+      "owner": "export_metadata",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "value",
+      "full_name": "export_metadata.value",
+      "note": "TEXT",
+      "owner": "export_metadata",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "issue_id",
+      "full_name": "issues.issue_id",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "issues.source_django_id",
+      "note": "INTEGER",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "legacy_journal_issue_id",
+      "full_name": "issues.legacy_journal_issue_id",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "legacy_container_work_id",
+      "full_name": "issues.legacy_container_work_id",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "issue_type",
+      "full_name": "issues.issue_type",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "periodical_id",
+      "full_name": "issues.periodical_id",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_id",
+      "full_name": "issues.source_id",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title",
+      "full_name": "issues.title",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "issues.parallel_title",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "issues.title_remainder",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "issues.responsibility_statement",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "year",
+      "full_name": "issues.year",
+      "note": "INTEGER",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "issues.publication_date",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "issue_number",
+      "full_name": "issues.issue_number",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "volume",
+      "full_name": "issues.volume",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "part_number",
+      "full_name": "issues.part_number",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "gross_number",
+      "full_name": "issues.gross_number",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "chronology",
+      "full_name": "issues.chronology",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "enumeration",
+      "full_name": "issues.enumeration",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "issues.publication_place",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "publisher",
+      "full_name": "issues.publisher",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "issues.raw_publication_details",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "issn",
+      "full_name": "issues.issn",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "isbn",
+      "full_name": "issues.isbn",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "notes",
+      "full_name": "issues.notes",
+      "note": "TEXT",
+      "owner": "issues",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "language_id",
+      "full_name": "languages.language_id",
+      "note": "TEXT",
+      "owner": "languages",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "languages.source_django_id",
+      "note": "INTEGER",
+      "owner": "languages",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "code",
+      "full_name": "languages.code",
+      "note": "TEXT",
+      "owner": "languages",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title",
+      "full_name": "languages.title",
+      "note": "TEXT",
+      "owner": "languages",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "description",
+      "full_name": "languages.description",
+      "note": "TEXT",
+      "owner": "languages",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "languages.sort_order",
+      "note": "INTEGER",
+      "owner": "languages",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "periodical_id",
+      "full_name": "periodicals.periodical_id",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "periodicals.source_django_id",
+      "note": "INTEGER",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "legacy_journal_id",
+      "full_name": "periodicals.legacy_journal_id",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title",
+      "full_name": "periodicals.title",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "periodicals.parallel_title",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "periodicals.title_remainder",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "periodicals.responsibility_statement",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "place",
+      "full_name": "periodicals.place",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "publisher",
+      "full_name": "periodicals.publisher",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "issn",
+      "full_name": "periodicals.issn",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "periodicity",
+      "full_name": "periodicals.periodicity",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "numbering_start",
+      "full_name": "periodicals.numbering_start",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "numbering_end",
+      "full_name": "periodicals.numbering_end",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "start_year",
+      "full_name": "periodicals.start_year",
+      "note": "INTEGER",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "end_year",
+      "full_name": "periodicals.end_year",
+      "note": "INTEGER",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title_history_note",
+      "full_name": "periodicals.title_history_note",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "description",
+      "full_name": "periodicals.description",
+      "note": "TEXT",
+      "owner": "periodicals",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "section_id",
+      "full_name": "sections.section_id",
+      "note": "TEXT",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "sections.source_django_id",
+      "note": "INTEGER",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_code",
+      "full_name": "sections.source_code",
+      "note": "TEXT",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "parent_id",
+      "full_name": "sections.parent_id",
+      "note": "TEXT",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title",
+      "full_name": "sections.title",
+      "note": "TEXT",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "description",
+      "full_name": "sections.description",
+      "note": "TEXT",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "note",
+      "full_name": "sections.note",
+      "note": "TEXT",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "sections.sort_order",
+      "note": "INTEGER",
+      "owner": "sections",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "id",
+      "full_name": "source_authors.id",
+      "note": "INTEGER",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_id",
+      "full_name": "source_authors.source_id",
+      "note": "TEXT",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "author_id",
+      "full_name": "source_authors.author_id",
+      "note": "TEXT",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "source_authors.sort_order",
+      "note": "INTEGER",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "role",
+      "full_name": "source_authors.role",
+      "note": "TEXT",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_text",
+      "full_name": "source_authors.source_text",
+      "note": "TEXT",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "name_as_printed",
+      "full_name": "source_authors.name_as_printed",
+      "note": "TEXT",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "include_in_responsibility",
+      "full_name": "source_authors.include_in_responsibility",
+      "note": "INTEGER",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "is_primary_heading",
+      "full_name": "source_authors.is_primary_heading",
+      "note": "INTEGER",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "created_at",
+      "full_name": "source_authors.created_at",
+      "note": "TEXT",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "source_authors.updated_at",
+      "note": "TEXT",
+      "owner": "source_authors",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "id",
+      "full_name": "source_group_items.id",
+      "note": "INTEGER",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "group_id",
+      "full_name": "source_group_items.group_id",
+      "note": "TEXT",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_id",
+      "full_name": "source_group_items.source_id",
+      "note": "TEXT",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "source_group_items.sort_order",
+      "note": "INTEGER",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "created_at",
+      "full_name": "source_group_items.created_at",
+      "note": "TEXT",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "source_group_items.updated_at",
+      "note": "TEXT",
+      "owner": "source_group_items",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "group_id",
+      "full_name": "source_groups.group_id",
+      "note": "TEXT",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "source_groups.source_django_id",
+      "note": "INTEGER",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "legacy_work_group_id",
+      "full_name": "source_groups.legacy_work_group_id",
+      "note": "TEXT",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title",
+      "full_name": "source_groups.title",
+      "note": "TEXT",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "group_type",
+      "full_name": "source_groups.group_type",
+      "note": "TEXT",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "note",
+      "full_name": "source_groups.note",
+      "note": "TEXT",
+      "owner": "source_groups",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "id",
+      "full_name": "source_tags.id",
+      "note": "INTEGER",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_id",
+      "full_name": "source_tags.source_id",
+      "note": "TEXT",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "source_tags.tag_id",
+      "note": "TEXT",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "source_tags.sort_order",
+      "note": "INTEGER",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_text",
+      "full_name": "source_tags.source_text",
+      "note": "TEXT",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "created_at",
+      "full_name": "source_tags.created_at",
+      "note": "TEXT",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "source_tags.updated_at",
+      "note": "TEXT",
+      "owner": "source_tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_id",
+      "full_name": "sources.source_id",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "sources.source_django_id",
+      "note": "INTEGER",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "legacy_work_id",
+      "full_name": "sources.legacy_work_id",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_sequence",
+      "full_name": "sources.source_sequence",
+      "note": "INTEGER",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_number",
+      "full_name": "sources.source_number",
+      "note": "INTEGER",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_page_marker",
+      "full_name": "sources.source_page_marker",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_type",
+      "full_name": "sources.source_type",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "section_id",
+      "full_name": "sources.section_id",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "language_id",
+      "full_name": "sources.language_id",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "raw_author_string",
+      "full_name": "sources.raw_author_string",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title",
+      "full_name": "sources.title",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "sources.parallel_title",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "subtitle",
+      "full_name": "sources.subtitle",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "sources.title_remainder",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "volume_number",
+      "full_name": "sources.volume_number",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "part_number",
+      "full_name": "sources.part_number",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "part_title",
+      "full_name": "sources.part_title",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "sources.responsibility_statement",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "edition_statement",
+      "full_name": "sources.edition_statement",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "additional_edition_statement",
+      "full_name": "sources.additional_edition_statement",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "sources.publication_place",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "publisher",
+      "full_name": "sources.publisher",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "sources.publication_date",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "inferred_year",
+      "full_name": "sources.inferred_year",
+      "note": "INTEGER",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "manufacture_place",
+      "full_name": "sources.manufacture_place",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "manufacturer",
+      "full_name": "sources.manufacturer",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "manufacture_date",
+      "full_name": "sources.manufacture_date",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "copyright_date",
+      "full_name": "sources.copyright_date",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "extent",
+      "full_name": "sources.extent",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "illustrations",
+      "full_name": "sources.illustrations",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "dimensions",
+      "full_name": "sources.dimensions",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "accompanying_material",
+      "full_name": "sources.accompanying_material",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "circulation",
+      "full_name": "sources.circulation",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "series_statement",
+      "full_name": "sources.series_statement",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "notes",
+      "full_name": "sources.notes",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "bibliography_note",
+      "full_name": "sources.bibliography_note",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "index_note",
+      "full_name": "sources.index_note",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "contents_note",
+      "full_name": "sources.contents_note",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "isbn",
+      "full_name": "sources.isbn",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "issn",
+      "full_name": "sources.issn",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "doi",
+      "full_name": "sources.doi",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "url",
+      "full_name": "sources.url",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "access_date",
+      "full_name": "sources.access_date",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "content_type",
+      "full_name": "sources.content_type",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "media_type",
+      "full_name": "sources.media_type",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "carrier_type",
+      "full_name": "sources.carrier_type",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "sources.raw_publication_details",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "raw_host_title",
+      "full_name": "sources.raw_host_title",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "public_review",
+      "full_name": "sources.public_review",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "data_source",
+      "full_name": "sources.data_source",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "first_seen_at",
+      "full_name": "sources.first_seen_at",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "sources.updated_at",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "description_status",
+      "full_name": "sources.description_status",
+      "note": "TEXT",
+      "owner": "sources",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "tags.tag_id",
+      "note": "TEXT",
+      "owner": "tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_django_id",
+      "full_name": "tags.source_django_id",
+      "note": "INTEGER",
+      "owner": "tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "title",
+      "full_name": "tags.title",
+      "note": "TEXT",
+      "owner": "tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "tag_type",
+      "full_name": "tags.tag_type",
+      "note": "TEXT",
+      "owner": "tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "parent_id",
+      "full_name": "tags.parent_id",
+      "note": "TEXT",
+      "owner": "tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "description",
+      "full_name": "tags.description",
+      "note": "TEXT",
+      "owner": "tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "tags.sort_order",
+      "note": "INTEGER",
+      "owner": "tags",
+      "status": "present",
+      "surface": "artifact_sqlite"
+    },
+    {
+      "field": "source_id",
+      "full_name": "source_id",
+      "note": "Stable canonical bibliographic source ID.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "source_type",
+      "full_name": "source_type",
+      "note": "Target values are source categories, not parser confidence classes.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "source_sequence",
+      "full_name": "source_sequence",
+      "note": "Ordering in the historical bibliography.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "source_number",
+      "full_name": "source_number",
+      "note": "Historical source number.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "source_page_marker",
+      "full_name": "source_page_marker",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "section_id",
+      "full_name": "section_id",
+      "note": "Foreign key to Section.",
+      "owner": "Source.section",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "section_code",
+      "full_name": "section_code",
+      "note": "Human/editor-facing section code; `section_code` is the Works sheet lookup helper.",
+      "owner": "Section",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "parent_id",
+      "full_name": "parent_id",
+      "note": "Parent relation ID for hierarchical records.",
+      "owner": "Section, Tag",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "parent_source_code",
+      "full_name": "parent_source_code",
+      "note": "Google Sheets display helper for parent section code.",
+      "owner": "Section",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "language_id",
+      "full_name": "language_id",
+      "note": "Foreign key to Language.",
+      "owner": "Source.language",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "code",
+      "full_name": "code",
+      "note": "Language code; `language_code` is the Works sheet lookup helper.",
+      "owner": "Language",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "description",
+      "full_name": "description",
+      "note": "Context-specific description text.",
+      "owner": "Language, Tag, Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "container_index",
+      "full_name": "container_index",
+      "note": "Google Sheets helper for linking a work row to an issue/container row.",
+      "owner": "ArticlePlacement",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "linked_authors",
+      "full_name": "linked_authors",
+      "note": "Google Sheets display helper; canonical relation rows live in `WorkAuthors`/`source_authors`.",
+      "owner": "SourceAuthor",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "raw_author_string",
+      "full_name": "raw_author_string",
+      "note": "Raw author string before normalized author links.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "title",
+      "full_name": "title",
+      "note": "Main title.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "parallel_title",
+      "full_name": "parallel_title",
+      "note": "Parallel title.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "subtitle",
+      "full_name": "subtitle",
+      "note": "Subtitle parsed separately from title.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "title_remainder",
+      "full_name": "title_remainder",
+      "note": "Remaining title/responsibility title area.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "volume_number",
+      "full_name": "volume_number",
+      "note": "Volume number for source records.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "part_number",
+      "full_name": "part_number",
+      "note": "Part number.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "part_title",
+      "full_name": "part_title",
+      "note": "Part title.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "responsibility_statement",
+      "full_name": "responsibility_statement",
+      "note": "Statement of responsibility.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "edition_statement",
+      "full_name": "edition_statement",
+      "note": "Edition statement.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "additional_edition_statement",
+      "full_name": "additional_edition_statement",
+      "note": "Additional edition statement.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "publication_place",
+      "full_name": "publication_place",
+      "note": "Place of publication.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "publisher",
+      "full_name": "publisher",
+      "note": "Publisher.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "publication_date",
+      "full_name": "publication_date",
+      "note": "Publication date as printed.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "inferred_year",
+      "full_name": "inferred_year",
+      "note": "Normalized/inferred year.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "manufacture_place",
+      "full_name": "manufacture_place",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "manufacturer",
+      "full_name": "manufacturer",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "manufacture_date",
+      "full_name": "manufacture_date",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "copyright_date",
+      "full_name": "copyright_date",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "extent",
+      "full_name": "extent",
+      "note": "Extent/volume, not article placement pages.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "physical_description",
+      "full_name": "physical_description",
+      "note": "Legacy editor/Sheets helper; target uses structured physical fields and `extent`.",
+      "owner": "Source",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "article_pages",
+      "full_name": "article_pages",
+      "note": "Legacy Work sheet helper; target article pages live in `ArticlePlacements.pages_raw`, `page_start`, `page_end`.",
+      "owner": "ArticlePlacement",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "illustrations",
+      "full_name": "illustrations",
+      "note": "Illustration statement.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "dimensions",
+      "full_name": "dimensions",
+      "note": "Dimensions.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "accompanying_material",
+      "full_name": "accompanying_material",
+      "note": "Accompanying material.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "circulation",
+      "full_name": "circulation",
+      "note": "Print run/circulation.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "series_statement",
+      "full_name": "series_statement",
+      "note": "Series statement.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "notes",
+      "full_name": "notes",
+      "note": "Editorial/public note field.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "bibliography_note",
+      "full_name": "bibliography_note",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "index_note",
+      "full_name": "index_note",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "contents_note",
+      "full_name": "contents_note",
+      "note": "No Google Sheets header yet.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "isbn",
+      "full_name": "isbn",
+      "note": "ISBN.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "issn",
+      "full_name": "issn",
+      "note": "ISSN.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "doi",
+      "full_name": "doi",
+      "note": "DOI.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "url",
+      "full_name": "url",
+      "note": "URL.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "access_date",
+      "full_name": "access_date",
+      "note": "Access date.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "content_type",
+      "full_name": "content_type",
+      "note": "GOST carrier/content metadata.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "media_type",
+      "full_name": "media_type",
+      "note": "GOST media metadata.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "carrier_type",
+      "full_name": "carrier_type",
+      "note": "GOST carrier metadata.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "raw_publication_details",
+      "full_name": "raw_publication_details",
+      "note": "Canonical raw bibliographic/publication detail field. Legacy Google Sheets alias `publication_details_raw` is import-only.",
+      "owner": "Source, Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "raw_host_title",
+      "full_name": "raw_host_title",
+      "note": "Raw host/container title before normalized placement.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "public_review",
+      "full_name": "public_review",
+      "note": "Annotation/public review text, including trailing parser `{...}` annotation.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "data_source",
+      "full_name": "data_source",
+      "note": "Free-text provenance for the source record, for example `Баранов 2021`, `ручное добавление`, `Google Sheets`, `сообщение пользователя`, `проверено по РГБ`.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "first_seen_at",
+      "full_name": "first_seen_at",
+      "note": "Timestamp when the entity first appeared in the editor database.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "updated_at",
+      "full_name": "updated_at",
+      "note": "Timestamp when the record/relation was last changed.",
+      "owner": "Source, SourceAuthor, SourceTag, ArticlePlacement, SourceGroupItem",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "description_status",
+      "full_name": "description_status",
+      "note": "`parsed`, `partial`, `raw_only`, `needs_review`.",
+      "owner": "Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "author_id",
+      "full_name": "author_id",
+      "note": "Normalized author ID.",
+      "owner": "Author, SourceAuthor",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "display_name",
+      "full_name": "display_name",
+      "note": "Display form.",
+      "owner": "Author",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "heading_name",
+      "full_name": "heading_name",
+      "note": "Bibliographic heading.",
+      "owner": "Author",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "sort_name",
+      "full_name": "sort_name",
+      "note": "Sorting form.",
+      "owner": "Author",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "aliases",
+      "full_name": "aliases",
+      "note": "Alternate names.",
+      "owner": "Author",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "person_dates",
+      "full_name": "person_dates",
+      "note": "Life dates.",
+      "owner": "Author",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "authority_note",
+      "full_name": "authority_note",
+      "note": "Authority-control note.",
+      "owner": "Author",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "note",
+      "full_name": "note",
+      "note": "Context-specific note.",
+      "owner": "Author, Section, SourceGroup",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "sort_order",
+      "full_name": "sort_order",
+      "note": "Ordered relation position.",
+      "owner": "SourceAuthor, SourceTag, Section, SourceGroupItem",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "role",
+      "full_name": "role",
+      "note": "Author role.",
+      "owner": "SourceAuthor",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "source_text",
+      "full_name": "source_text",
+      "note": "Raw relation text.",
+      "owner": "SourceAuthor, SourceTag",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "created_at",
+      "full_name": "created_at",
+      "note": "Timestamp when the relation first appeared in the editor database. Relation-level provenance uses timestamps only unless a future workflow needs relation-specific `data_source`.",
+      "owner": "SourceAuthor, SourceTag, ArticlePlacement, SourceGroupItem",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "work_title",
+      "full_name": "work_title",
+      "note": "Google Sheets display helper for relation tabs.",
+      "owner": "Work, Source",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "author_display_name",
+      "full_name": "author_display_name",
+      "note": "Google Sheets display helper for relation tabs.",
+      "owner": "Author",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "name_as_printed",
+      "full_name": "name_as_printed",
+      "note": "Author name as printed in source.",
+      "owner": "SourceAuthor",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "include_in_responsibility",
+      "full_name": "include_in_responsibility",
+      "note": "Rendering control.",
+      "owner": "SourceAuthor",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "is_primary_heading",
+      "full_name": "is_primary_heading",
+      "note": "Primary access-point flag.",
+      "owner": "SourceAuthor",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "periodical_id",
+      "full_name": "periodical_id",
+      "note": "Canonical serial identity ID.",
+      "owner": "Periodical, Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "periodical_title",
+      "full_name": "periodical_title",
+      "note": "Google Sheets display helper for issue rows.",
+      "owner": "Periodical",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "place",
+      "full_name": "place",
+      "note": "Periodical place; source publication place remains `publication_place`.",
+      "owner": "Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "periodicity",
+      "full_name": "periodicity",
+      "note": "Serial periodicity.",
+      "owner": "Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "numbering_start",
+      "full_name": "numbering_start",
+      "note": "Start of serial numbering.",
+      "owner": "Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "numbering_end",
+      "full_name": "numbering_end",
+      "note": "End of serial numbering.",
+      "owner": "Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "start_year",
+      "full_name": "start_year",
+      "note": "Start year for serial identity.",
+      "owner": "Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "end_year",
+      "full_name": "end_year",
+      "note": "End year for serial identity.",
+      "owner": "Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "title_history_note",
+      "full_name": "title_history_note",
+      "note": "Periodical title history note.",
+      "owner": "Periodical",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "issue_id",
+      "full_name": "issue_id",
+      "note": "Canonical issue/container ID.",
+      "owner": "Issue, ArticlePlacement",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "issue_type",
+      "full_name": "issue_type",
+      "note": "Issue/container kind.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "year",
+      "full_name": "year",
+      "note": "Issue/container year. Source year is exported as `inferred_year`.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "issue_number",
+      "full_name": "issue_number",
+      "note": "Issue number.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "volume",
+      "full_name": "volume",
+      "note": "Issue volume.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "gross_number",
+      "full_name": "gross_number",
+      "note": "Gross/continuous issue number.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "date_text",
+      "full_name": "date_text",
+      "note": "Issue date text in Google Sheets/editor compatibility layer; artifact currently exports `chronology`/`enumeration` plus `publication_date`.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "chronology",
+      "full_name": "chronology",
+      "note": "Chronology text.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "enumeration",
+      "full_name": "enumeration",
+      "note": "Enumeration text.",
+      "owner": "Issue",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "placement_id",
+      "full_name": "placement_id",
+      "note": "Article placement row ID in artifact.",
+      "owner": "ArticlePlacement",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "container_id",
+      "full_name": "container_id",
+      "note": "Google Sheets helper: issue/container target ID before canonical placement export.",
+      "owner": "ArticlePlacement",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "container_type",
+      "full_name": "container_type",
+      "note": "Google Sheets helper: issue/container target type.",
+      "owner": "ArticlePlacement",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "container_title",
+      "full_name": "container_title",
+      "note": "Google Sheets display helper for container target.",
+      "owner": "ArticlePlacement",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "pages_raw",
+      "full_name": "pages_raw",
+      "note": "Raw article page range.",
+      "owner": "ArticlePlacement",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "page_start",
+      "full_name": "page_start",
+      "note": "Normalized article start page.",
+      "owner": "ArticlePlacement, Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "page_end",
+      "full_name": "page_end",
+      "note": "Normalized article end page.",
+      "owner": "ArticlePlacement, Source",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "location_note",
+      "full_name": "location_note",
+      "note": "Placement location note.",
+      "owner": "ArticlePlacement",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "placement_note",
+      "full_name": "placement_note",
+      "note": "Placement note.",
+      "owner": "ArticlePlacement",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "group_id",
+      "full_name": "group_id",
+      "note": "Related-source group ID.",
+      "owner": "SourceGroup, SourceGroupItem",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "group_title",
+      "full_name": "group_title",
+      "note": "Google Sheets display helper for group item rows.",
+      "owner": "SourceGroup",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "group_type",
+      "full_name": "group_type",
+      "note": "Group type.",
+      "owner": "SourceGroup",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "tag_id",
+      "full_name": "tag_id",
+      "note": "Normalized tag ID.",
+      "owner": "Tag, SourceTag",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "tag_title",
+      "full_name": "tag_title",
+      "note": "Google Sheets display helper for tag relation rows.",
+      "owner": "Tag, SourceTag",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "tag_type",
+      "full_name": "tag_type",
+      "note": "Tag category.",
+      "owner": "Tag",
+      "status": "active",
+      "surface": "field_contract"
+    },
+    {
+      "field": "parent_title",
+      "full_name": "parent_title",
+      "note": "Google Sheets display helper for parent tag title.",
+      "owner": "Tag",
+      "status": "compatibility",
+      "surface": "field_contract"
+    },
+    {
+      "field": "legacy_*",
+      "full_name": "legacy_*",
+      "note": "Compatibility references only; not canonical public identifiers.",
+      "owner": "Source, Periodical, Issue, ArticlePlacement, SourceGroup",
+      "status": "compatibility",
+      "surface": "field_contract"
+    }
+  ]
+}

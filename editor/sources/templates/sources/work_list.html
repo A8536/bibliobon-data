@@ -1,0 +1,130 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Издания · Bibliobon{% endblock %}
+
+{% block content %}
+<h1>Все издания</h1>
+{% if selected_container %}
+  <div class="panel">
+    Показано содержимое контейнера:
+    <strong>{{ selected_container.title }}</strong>
+    <a href="{% url 'sources:work_list' %}">Сбросить</a>
+  </div>
+{% endif %}
+{% if selected_issue %}
+  <div class="panel">
+    Показано содержимое выпуска:
+    <strong>{{ selected_issue.journal.title }}{% if selected_issue.year %}, {{ selected_issue.year }}{% endif %}{% if selected_issue.issue_number %}, № {{ selected_issue.issue_number }}{% endif %}</strong>
+    <a href="{% url 'sources:work_list' %}">Сбросить</a>
+  </div>
+{% endif %}
+{% if selected_journal %}
+  <div class="panel">
+    Показаны статьи журнала:
+    <strong>{{ selected_journal.title }}</strong>
+    <a href="{% url 'sources:work_list' %}">Сбросить</a>
+  </div>
+{% endif %}
+<form class="filters" method="get">
+  {% if selected_container %}<input type="hidden" name="container" value="{{ selected_container.pk }}">{% endif %}
+  {% if selected_issue %}<input type="hidden" name="issue" value="{{ selected_issue.pk }}">{% endif %}
+  {% if selected_journal %}<input type="hidden" name="journal" value="{{ selected_journal.pk }}">{% endif %}
+  <input type="search" name="q" value="{{ query }}" placeholder="Название, автор, журнал, сборник, год, ID">
+  <select name="type">
+        <option value="">Все типы</option>
+        <option value="book" {% if work_type == "book" %}selected{% endif %}>Книги</option>
+        <option value="container" {% if work_type == "container" %}selected{% endif %}>Контейнеры</option>
+        <option value="article" {% if work_type == "article" %}selected{% endif %}>Статьи</option>
+        <option value="unknown" {% if work_type == "unknown" %}selected{% endif %}>Unknown</option>
+  </select>
+  <button type="submit">Найти</button>
+</form>
+
+<div class="result-count">Записей: {{ result_count }}</div>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Тип</th>
+      <th>Запись</th>
+      <th>Связи</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for work in page_obj %}
+      <tr>
+        <td class="mono">{{ work.work_id }}</td>
+        <td>{{ work.work_type }}</td>
+        <td>
+          <strong>
+            {% if work.is_list_container %}
+              <a href="{% url 'sources:work_list' %}?container={{ work.pk }}">{{ work.title|truncatechars:140 }}</a>
+            {% else %}
+              {{ work.title|truncatechars:140 }}
+            {% endif %}
+          </strong>
+          {% if work.editor_bibliographic_description %}
+            <div class="bibliographic-list-line">{{ work.editor_bibliographic_description|truncatechars:700 }}</div>
+          {% endif %}
+          {% if work.full_bibliographic_debug and work.full_bibliographic_debug != work.editor_bibliographic_description %}
+            <details class="technical-details">
+              <summary>Техническая строка</summary>
+              <small class="muted">{{ work.full_bibliographic_debug|truncatechars:700 }}</small>
+            </details>
+          {% endif %}
+        </td>
+        <td>
+          {% if work.is_list_container %}
+            <div>
+              <a href="{% url 'sources:work_list' %}?container={{ work.pk }}">Контейнер: статей {{ work.contained_article_count }}</a>
+            </div>
+          {% endif %}
+          {% if work.list_container %}
+            <div>
+              Часть:
+              {% if work.list_container_kind == "container_work" %}
+                <a href="{% url 'sources:work_list' %}?container={{ work.list_container.pk }}">{{ work.list_container.title|truncatechars:90 }}</a>
+              {% elif work.list_container_kind == "journal_issue" %}
+                <a href="{% url 'sources:work_list' %}?issue={{ work.list_container.pk }}">{{ work.list_container.journal.title|truncatechars:90 }}{% if work.list_container.year %}, {{ work.list_container.year }}{% endif %}{% if work.list_container.issue_number %}, № {{ work.list_container.issue_number }}{% endif %}</a>
+              {% else %}
+                {{ work.list_container.title|truncatechars:90 }}
+              {% endif %}
+            </div>
+          {% endif %}
+        </td>
+        <td class="row-actions">
+          <a href="{% url 'sources:work_inspect' work.pk %}">Проверить связи</a>
+          <a href="{% url 'sources:work_relations' work.pk %}">Редактировать связи</a>
+          <a href="{% url 'admin:sources_work_change' work.pk %}">Редактировать</a>
+          <form method="post" action="{% url 'sources:duplicate_work' work.pk %}">
+            {% csrf_token %}
+            <button class="link-button" type="submit">Дублировать</button>
+          </form>
+          {% if work.can_detach_to_book %}
+            <form method="post" action="{% url 'sources:detach_work_to_book' work.pk %}">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button class="link-button" type="submit">В книгу</button>
+            </form>
+          {% elif work.can_delete_from_list %}
+            <form method="post" action="{% url 'sources:delete_work' work.pk %}">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button class="link-button danger-link" type="submit">Удалить</button>
+            </form>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if page_obj.has_other_pages %}
+  <nav class="pagination">
+    {% if page_obj.has_previous %}<a href="?q={{ query }}&type={{ work_type }}{% if selected_container %}&container={{ selected_container.pk }}{% endif %}{% if selected_issue %}&issue={{ selected_issue.pk }}{% endif %}{% if selected_journal %}&journal={{ selected_journal.pk }}{% endif %}&page={{ page_obj.previous_page_number }}">Назад</a>{% endif %}
+    <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}<a href="?q={{ query }}&type={{ work_type }}{% if selected_container %}&container={{ selected_container.pk }}{% endif %}{% if selected_issue %}&issue={{ selected_issue.pk }}{% endif %}{% if selected_journal %}&journal={{ selected_journal.pk }}{% endif %}&page={{ page_obj.next_page_number }}">Вперед</a>{% endif %}
+  </nav>
+{% endif %}
+{% endblock %}

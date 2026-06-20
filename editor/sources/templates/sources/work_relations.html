@@ -1,0 +1,336 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Редактирование связей · {{ work.work_id }}{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Редактирование связей записи</h1>
+    <p class="muted">{{ work.work_id }} · запись {{ work.source_number }}</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:work_inspect' work.pk %}">Проверка связей</a>
+    <a href="{% url 'sources:work_list' %}?q={{ work.title|urlencode }}">К списку работ</a>
+    <a href="{{ admin_urls.work }}">Редактировать Work</a>
+    {% if admin_urls.article %}<a href="{{ admin_urls.article }}">Редактировать Article</a>{% endif %}
+  </div>
+</div>
+
+<section class="panel">
+  <h2>Текущая библиографическая запись</h2>
+  <p class="bibliographic-line">{{ current_bibliographic_description }}</p>
+  {% if parent_fragment %}
+    <p class="muted">В описании также найден возможный родитель: {{ parsed_parent.title|default:parent_fragment }}.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>Сейчас в базе</h2>
+  <table>
+    <tbody>
+      <tr>
+        <th>Тип записи</th>
+        <td>{{ current_type_label }}</td>
+      </tr>
+      <tr>
+        <th>Родительская запись</th>
+        <td>
+          {% if current_container %}
+            <span class="mono">{{ current_container.work_id }}</span> — {{ current_container_label }}
+          {% elif current_journal_issue %}
+            <span class="muted">не используется для журнальной статьи</span>
+          {% else %}
+            <span class="muted">не связана</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% if current_journal_issue %}
+        <tr>
+          <th>Журнал и выпуск</th>
+          <td>
+            {{ current_journal_issue_label }}
+            <div class="actions" style="margin-top: 0.5rem;">
+              <a href="{% url 'sources:issue_convert_to_collection' current_journal_issue.pk %}">Преобразовать выпуск в сборник</a>
+            </div>
+          </td>
+        </tr>
+      {% endif %}
+      <tr>
+        <th>Автор</th>
+        <td>
+          {% for author in authors %}
+            {{ author.display_name }}{% if not forloop.last %}; {% endif %}
+          {% empty %}
+            {{ work.raw_author_string|default:"-" }}
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th>Название</th>
+        <td><strong>{{ work.title }}</strong></td>
+      </tr>
+      <tr>
+        <th>Год</th>
+        <td>{{ work.inferred_year|default:work.publication_date|default:"-" }}</td>
+      </tr>
+      <tr>
+        <th>Страницы/место в контейнере</th>
+        <td>{{ article_pages|default:"-" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+{% if journal_split.can_split %}
+  <section class="panel">
+    <h2>Название журнала похоже содержит номер выпуска</h2>
+    <p><span class="status-badge warn">Нужно проверить структуру журнала и выпуска.</span></p>
+    <div class="import-layout">
+      <div>
+        <h3>Сейчас в базе</h3>
+        <p>Журнал: <strong>{{ journal_split.current_journal_title }}</strong></p>
+        <p>Выпуск: <strong>{{ journal_split.current_year|default:"-" }}</strong></p>
+      </div>
+      <div>
+        <h3>Предлагаемое исправление</h3>
+        <p>Журнал: <strong>{{ journal_split.proposed_journal_title }}</strong></p>
+        <p>Выпуск: <strong>{{ journal_split.proposed_issue_number }}</strong></p>
+        <p>Год: <strong>{{ journal_split.proposed_year|default:"-" }}</strong></p>
+      </div>
+    </div>
+    {% if journal_split.nearby_work %}
+      <p>Похожая родительская запись: <span class="mono">{{ journal_split.nearby_work.work_id }}</span> — {{ journal_split.nearby_work_label }}</p>
+    {% endif %}
+    <h3>Что будет изменено</h3>
+    <p>Было: статья связана с выпуском журнала «{{ journal_split.current_journal_title }}», {{ journal_split.current_year|default:"-" }}.</p>
+    <p>Станет: статья будет связана с выпуском «{{ journal_split.proposed_issue_number }}», {{ journal_split.proposed_year|default:"-" }} журнала «{{ journal_split.proposed_journal_title }}».</p>
+    <ul>
+      <li>Статья не удаляется.</li>
+      <li>Автор и название статьи не меняются.</li>
+      <li>Старый ошибочный журнал/periodical не удаляется автоматически.</li>
+      <li>Если нормализованный журнал или выпуск уже есть, он будет переиспользован.</li>
+    </ul>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="split_journal_issue_title">
+      <button type="submit">Разделить журнал и выпуск</button>
+    </form>
+  </section>
+{% endif %}
+
+{% if journal_title_refinement.can_refine %}
+  <section class="panel">
+    <h2>Можно уточнить название журнала</h2>
+    <p><span class="status-badge warn">Найдена похожая запись с более полным названием журнала или альманаха.</span></p>
+    <div class="import-layout">
+      <div>
+        <h3>Сейчас в базе</h3>
+        <p>Журнал: <strong>{{ journal_title_refinement.current_journal_title }}</strong></p>
+        <p>Выпуск: <strong>{{ journal_title_refinement.issue_number|default:"-" }}</strong>{% if journal_title_refinement.year %}, {{ journal_title_refinement.year }}{% endif %}</p>
+        <p>Затронет статей в этом журнале: <strong>{{ journal_title_refinement.affected_articles }}</strong></p>
+      </div>
+      <div>
+        <h3>Предлагаемое название</h3>
+        <p><span class="mono">{{ journal_title_refinement.context_work.work_id }}</span> — <strong>{{ journal_title_refinement.proposed_title }}</strong></p>
+        <p class="muted">{{ journal_title_refinement.context_work_label }}</p>
+        {% if journal_title_refinement.will_reuse_existing %}
+          <p><span class="status-badge ok">Журнальная сущность с таким названием уже есть и будет переиспользована.</span></p>
+        {% else %}
+          <p><span class="status-badge warn">Существующая журнальная сущность будет переименована.</span></p>
+        {% endif %}
+      </div>
+    </div>
+    <h3>Что будет изменено</h3>
+    <p>Было: статья находится в выпуске «{{ journal_title_refinement.issue_number|default:"-" }}»{% if journal_title_refinement.year %}, {{ journal_title_refinement.year }}{% endif %} журнала «{{ journal_title_refinement.current_journal_title }}».</p>
+    <p>Станет: статья останется в том же выпуске, но журнал будет называться «{{ journal_title_refinement.proposed_title }}».</p>
+    <ul>
+      <li>Статья не удаляется.</li>
+      <li>Выпуск не пересоздаётся.</li>
+      <li>Автор и название статьи не меняются.</li>
+      <li>Если полная журнальная сущность уже существует, выпуск будет перенесён к ней.</li>
+    </ul>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="refine_journal_title_from_work">
+      <input type="hidden" name="context_work_id" value="{{ journal_title_refinement.context_work.work_id }}">
+      <button type="submit">Использовать это название для журнала</button>
+    </form>
+  </section>
+{% endif %}
+
+<section class="panel">
+  <h2>Родительская запись из описания</h2>
+  {% if parent_fragment %}
+    <p>В описании найдена родительская запись:</p>
+    <p class="bibliographic-line"><strong>{{ parent_fragment }}</strong></p>
+    <table>
+      <tbody>
+        <tr>
+          <th>Название из описания</th>
+          <td>{{ parsed_parent.title|default:"-" }}</td>
+        </tr>
+        <tr>
+          <th>Часть</th>
+          <td>{{ parsed_parent.part_number|default:"-" }}</td>
+        </tr>
+        <tr>
+          <th>Год</th>
+          <td>{{ parsed_parent.year|default:"-" }}</td>
+        </tr>
+        <tr>
+          <th>Место издания</th>
+          <td>{{ parsed_parent.publication_place|default:"-" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p class="muted">В описании родительская запись не найдена.</p>
+  {% endif %}
+</section>
+
+<section class="panel">
+  <h2>Предложенный контейнер</h2>
+  {% if primary_candidate %}
+    <div class="import-layout">
+      <div>
+        <p><span class="mono">{{ primary_candidate.work.work_id }}</span></p>
+        <p class="bibliographic-line"><strong>{{ primary_candidate.label }}</strong></p>
+        <h3>Почему предложено</h3>
+        <ul>
+          {% for reason in primary_candidate.reasons %}
+            <li>{{ reason }}</li>
+          {% endfor %}
+        </ul>
+        {% if primary_candidate.title_mismatch %}
+          <p><span class="status-badge warn">Название родительской записи в описании отличается от найденной книги. Проверьте перед связыванием.</span></p>
+        {% endif %}
+      </div>
+      <div>
+        <h3>Что будет изменено</h3>
+        {% if current_container and current_container.work_id == primary_candidate.work.work_id %}
+          <p><span class="status-badge ok">Уже связано с этим контейнером.</span></p>
+        {% elif current_container %}
+          <p><span class="status-badge warn">У записи уже есть другой контейнер. Автоматическая замена не выполняется.</span></p>
+        {% else %}
+          <p>Было: <span class="mono">{{ work.work_id }}</span> — самостоятельная книга.</p>
+          <p>Станет: <span class="mono">{{ work.work_id }}</span> — статья/раздел в книге <span class="mono">{{ primary_candidate.work.work_id }}</span>.</p>
+          <ul>
+            <li>Будет создан legacy Article, если его ещё нет.</li>
+            <li>Будет установлена связь Article.container_work.</li>
+            <li>Страницы <strong>{{ article_pages|default:"-" }}</strong> будут записаны только в пустые поля Article.</li>
+            <li>Название и авторы записи не изменятся.</li>
+            <li>Контейнерная книга не будет изменена.</li>
+          </ul>
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="target_container_id" value="{{ primary_candidate.work.work_id }}">
+            <button type="submit">Связать как статью/раздел</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <p class="muted">Подходящий контейнер не найден автоматически.</p>
+  {% endif %}
+</section>
+
+{% if can_create_parent %}
+  <section class="panel">
+    <h2>Родительская запись не найдена</h2>
+    <p>Можно создать новую родительскую запись из описания и сразу связать с ней текущую запись.</p>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="create_parent_and_link">
+      <div class="import-layout">
+        <div class="parent-draft-form">
+          <h3>Черновик родительской записи</h3>
+          <label>
+            Название
+            <input type="text" name="parent_title" value="{{ parent_draft.title }}" required>
+          </label>
+          <label>
+            Место издания
+            <input type="text" name="parent_publication_place" value="{{ parent_draft.publication_place }}">
+          </label>
+          <label>
+            Издательство
+            <input type="text" name="parent_publisher" value="{{ parent_draft.publisher }}">
+          </label>
+          <label>
+            Год
+            <input type="text" name="parent_publication_date" value="{{ parent_draft.publication_date }}" inputmode="numeric">
+          </label>
+          <label>
+            Тип
+            <select name="parent_work_type">
+              <option value="book" selected>Родительская книга / сборник</option>
+              <option value="container">Контейнерная запись</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <h3>Что будет изменено</h3>
+          <p>Будет создана родительская запись:</p>
+          <p class="bibliographic-line"><strong>{{ parent_draft.title }}</strong>{% if parent_draft.publication_place or parent_draft.publisher or parent_draft.publication_date %}. — {{ parent_draft.publication_place }}{% if parent_draft.publisher %}: {{ parent_draft.publisher }}{% endif %}{% if parent_draft.publication_date %}, {{ parent_draft.publication_date }}{% endif %}.{% endif %}</p>
+          <p>Текущая запись станет статьёй/разделом внутри этой родительской записи:</p>
+          <p class="bibliographic-line">
+            <strong>
+              {% for author in authors %}{{ author.display_name }}{% if not forloop.last %}; {% endif %}{% empty %}{{ work.raw_author_string }}{% endfor %}
+              — {{ work.title }}
+            </strong>
+          </p>
+          <ul>
+            <li>Исходная запись не удаляется.</li>
+            <li>Авторы и название текущей записи сохраняются.</li>
+            <li>Будет создана запись Work, связанная Source и Book.</li>
+            <li>Будет создан Article, если его ещё нет.</li>
+            <li>Связь будет записана как Article.container_work.</li>
+          </ul>
+          <button type="submit">Создать родительскую запись и связать</button>
+        </div>
+      </div>
+    </form>
+  </section>
+{% endif %}
+
+{% if siblings %}
+  <section class="panel">
+    <h2>Похожие части этой серии</h2>
+    <ul>
+      {% for sibling in siblings %}
+        <li><span class="mono">{{ sibling.work.work_id }}</span> — {{ sibling.label }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
+<details class="panel">
+  <summary>Технические данные записи</summary>
+  <table>
+    <tbody>
+      <tr>
+        <th>Библиографическая строка</th>
+        <td class="bibliographic-line">{{ bibliographic_line|default:work.title }}</td>
+      </tr>
+      <tr>
+        <th>publication_details</th>
+        <td><pre>{{ work.publication_details }}</pre></td>
+      </tr>
+      <tr>
+        <th>Article</th>
+        <td>{% if article %}<span class="mono">{{ article.article_id }}</span>{% else %}-{% endif %}</td>
+      </tr>
+      <tr>
+        <th>Авторы</th>
+        <td>
+          {% for author, url in admin_urls.authors %}
+            <a href="{{ url }}">{{ author.display_name }}</a>{% if not forloop.last %}; {% endif %}
+          {% empty %}
+            -
+          {% endfor %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</details>
+{% endblock %}

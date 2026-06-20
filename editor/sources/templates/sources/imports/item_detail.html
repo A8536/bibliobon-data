@@ -1,0 +1,489 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Запись импорта{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Запись импорта</h1>
+    <p class="muted">{{ batch.title }} · {{ item.detected_type_label }} · {{ item.confidence_label }}</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:import_batch_review' batch.pk %}">К проверке</a>
+    <a href="{% url 'sources:import_batch_plan' batch.pk %}">План</a>
+    {% if is_applied and latest_apply_log %}
+      <a href="{% url 'sources:import_batch_result' batch.pk %}">Результат применения</a>
+    {% endif %}
+  </div>
+</div>
+
+{% if is_applied %}
+  <section class="panel">
+    <h2>Импорт уже применён</h2>
+    <p class="muted">Решения нельзя менять из этого экрана. Используйте страницу результата как основной отчёт по применению.</p>
+    {% if latest_apply_log %}<p><a href="{% url 'sources:import_batch_result' batch.pk %}">Показать результат применения</a></p>{% endif %}
+  </section>
+{% endif %}
+
+{% if review_summary.main_decision and not is_applied %}
+  {% with main=review_summary.main_decision %}
+    <section class="panel">
+      <h2>{{ main.title }}</h2>
+      <p class="muted">{{ main.message }}</p>
+
+      <div class="import-layout">
+        <div>
+          <h3>Проверяемая {{ main.type_name }} из источника</h3>
+          <p class="bibliographic-line">{{ item.raw_text }}</p>
+          {% if main.source_label and main.source_label != item.raw_text %}
+            <p class="muted">{{ main.source_label }}</p>
+          {% endif %}
+        </div>
+        <div>
+          <h3>{% if main.best_match.is_same_issue %}Статья в базе{% elif main.best_match.is_different_issue %}Похожая статья в базе{% else %}Похожая запись в базе{% endif %}</h3>
+          <p><strong>{{ main.best_match.existing_label }}</strong></p>
+          {% if main.best_match.is_different_issue %}
+            <p class="muted">
+              В базе уже есть статья с тем же названием, но она связана с другим выпуском:
+              <strong>{{ main.best_match.existing_issue_editor_label }}</strong>.
+            </p>
+            <p class="muted">
+              Текущая строка описывает публикацию в выпуске:
+              <strong>{{ main.best_match.import_issue_editor_label }}</strong>.
+            </p>
+            <p class="muted">Если это отдельная публикация, создайте новую статью в выпуске из текущей строки.</p>
+            <p class="muted">Совпадение по названию и автору: {{ main.best_match.score_percent }}%</p>
+          {% elif main.best_match.is_same_issue %}
+            <p><span class="status-badge ok">Статья уже есть в этом выпуске</span></p>
+            <ul class="compact-list">
+              <li>Название совпадает.</li>
+              <li>Автор совпадает.</li>
+              <li>Журнал и выпуск совпадают: {{ main.best_match.existing_issue_editor_label }}.</li>
+            </ul>
+            <p class="muted">Техническая оценка совпадения: {{ main.best_match.score_percent }}%</p>
+          {% elif main.best_match.has_issue_context %}
+            <p class="muted">Совпадение: {{ main.best_match.score_percent }}%</p>
+            <div class="muted">
+              {% if main.best_match.import_issue_label %}
+                <div>В этой строке: {{ main.best_match.import_issue_editor_label }}</div>
+              {% endif %}
+              {% if main.best_match.existing_issue_label %}
+                <div>Сейчас в базе связана с: {{ main.best_match.existing_issue_editor_label }}</div>
+              {% endif %}
+              {% if main.best_match.same_issue == False %}
+                <div><strong>Проверьте контейнер:</strong> похожая запись находится в другом выпуске.</div>
+              {% endif %}
+            </div>
+          {% else %}
+            <p class="muted">Совпадение: {{ main.best_match.score_percent }}%</p>
+          {% endif %}
+          {% if main.best_match.admin_url %}
+            <p><a href="{{ main.best_match.admin_url }}">Открыть запись в базе</a></p>
+          {% endif %}
+        </div>
+      </div>
+
+      <h3>Что сделать?</h3>
+      <div class="actions">
+        {% if main.is_auto_resolved %}
+          <span class="status-badge ok">Решение не требуется</span>
+          <span class="muted">При применении импорта эта строка будет обработана как уже существующая запись.</span>
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk main.entity.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <button type="submit" name="decision_type" value="create">{{ main.create_label }}</button>
+          </form>
+        {% elif main.best_match.is_different_issue %}
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk main.entity.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <span>{{ main.create_description }}</span>
+            <button type="submit" name="decision_type" value="create">{{ main.create_label }}</button>
+          </form>
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk main.entity.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <input type="hidden" name="decision_type" value="link_existing">
+            <input type="hidden" name="target_type" value="{{ main.best_match.existing_type }}">
+            <input type="hidden" name="target_id" value="{{ main.best_match.existing_id }}">
+            <span>{{ main.link_description }} Найденная статья: «{{ main.found_article_label }}».</span>
+            <button type="submit">{{ main.link_label }}</button>
+          </form>
+        {% else %}
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk main.entity.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <input type="hidden" name="decision_type" value="link_existing">
+            <input type="hidden" name="target_type" value="{{ main.best_match.existing_type }}">
+            <input type="hidden" name="target_id" value="{{ main.best_match.existing_id }}">
+            <button type="submit">{{ main.link_label }}</button>
+          </form>
+          <form method="post" action="{% url 'sources:import_entity_decision' batch.pk main.entity.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <button type="submit" name="decision_type" value="create">{{ main.create_label }}</button>
+          </form>
+        {% endif %}
+        <form method="post" action="{% url 'sources:import_entity_decision' batch.pk main.entity.pk %}" class="inline-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+          <button type="submit" name="decision_type" value="postpone">{{ main.postpone_label }}</button>
+          <span class="muted">Строка останется в импорте, но не будет применена сейчас. Остальные готовые строки можно будет применить.</span>
+        </form>
+      </div>
+    </section>
+  {% endwith %}
+{% elif item.has_new_record_plan and not is_applied %}
+  <section class="panel">
+    <h2>Будет создана новая запись</h2>
+    <p class="muted">Похожих записей в базе не найдено. При применении импорта эта строка будет создана как новая запись.</p>
+    <div class="import-layout">
+      <div>
+        <h3>Проверяемая запись из источника</h3>
+        <p class="bibliographic-line">{{ item.raw_text }}</p>
+      </div>
+      <div>
+        <h3>Что будет создано</h3>
+        <p><strong>{{ item.new_record_plan_label|default:item.raw_text }}</strong></p>
+        <p class="muted">Если это неверно, отложите строку или исправьте связанные сущности ниже в техническом блоке.</p>
+      </div>
+    </div>
+    <div class="actions">
+      <span class="status-badge new">Создать новую запись при применении</span>
+      <form method="post" action="{% url 'sources:import_item_decision' batch.pk item.pk %}" class="inline-form">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+        <input type="hidden" name="decision_type" value="postpone">
+        <button type="submit">Отложить строку</button>
+        <span class="muted">Строка останется в импорте, но не будет применена сейчас. Остальные готовые строки можно будет применить.</span>
+      </form>
+    </div>
+  </section>
+{% endif %}
+
+<section class="panel">
+  <h2>Исходный текст</h2>
+  <p class="bibliographic-line">{{ item.raw_text }}</p>
+  {% if item.status == "found_existing_no_changes" %}
+    <p><span class="status-badge ok">Найдена в базе</span> {{ item.comparison_json.summary|default:"Изменений не требуется." }}</p>
+  {% elif item.status == "found_existing_with_differences" %}
+    {% if item.has_selectable_update_fields %}
+      <p><span class="status-badge warn">Найдена в базе</span> {{ item.comparison_json.summary|default:"Есть отличия / можно дополнить запись." }}</p>
+    {% else %}
+      <p><span class="status-badge warn">Найдена в базе</span> {{ item.comparison_json.summary|default:"Есть отличие, но безопасных полей для дополнения нет." }}</p>
+    {% endif %}
+  {% elif item.status == "structural_conflict" %}
+    <p><span class="status-badge warn">Найдена похожая запись, но структура описания отличается</span></p>
+    <p class="muted">Источник описывает работу как часть сборника или выпуска. Проверьте, нужно ли дополнить существующую запись сведениями о родительском издании.</p>
+  {% elif item.status == "ready" %}
+    <p><span class="status-badge ok">Решение принято</span> Строка больше не блокирует план импорта.</p>
+  {% elif item.status == "rejected" %}
+    <p><span class="status-badge warn">Отклонено</span> Строка не будет применяться.</p>
+  {% elif item.status == "postponed" %}
+    <p><span class="status-badge warn">Отложено</span> Строка сохранена для последующей проверки.</p>
+  {% endif %}
+  {% if item.matched_existing_id %}
+    <p class="muted">Найдена запись: {{ item.matched_existing_label }} · <a href="{% url 'admin:sources_work_change' item.matched_existing_id %}">открыть в базе</a></p>
+  {% endif %}
+  {% if item.errors_json %}
+    <p class="muted">Замечания: {{ item.errors_json }}</p>
+  {% endif %}
+  {% if item.latest_decision %}
+    <p>
+      <span class="status-badge ok">Сохранено решение</span>
+      {{ item.latest_decision_label }}
+    </p>
+    {% if item.latest_decision.decision_type == "update_existing" %}
+      <p class="muted">
+        Выбрано к дополнению:
+        {% if item.selected_update_fields %}
+          {{ item.selected_update_fields|join:", " }}
+        {% else %}
+          все безопасные пустые поля (старое решение без выбора полей)
+        {% endif %}
+        {% if item.selected_replacement_fields %}
+          <br>Выбрано к замене: {{ item.selected_replacement_fields|join:", " }}
+        {% endif %}
+      </p>
+    {% endif %}
+  {% endif %}
+</section>
+
+<section class="panel" id="parse-map">
+  <h2>Как разобрана строка</h2>
+  <p class="muted">Это staging-разбор исходной строки. Его можно исправить до принятия решения; основная база при сохранении не меняется.</p>
+  {% if not is_applied %}
+    <form id="comparison-parse-edit-form" method="post" action="{% url 'sources:import_item_parse_edit' batch.pk item.pk %}">
+      {% csrf_token %}
+    </form>
+  {% endif %}
+  <h3>Исходная строка</h3>
+  <p class="bibliographic-line">{{ item.raw_text }}</p>
+  {% if parse_preview_segments %}
+    <h3>Разбор парсера</h3>
+    <p class="bibliographic-line parsed-inline" aria-label="Разбор парсера">
+      {% for segment in parse_preview_segments %}{% if segment.kind == "badge" %}<span class="status-badge muted parsed-fragment" title="{{ segment.label }}">{{ segment.value }}</span>{% else %}{{ segment.value }}{% endif %}{% endfor %}
+    </p>
+  {% endif %}
+  {% if unused_fragments or item.errors_json %}
+    <div class="parse-unused">
+      <strong>Не распознано / требует проверки:</strong>
+      {% if unused_fragments %}
+        {% for fragment in unused_fragments %}
+          <span class="status-badge warn" title="{{ fragment.status }}">{{ fragment.fragment }}</span>
+        {% endfor %}
+      {% elif item.errors_json %}
+        <span class="muted">{{ item.errors_json }}</span>
+      {% endif %}
+    </div>
+  {% endif %}
+  {% if not item.comparison_json.fields and not is_applied %}
+    <details class="parse-edit-details">
+      <summary>Исправить поля разбора</summary>
+      <div class="manual-parse-form">
+        {% for field in manual_parse_fields %}
+          <label>
+            <span>{{ field.label }}</span>
+            {% if field.input_type == "textarea" %}
+              <textarea name="parsed_{{ field.key }}" rows="2" form="comparison-parse-edit-form">{{ field.value }}</textarea>
+            {% else %}
+              <input type="text" name="parsed_{{ field.key }}" value="{{ field.value }}" form="comparison-parse-edit-form">
+            {% endif %}
+            {% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}
+          </label>
+        {% endfor %}
+      </div>
+      <div class="actions">
+        <button type="submit" form="comparison-parse-edit-form">Сохранить исправления разбора</button>
+      </div>
+    </details>
+  {% endif %}
+</section>
+
+{% if review_summary.authors %}
+  <section class="panel">
+    <h2>Авторы</h2>
+    {% for author in review_summary.authors %}
+      <div class="entity-row">
+        <p><strong>{{ author.entity.label }}</strong></p>
+        {% if author.is_nonblocking_for_auto_resolved_item %}
+          <p><span class="status-badge ok">Для этой строки решение по автору не требуется</span></p>
+          <p class="muted">Статья уже найдена в базе в правильном выпуске; автор из импортной строки не будет создан и не блокирует применение.</p>
+        {% elif author.is_linked %}
+          <p><span class="status-badge ok">Автор уже связан</span> {{ author.resolved_label }}</p>
+          {% if not is_applied %}
+            <p><a href="{% url 'sources:import_author_review' batch.pk %}">Изменить решение по автору</a></p>
+          {% endif %}
+        {% elif author.will_create %}
+          <p><span class="status-badge ok">Будет создан новый автор</span></p>
+          {% if not is_applied %}
+            <p><a href="{% url 'sources:import_author_review' batch.pk %}">Изменить решение по автору</a></p>
+          {% endif %}
+        {% elif author.is_unresolved and not is_applied %}
+          <p><span class="status-badge warn">Нужно решить автора</span></p>
+          <div class="actions">
+            {% if author.best_match %}
+              <form method="post" action="{% url 'sources:import_entity_decision' batch.pk author.entity.pk %}" class="inline-form">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+                <input type="hidden" name="decision_type" value="link_existing">
+                <input type="hidden" name="target_type" value="{{ author.best_match.existing_type }}">
+                <input type="hidden" name="target_id" value="{{ author.best_match.existing_id }}">
+                <button type="submit">Связать с этим автором: {{ author.best_match.existing_label }}</button>
+              </form>
+            {% endif %}
+            <form method="post" action="{% url 'sources:import_entity_decision' batch.pk author.entity.pk %}" class="inline-form">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+              <button type="submit" name="decision_type" value="create">Создать нового автора</button>
+            </form>
+            <form method="post" action="{% url 'sources:import_entity_decision' batch.pk author.entity.pk %}" class="inline-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+          <button type="submit" name="decision_type" value="postpone">Отложить решение</button>
+          <span class="muted">Связанные отложенные строки не будут применены сейчас.</span>
+            </form>
+          </div>
+        {% else %}
+          <p>{{ author.entity.status_label }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
+
+{% if item.comparison_json.fields %}
+  <section class="panel">
+    <h2>Сравнение</h2>
+    {% if not is_applied %}
+      <p class="muted">Значения в колонке «Из источника» можно поправить прямо здесь. Сохранение исправлений меняет только staging-разбор и заново пересчитывает совпадения.</p>
+    {% endif %}
+    <table>
+      <thead>
+        <tr>
+          <th>Поле</th>
+          <th>В базе</th>
+          <th>Из источника</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in item.comparison_rows %}
+          <tr>
+            <td>{{ row.label }}</td>
+            <td>{{ row.existing|default:"-" }}</td>
+            <td>
+              {% if row.editable and not is_applied %}
+                {% if row.input_type == "textarea" %}
+                  <textarea name="comparison_{{ row.parsed_key }}" rows="2" form="comparison-parse-edit-form">{{ row.source_value }}</textarea>
+                {% else %}
+                  <input type="text" name="comparison_{{ row.parsed_key }}" value="{{ row.source_value }}" form="comparison-parse-edit-form">
+                {% endif %}
+                {% if row.help_text %}<div class="muted">{{ row.help_text }}</div>{% endif %}
+              {% else %}
+                {{ row.source|default:"-" }}
+              {% endif %}
+            </td>
+            <td>
+              {{ row.status_label }}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if not is_applied %}
+      <div class="actions">
+        <button type="submit" form="comparison-parse-edit-form">Сохранить исправления разбора</button>
+      </div>
+    {% endif %}
+    <div class="actions">
+      {% if is_applied %}
+        <p class="muted">Импорт уже применён. Решения нельзя менять из этого экрана.</p>
+      {% elif item.status == "found_existing_no_changes" %}
+        <h3>Решение не требуется</h3>
+        <p class="muted">Запись уже есть в базе; при применении импорта новая запись не будет создана и поля не будут изменены.</p>
+      {% elif item.status != "applied" %}
+        <h3>{% if item.latest_decision %}Изменить решение{% else %}Принять решение{% endif %}</h3>
+        <p class="muted">
+          Можно пропустить строку без изменений, отложить её для будущей проверки или отклонить.
+          Отложенная строка не применяется сейчас и не блокирует остальные готовые строки.
+          Отклонённая строка считается разобранной и не требует будущей проверки.
+        </p>
+        {% if item.status != "found_existing_no_changes" and item.has_applicable_update_fields %}
+          <form id="update-existing-form" method="post" action="{% url 'sources:import_item_decision' batch.pk item.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <input type="hidden" name="decision_type" value="update_existing">
+            {% for row in item.comparison_rows %}
+              {% if row.status == "new_in_source" %}
+                <input type="hidden" name="selected_fields" value="{{ row.label }}">
+              {% endif %}
+            {% endfor %}
+            {% if item.status == "structural_conflict" %}
+              <button type="submit">Проверить и дополнить существующую запись</button>
+            {% else %}
+              <button type="submit">Дополнить пустые поля из источника</button>
+            {% endif %}
+          </form>
+        {% elif item.status != "found_existing_no_changes" %}
+          <p class="muted">В источнике нет новых пустых полей или поддержанных замен, которые можно применить автоматически. Можно пропустить строку без изменений, отложить или отклонить.</p>
+        {% endif %}
+        <div class="decision-button-row">
+          <form method="post" action="{% url 'sources:import_item_decision' batch.pk item.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <input type="hidden" name="decision_type" value="skip">
+            <button type="submit">Пропустить без изменений</button>
+          </form>
+          <form method="post" action="{% url 'sources:import_item_decision' batch.pk item.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <input type="hidden" name="decision_type" value="postpone">
+            <button type="submit">Отложить решение</button>
+          </form>
+          <form method="post" action="{% url 'sources:import_item_decision' batch.pk item.pk %}" class="inline-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+            <input type="hidden" name="decision_type" value="reject">
+            <button type="submit">Отклонить</button>
+          </form>
+        </div>
+      {% else %}
+        <p class="muted">Строка уже применена.</p>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
+<details class="panel">
+  <summary>Технические данные для разработчика</summary>
+  <div class="import-layout">
+    <section>
+      <table>
+        <tbody>
+          {% for key,value in item.parsed_data_json.items %}
+            <tr>
+              <th>{{ key }}</th>
+              <td>{{ value }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>Технические сущности импорта</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Сущность</th>
+            <th>Статус</th>
+            <th>Похожие записи</th>
+            <th>Решение</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entity in entities %}
+            <tr>
+              <td><strong>{{ entity.label }}</strong><span class="muted">{{ entity.entity_type_label }}</span></td>
+              <td>{{ entity.status_label }}</td>
+              <td>
+                {% for match in entity.matches.all %}
+                  <div>{{ match.existing_label }} · {{ match.score|floatformat:2 }}</div>
+                {% empty %}
+                  <span class="muted">Нет кандидатов.</span>
+                {% endfor %}
+              </td>
+              <td>
+                {% if is_applied %}
+                  <span class="muted">Импорт уже применён. Решения нельзя менять.</span>
+                {% elif entity.status != "applied" %}
+                  <form method="post" action="{% url 'sources:import_entity_decision' batch.pk entity.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+                    <button type="submit" name="decision_type" value="create">Создать новую запись</button>
+                  </form>
+                  {% for match in entity.matches.all %}
+                    <form method="post" action="{% url 'sources:import_entity_decision' batch.pk entity.pk %}" class="inline-form">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{% url 'sources:import_item_detail' batch.pk item.pk %}">
+                      <input type="hidden" name="decision_type" value="link_existing">
+                      <input type="hidden" name="target_type" value="{{ match.existing_type }}">
+                      <input type="hidden" name="target_id" value="{{ match.existing_id }}">
+                      <button type="submit">Связать с существующей записью</button>
+                    </form>
+                  {% endfor %}
+                {% else %}
+                  <span class="muted">Уже применено.</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="4">Связанные сущности не найдены.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</details>
+{% endblock %}

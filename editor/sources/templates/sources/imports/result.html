@@ -1,0 +1,193 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Результат импорта{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Результат применения</h1>
+    <p class="muted">{{ batch.title }} · {{ batch.status_label }}</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:import_batch_detail' batch.pk %}">К импорту</a>
+    <a href="{% url 'sources:import_batch_list' %}">К списку импортов</a>
+  </div>
+</div>
+
+{% if not log %}
+  <section class="panel">
+    <h2>Результата применения нет</h2>
+    <p class="muted">Для этого импорта пока не найден журнал применения. Возможно, импорт ещё не применяли.</p>
+  </section>
+{% else %}
+  <section class="panel">
+    <h2>Статус</h2>
+    <div class="grid">
+      <div class="metric"><span>Статус</span><strong>Применён</strong></div>
+      <div class="metric"><span>Создано</span><strong>{{ result.summary.created }}</strong></div>
+      <div class="metric"><span>Дополнено</span><strong>{{ result.summary.updated }}</strong></div>
+      <div class="metric"><span>No-op</span><strong>{{ result.summary.update_noop }}</strong></div>
+      <div class="metric"><span>Связей создано</span><strong>{{ result.summary.relations }}</strong></div>
+    </div>
+    <p class="muted">Дата: {{ log.applied_at|date:"d.m.Y H:i" }}{% if log.applied_by %} · Пользователь: {{ log.applied_by }}{% endif %}</p>
+    <p><strong>Backup:</strong> {{ result.backup_path|default:"не создан или не требуется для этой базы" }}</p>
+  </section>
+
+  <section class="panel">
+    <h2>Создано</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Запись</th>
+          <th>ID</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in result.created_rows %}
+          <tr>
+            <td>{{ row.type_label }}</td>
+            <td><strong>{{ row.label }}</strong></td>
+            <td>{{ row.id }}</td>
+            <td>{% if row.url %}<a href="{{ row.url }}">Открыть</a>{% endif %}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4">Новые сущности не создавались.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>Дополнено</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Запись</th>
+          <th>Поля</th>
+          <th>Пропущено</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in result.updated_rows %}
+          <tr>
+            <td><strong>{{ row.label }}</strong><div class="muted">{{ row.id }}</div></td>
+            <td>
+              {% for field in row.updated_fields %}
+                <div>{{ field.model }}.{{ field.field }} = {{ field.value }}</div>
+              {% empty %}
+                <span class="muted">Полей не обновлено.</span>
+              {% endfor %}
+            </td>
+            <td>
+              {% for field in row.skipped_fields %}
+                <div class="muted">{{ field.label }}: {{ field.reason }}</div>
+              {% empty %}
+                <span class="muted">-</span>
+              {% endfor %}
+            </td>
+            <td>{% if row.url %}<a href="{{ row.url }}">Открыть</a>{% endif %}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4">Существующие записи не дополнялись.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>Не изменялось / no-op</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Запись</th>
+          <th>Причина</th>
+          <th>Пропущенные поля</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in result.no_op_rows %}
+          <tr>
+            <td><strong>{{ row.label }}</strong><div class="muted">{{ row.id }}</div></td>
+            <td>{{ row.reason|default:"нет применимых изменений" }}</td>
+            <td>
+              {% for field in row.skipped_fields %}
+                <div class="muted">{{ field.label }}: {{ field.reason }}</div>
+              {% empty %}
+                <span class="muted">-</span>
+              {% endfor %}
+            </td>
+            <td>{% if row.url %}<a href="{{ row.url }}">Открыть</a>{% endif %}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4">No-op случаев нет.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>Связи</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Тип</th>
+          <th>Связь</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in result.relation_rows %}
+          <tr>
+            <td>{{ row.type_label }}</td>
+            <td>{{ row.label }}</td>
+            <td>
+              {% if row.author_url %}<a href="{{ row.author_url }}">Автор</a>{% endif %}
+              {% if row.work_url %}<a href="{{ row.work_url }}">Запись</a>{% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="3">Новые связи не создавались.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>Решения редактора</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Решение</th>
+          <th>Что решали</th>
+          <th>Цель</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in result.decision_rows %}
+          <tr>
+            <td>{{ row.decision_label }}</td>
+            <td>{{ row.label }}</td>
+            <td>{{ row.target_label|default:"-" }}</td>
+            <td>{% if row.url %}<a href="{{ row.url }}">Открыть</a>{% endif %}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4">Сохранённых решений нет.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>Исходный текст</h2>
+    <details>
+      <summary>Показать исходные данные импорта</summary>
+      <pre class="import-raw">{{ log.raw_input }}</pre>
+    </details>
+  </section>
+{% endif %}
+{% endblock %}

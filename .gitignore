@@ -1,0 +1,26 @@
+# Local secrets and credentials
+secrets/*
+!secrets/.gitkeep
+
+# Python/runtime caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local virtual environments
+.venv/
+venv/
+
+# OS/editor noise
+.DS_Store
+
+# Heavy/generated local backups
+data/backups/
+
+# SQLite transient files
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite-journal
+
+# Keep the editor database in git intentionally.
+!data/editor.sqlite

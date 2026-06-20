@@ -1,0 +1,28 @@
+{
+  "source_journal": {
+    "id": "journal-002539",
+    "title": "Петербург– ский коллекционер"
+  },
+  "target_journal": {
+    "id": "journal-002538",
+    "title": "Петербургский коллекционер"
+  },
+  "backup_path": "/Users/oleg/Projects/data/bibliobon-data/data/backups/editor.before-journal-normalization.20260619-211359.sqlite",
+  "moved_issues": [],
+  "merged_issues": [
+    {
+      "source_issue_id": "journal-issue-010874",
+      "source_label": "Петербург– ский коллекционер, 2012, № 3",
+      "target_issue_id": "journal-issue-010872",
+      "target_label": "Петербургский коллекционер, 2012, № 3",
+      "article_count": 1,
+      "placement_count": 1,
+      "field_differences": []
+    }
+  ],
+  "skipped_issues": [],
+  "moved_articles": 1,
+  "moved_placements": 1,
+  "user": "editor",
+  "timestamp": "2026-06-19T21:13:59.980794+00:00"
+}

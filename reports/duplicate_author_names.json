@@ -1,0 +1,189 @@
+[
+  {
+    "authors": [
+      {
+        "author_id": "author-014045",
+        "display_name": "Бюро секции бонистов. Редколлегия «МБ»",
+        "sort_name": "Бюро секции бонистов. Редколлегия «МБ».",
+        "source_django_id": 14045
+      },
+      {
+        "author_id": "author-014070",
+        "display_name": "Бюро секции бонистов, Редколлегия «МБ»",
+        "sort_name": "Бюро секции бонистов, Редколлегия «МБ».",
+        "source_django_id": 14070
+      }
+    ],
+    "normalized_name": "бюро секции бонистов редколлегия мб"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-013504",
+        "display_name": "Воробьева О.В.",
+        "sort_name": "Воробьева О.В.",
+        "source_django_id": 13504
+      },
+      {
+        "author_id": "author-013505",
+        "display_name": "Воробьёва О.В.",
+        "sort_name": "Воробьёва О.В.",
+        "source_django_id": 13505
+      }
+    ],
+    "normalized_name": "воробьева о в"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-013506",
+        "display_name": "Воронов И.А.",
+        "sort_name": "Воронов И.А.",
+        "source_django_id": 13506
+      },
+      {
+        "author_id": "author-014850",
+        "display_name": "Воронов И. А.",
+        "sort_name": "Воронов И. А.",
+        "source_django_id": 14850
+      }
+    ],
+    "normalized_name": "воронов и а"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-013860",
+        "display_name": "Иольсон Л.",
+        "sort_name": "Иольсон Л.",
+        "source_django_id": 13860
+      },
+      {
+        "author_id": "author-013861",
+        "display_name": "(Иольсон Л.)",
+        "sort_name": "(Иольсон Л.)",
+        "source_django_id": 13861
+      }
+    ],
+    "normalized_name": "иольсон л"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-013823",
+        "display_name": "Научн.- Исслед. Ком.",
+        "sort_name": "Научн.- Исслед. Ком.",
+        "source_django_id": 13823
+      },
+      {
+        "author_id": "author-013825",
+        "display_name": "Научн.-Исслед. Ком.",
+        "sort_name": "Научн.-Исслед. Ком.",
+        "source_django_id": 13825
+      }
+    ],
+    "normalized_name": "научн исслед ком"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-013368",
+        "display_name": "Пахомов Ю.Д.",
+        "sort_name": "Пахомов Ю.Д.",
+        "source_django_id": 13368
+      },
+      {
+        "author_id": "author-013914",
+        "display_name": "Пахомов (Ю.Д)",
+        "sort_name": "Пахомов (Ю.Д).",
+        "source_django_id": 13914
+      }
+    ],
+    "normalized_name": "пахомов ю д"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-014067",
+        "display_name": "Сенилов Б.",
+        "sort_name": "Сенилов Б.",
+        "source_django_id": 14067
+      },
+      {
+        "author_id": "author-014081",
+        "display_name": "Сенилов Б.,.",
+        "sort_name": "Сенилов Б.,.",
+        "source_django_id": 14081
+      }
+    ],
+    "normalized_name": "сенилов б"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-014132",
+        "display_name": "Степанов А.,.",
+        "sort_name": "Степанов А.,.",
+        "source_django_id": 14132
+      },
+      {
+        "author_id": "author-014472",
+        "display_name": "Степанов А.",
+        "sort_name": "Степанов А.",
+        "source_django_id": 14472
+      }
+    ],
+    "normalized_name": "степанов а"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-014022",
+        "display_name": "Тхоржевский Р.,.",
+        "sort_name": "Тхоржевский Р.,.",
+        "source_django_id": 14022
+      },
+      {
+        "author_id": "author-014135",
+        "display_name": "Тхоржевский Р.",
+        "sort_name": "Тхоржевский Р.",
+        "source_django_id": 14135
+      }
+    ],
+    "normalized_name": "тхоржевский р"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-014291",
+        "display_name": "Чеботарёв Ю.",
+        "sort_name": "Чеботарёв Ю.",
+        "source_django_id": 14291
+      },
+      {
+        "author_id": "author-014482",
+        "display_name": "Чеботарев Ю.",
+        "sort_name": "Чеботарев Ю.",
+        "source_django_id": 14482
+      }
+    ],
+    "normalized_name": "чеботарев ю"
+  },
+  {
+    "authors": [
+      {
+        "author_id": "author-013306",
+        "display_name": "Чистикова Е.А.",
+        "sort_name": "Чистикова Е.А.",
+        "source_django_id": 13306
+      },
+      {
+        "author_id": "author-013514",
+        "display_name": "Чистикова Е.А.,.",
+        "sort_name": "Чистикова Е.А.,.",
+        "source_django_id": 13514
+      }
+    ],
+    "normalized_name": "чистикова е а"
+  }
+]

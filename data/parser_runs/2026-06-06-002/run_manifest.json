@@ -1,0 +1,24 @@
+{
+  "batch_id": "2026-06-06-002",
+  "candidate_count": 2,
+  "created_at": "2026-06-06T14:02:03+00:00",
+  "description_status_counts": {
+    "parsed": 2
+  },
+  "editor_database_touched": false,
+  "input_path": "/Users/oleg/Projects/data/bibliobon-data/source/incoming/2026-06-06-002/work/current.txt",
+  "input_sha256": "c0d696ec8913fa6ea2f5c6aebe6af02198ef10f85e3aed598ec244aad41d0f66",
+  "normalized_text_path": "/Users/oleg/Projects/data/bibliobon-data/source/normalized_text/2026-06-06-002.jsonl",
+  "outputs": {
+    "parsed_candidates": "parsed_candidates.jsonl",
+    "parser_sqlite": "parser.sqlite",
+    "parser_warnings": "parser_warnings.tsv",
+    "raw_records": "raw_records.jsonl",
+    "run_manifest": "run_manifest.json"
+  },
+  "parser_version": "bibliobon-parser-0.1",
+  "record_count": 2,
+  "run_id": "2026-06-06-002",
+  "staging_only": true,
+  "warning_count": 0
+}

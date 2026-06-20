@@ -1,0 +1,178 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Нормализация журналов{% endblock %}
+
+{% block content %}
+<div class="detail-title">
+  <div>
+    <h1>Нормализация журналов</h1>
+    <p class="muted">Безопасный перенос выпусков и статей из ошибочно заведённого журнала в правильный журнал. Исходный журнал не удаляется автоматически.</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:periodical_list' %}">К журналам и сборникам</a>
+  </div>
+</div>
+
+<section class="panel">
+  <h2>Выберите журналы</h2>
+  <form class="parser-input-form" method="get">
+    <div class="sync-grid">
+      <label>
+        <strong>Ошибочный журнал</strong>
+        <input type="search" name="source_q" value="{{ source_query }}" placeholder="Поиск по названию или ID">
+        <select name="source_journal">
+          <option value="">Выберите журнал</option>
+          {% for journal in source_options %}
+            <option value="{{ journal.pk }}" {% if journal.pk == source_id %}selected{% endif %}>
+              {{ journal.title }} — {{ journal.issue_count }} вып.; {{ journal.article_count }} ст. ({{ journal.pk }})
+            </option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>
+        <strong>Правильный журнал</strong>
+        <input type="search" name="target_q" value="{{ target_query }}" placeholder="Поиск по названию или ID">
+        <select name="target_journal">
+          <option value="">Выберите журнал</option>
+          {% for journal in target_options %}
+            <option value="{{ journal.pk }}" {% if journal.pk == target_id %}selected{% endif %}>
+              {{ journal.title }} — {{ journal.issue_count }} вып.; {{ journal.article_count }} ст. ({{ journal.pk }})
+            </option>
+          {% endfor %}
+        </select>
+      </label>
+      <div>
+        <strong>Preview</strong>
+        <p class="muted">Сначала строится план без записи в базу. Перенос доступен только после явного подтверждения.</p>
+        <button type="submit">Показать preview</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+{% if result %}
+  <section class="panel">
+    <h2>Результат применения</h2>
+    <div class="grid">
+      <div class="metric"><span>Перенесено выпусков</span><strong>{{ result.moved_issues|length }}</strong></div>
+      <div class="metric"><span>Слито выпусков</span><strong>{{ result.merged_issues|length }}</strong></div>
+      <div class="metric"><span>Перенесено статей</span><strong>{{ result.moved_articles }}</strong></div>
+      <div class="metric"><span>Перенесено размещений</span><strong>{{ result.moved_placements }}</strong></div>
+    </div>
+    <p><strong>Backup:</strong> <code>{{ result.backup_path|default:"не создан" }}</code></p>
+    <p><strong>Отчёт:</strong> <code>{{ result.report_path }}</code></p>
+  </section>
+{% endif %}
+
+{% if plan %}
+  <section class="panel">
+    <h2>Что будет перенесено</h2>
+    <p>
+      <strong>Ошибочный журнал:</strong> {{ plan.source.title }}
+      <span class="muted">{{ plan.source.journal_id }}</span>
+    </p>
+    <p>
+      <strong>Правильный журнал:</strong> {{ plan.target.title }}
+      <span class="muted">{{ plan.target.journal_id }}</span>
+    </p>
+    <div class="grid">
+      <div class="metric"><span>Выпусков в плане</span><strong>{{ plan.totals.source_issues }}</strong></div>
+      <div class="metric"><span>Будет перенесено</span><strong>{{ plan.totals.move }}</strong></div>
+      <div class="metric"><span>Будет слито</span><strong>{{ plan.totals.merge }}</strong></div>
+      <div class="metric"><span>Требует проверки</span><strong>{{ plan.totals.review }}</strong></div>
+      <div class="metric"><span>Статей</span><strong>{{ plan.totals.articles }}</strong></div>
+      <div class="metric"><span>Размещений</span><strong>{{ plan.totals.placements }}</strong></div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Исходный выпуск</th>
+          <th>Действие</th>
+          <th>Целевой выпуск</th>
+          <th>Статьи, которые переедут</th>
+          <th>Примечания</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in plan.rows %}
+          <tr>
+            <td>
+              <strong>{{ row.source_label }}</strong>
+              <span class="muted">{{ row.source_issue.journal_issue_id }}</span>
+            </td>
+            <td>
+              {% if row.action == "move" %}
+                <span class="status-badge new">{{ row.action_label }}</span>
+              {% elif row.action == "merge" %}
+                <span class="status-badge warn">{{ row.action_label }}</span>
+              {% else %}
+                <span class="status-badge danger">{{ row.action_label }}</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if row.target_issue %}
+                <strong>{{ row.target_label }}</strong>
+                <span class="muted">{{ row.target_issue.journal_issue_id }}</span>
+              {% elif row.target_candidates %}
+                {% for issue in row.target_candidates %}
+                  <div>{{ issue }} <span class="muted">{{ issue.journal_issue_id }}</span></div>
+                {% endfor %}
+              {% else %}
+                <span class="muted">Будет использован этот же выпуск, но в правильном журнале.</span>
+              {% endif %}
+            </td>
+            <td>
+              <strong>{{ row.article_count }}</strong> legacy-ст.; <strong>{{ row.placement_count }}</strong> размещ.
+              {% if row.sample_articles %}
+                <ul>
+                  {% for article in row.sample_articles %}
+                    <li><a href="{% url 'sources:work_relations' article.work_id %}">{{ article.work.title|truncatechars:120 }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </td>
+            <td>
+              {% for note in row.notes %}
+                <div>{{ note }}</div>
+              {% endfor %}
+              {% if row.differences %}
+                <details class="technical-details">
+                  <summary>Отличающиеся поля выпуска</summary>
+                  <ul>
+                    {% for diff in row.differences %}
+                      <li><code>{{ diff.field }}</code>: было `{{ diff.source }}`, в целевом `{{ diff.target }}`</li>
+                    {% endfor %}
+                  </ul>
+                </details>
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5">У ошибочного журнала нет выпусков.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>Применить перенос</h2>
+    {% if plan.can_apply %}
+      <p class="muted">Перед записью будет создан backup SQLite. Выпуски, отмеченные как требующие ручной проверки, будут пропущены.</p>
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="apply">
+        <input type="hidden" name="source_journal" value="{{ source_id }}">
+        <input type="hidden" name="target_journal" value="{{ target_id }}">
+        <label class="checkbox-line">
+          <input type="checkbox" name="confirm_apply" value="1">
+          Я проверил preview и понимаю, какие выпуски и статьи будут перенесены.
+        </label>
+        <button type="submit">Выполнить перенос с backup</button>
+      </form>
+    {% else %}
+      <p class="muted">В плане нет безопасных действий для применения.</p>
+    {% endif %}
+  </section>
+{% endif %}
+{% endblock %}

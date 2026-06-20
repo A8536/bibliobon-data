@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Второй этап 2026-06-06-001</title>
+  <style>
+    :root { --catalog-bg:#f4f4f4; --catalog-surface:#fff; --catalog-border:#ddd; --catalog-ink:#242424; --catalog-muted:#6f6f6f; --catalog-accent:#be373b; --font-family:"San Francisco","Roboto",Arial,sans-serif; --heading-font-family:"Scada",var(--font-family); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:var(--catalog-bg); color:var(--catalog-ink); font:13px/1.15 var(--font-family); }
+    .wrap { width:min(1230px,calc(100% - 32px)); min-height:100vh; margin:0 auto; padding:26px 30px 56px; background:var(--catalog-surface); }
+    h1 { margin:0; font-family:var(--heading-font-family); font-size:42px; font-weight:400; line-height:1.12; text-transform:uppercase; }
+    h2 { margin:0; font-family:var(--heading-font-family); font-size:24px; font-weight:400; }
+    .lede { max-width:860px; margin:12px 0 0; color:var(--catalog-muted); font-size:17px; line-height:1.35; }
+    .review-nav,.stage-actions { display:flex; gap:8px; justify-content:flex-end; margin:18px 0 22px; }
+    .review-nav { justify-content:flex-start; padding-bottom:18px; border-bottom:1px solid var(--catalog-border); }
+    .review-nav a,.stage-link { min-height:34px; padding:7px 12px; border:1px solid var(--catalog-border); color:var(--catalog-ink); background:#fff; font-weight:700; text-decoration:none; }
+    .stage-link { border-color:var(--catalog-ink); color:#fff; background:var(--catalog-ink); }
+    .review-section { margin-top:30px; border:1px solid var(--catalog-border); background:#fff; }
+    .results-header { padding:16px 18px; border-bottom:1px solid var(--catalog-border); color:var(--catalog-muted); }
+    .bibliography-list { margin:0; padding:0; list-style:none; }
+    .bibliography-item { padding:14px 18px 15px; border-bottom:1px solid var(--catalog-border); }
+    .bibliography-item:last-child { border-bottom:0; }
+    .pair-layout { display:grid; grid-template-columns:minmax(0,1fr) 142px; gap:16px; align-items:stretch; }
+    .citation-row { color:var(--catalog-ink); font-size:10pt; line-height:1.22; padding:2px 4px; cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:clip; }
+    .candidate-citation { color:var(--catalog-muted); }
+    .citation-row.is-selected-new { background:#ffe7ed; }
+    .citation-row.is-selected-old { background:#e6f4ea; }
+    .field-author,.record-prefix { font-weight:800; }
+    .field-note,.pair-meta { margin-top:8px; color:var(--catalog-muted); font-size:13px; }
+    .service-button { min-height:34px; padding:6px 10px; border:1px solid var(--catalog-border); color:var(--catalog-muted); background:#fff; cursor:pointer; font:inherit; font-weight:700; }
+    .status-box { display:flex; align-items:center; justify-content:center; width:100%; height:100%; min-height:calc(2.44em + 7px); }
+    .status-box.is-changed { border-color:#188038; color:#188038; }
+    .empty-state { padding:18px; color:var(--catalog-muted); }
+    .modal-backdrop { position:fixed; inset:0; display:none; align-items:flex-start; justify-content:center; padding:34px 18px; background:rgba(36,36,36,.28); z-index:10; }
+    .modal-backdrop.is-open { display:flex; }
+    .modal { width:min(760px,100%); max-height:calc(100vh - 68px); overflow:auto; border:1px solid var(--catalog-border); background:#fff; box-shadow:0 18px 48px rgba(0,0,0,.18); }
+    .modal-header,.modal-actions { padding:16px 18px; border-bottom:1px solid var(--catalog-border); }
+    .modal-actions { display:flex; justify-content:flex-end; gap:8px; border-top:1px solid var(--catalog-border); border-bottom:0; }
+    .modal-body { padding:18px; }
+    .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 16px; }
+    .field-control { display:grid; gap:5px; }
+    .field-control.full { grid-column:1 / -1; }
+    label { color:var(--catalog-muted); font-size:12px; font-weight:700; text-transform:uppercase; }
+    input,textarea,select { width:100%; min-height:34px; padding:7px 9px; border:1px solid var(--catalog-border); font:inherit; }
+    textarea { min-height:70px; resize:vertical; }
+    .accept-button { border-color:#188038; color:#188038; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Второй этап разбора</h1>
+    <p class="lede">Run <code>2026-06-06-001</code>. Здесь остаются записи, которые не были полностью закрыты на первом этапе. Клик по строке открывает форму правки.</p>
+    <nav class="review-nav"><a href="../review_report.html/">Назад к первому этапу</a><a href="#records">Неразобранные: 1</a></nav>
+    <div class="stage-actions"><a class="stage-link" href="../review_stage3.html/">Перейти к третьему этапу</a></div>
+    <section id="records" class="review-section">
+      <div class="results-header"><h2>Неразобранные записи</h2></div>
+      <ul class="bibliography-list">
+<li class="bibliography-item" data-review-id="stage2:candidate-6e4cbdddb93c1e56:work-043751" data-candidate-id="candidate-6e4cbdddb93c1e56" data-editor-source-id="work-043751">
+  <div class="pair-layout">
+    <div>
+      <div class="citation-row candidate-citation" data-source-type="" data-authors="Миклашевский А." data-title="Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса" data-subtitle="" data-responsibility="" data-place="М" data-publisher="Университетская тип" data-date="1895" data-extent="729 с." data-notes=""><span class="field field-author" data-field="authors">Миклашевский А.</span> <span class="field" data-field="title">Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса</span> - <span class="field" data-field="publication_place">М</span>: <span class="field" data-field="publisher">Университетская тип</span>, <span class="field" data-field="publication_date">1895</span> - <span class="field field-diff" data-field="extent">729 с.</span>.</div>
+      <div class="citation-row" data-source-type="" data-authors="Миклашевский А." data-title="Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса" data-subtitle="" data-responsibility="" data-place="М." data-publisher="Университетская тип." data-date="1895" data-extent="III, 729 с.: табл." data-notes=""><span class="field field-author" data-field="authors">Миклашевский А.</span> <span class="field" data-field="title">Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса</span> - <span class="field" data-field="publication_place">М.</span>: <span class="field" data-field="publisher">Университетская тип.</span>, <span class="field" data-field="publication_date">1895</span> - <span class="field field-diff" data-field="extent">III, 729 с.: табл.</span>.</div>
+      <div class="field-note">Отличаются поля: <strong>extent</strong>.</div>
+      <div class="pair-meta"><span>match_score: <strong>1.00</strong></span></div>
+    </div>
+    <div class="pair-actions"><div class="service-button status-box">Без изменений</div></div>
+  </div>
+</li></ul>
+    </section>
+  </main>
+  <div class="modal-backdrop" id="edit-modal" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-header"><h2>Редактирование записи</h2></div>
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="field-control"><label>Тип</label><select id="source-type"><option value="book">Книга</option><option value="article">Статья</option><option value="container">Журнал/сборник</option></select></div>
+          <div class="field-control"><label>Авторы</label><input id="authors"></div>
+          <div class="field-control full"><label>Заглавие</label><textarea id="title"></textarea></div>
+          <div class="field-control full"><label>Подзаголовок</label><textarea id="subtitle"></textarea></div>
+          <div class="field-control full"><label>Ответственность</label><textarea id="responsibility"></textarea></div>
+          <div class="field-control"><label>Место</label><input id="place"></div>
+          <div class="field-control"><label>Издательство</label><input id="publisher"></div>
+          <div class="field-control"><label>Дата</label><input id="date"></div>
+          <div class="field-control"><label>Объём</label><input id="extent"></div>
+          <div class="field-control full"><label>Примечание</label><textarea id="notes"></textarea></div>
+        </div>
+      </div>
+      <div class="modal-actions"><button class="service-button" type="button" id="cancel-edit">Отменить</button><button class="service-button accept-button" type="button" id="accept-edit">Принять</button></div>
+    </div>
+  </div>
+  <script>
+    var stateUrl = "../state/";
+    var modal = document.getElementById("edit-modal");
+    var activeItem = null;
+    var activeSelected = "";
+    var dirty = false;
+    var fields = {
+      sourceType: document.getElementById("source-type"), authors: document.getElementById("authors"), title: document.getElementById("title"),
+      subtitle: document.getElementById("subtitle"), responsibility: document.getElementById("responsibility"), place: document.getElementById("place"),
+      publisher: document.getElementById("publisher"), date: document.getElementById("date"), extent: document.getElementById("extent"), notes: document.getElementById("notes")
+    };
+    function csrfToken() { var c=document.cookie.split(";").map(function(i){return i.trim();}); for (var i=0;i<c.length;i++) { if (c[i].indexOf("bibliobon_data_editor_csrftoken=")===0 || c[i].indexOf("csrftoken=")===0) return decodeURIComponent(c[i].split("=").slice(1).join("=")); } return ""; }
+    function itemId(item) { return item.dataset.reviewId || item.dataset.candidateId || ""; }
+    function fieldValues() { var v={}; Object.keys(fields).forEach(function(k){ v[k]=fields[k].value; }); return v; }
+    function postReviewState(payload) { return fetch(stateUrl, { method:"POST", headers:{"Content-Type":"application/json","X-CSRFToken":csrfToken()}, body:JSON.stringify(payload) }).then(function(r){ if(!r.ok) throw new Error("save failed"); return r; }).catch(function(){ alert("Не удалось сохранить правку. Обновите страницу и попробуйте ещё раз."); }); }
+    function markChanged(item) { var s=item.querySelector(".status-box"); if(s) { s.classList.add("is-changed"); s.textContent="Изменено"; } }
+    function restoreState() { fetch(stateUrl).then(function(r){return r.ok?r.json():null;}).then(function(state){ if(!state||!state.stage2)return; document.querySelectorAll(".bibliography-item").forEach(function(item){ if(state.stage2[itemId(item)]) markChanged(item); }); }).catch(function(){}); }
+    document.addEventListener("click", function(event) {
+      var status = event.target.closest(".status-box");
+      if (status) {
+        var item = status.closest(".bibliography-item");
+        if (status.classList.contains("is-changed")) {
+          status.classList.remove("is-changed"); status.textContent = "Без изменений";
+          postReviewState({stage:"stage2", action:"clear", item_id:itemId(item), candidate_id:item.dataset.candidateId||"", editor_source_id:item.dataset.editorSourceId||""});
+        }
+        return;
+      }
+      var row = event.target.closest(".citation-row");
+      if (!row) return;
+      activeItem = row.closest(".bibliography-item");
+      activeSelected = row.classList.contains("candidate-citation") ? "new" : "old";
+      activeItem.querySelectorAll(".citation-row").forEach(function(r){ r.classList.remove("is-selected-new","is-selected-old"); });
+      row.classList.add(activeSelected === "new" ? "is-selected-new" : "is-selected-old");
+      Object.keys(fields).forEach(function(k){ fields[k].value = row.dataset[k] || ""; });
+      dirty = false; modal.classList.add("is-open"); modal.setAttribute("aria-hidden","false");
+    });
+    Object.keys(fields).forEach(function(k){ fields[k].addEventListener("input", function(){ dirty=true; }); fields[k].addEventListener("change", function(){ dirty=true; }); });
+    document.getElementById("cancel-edit").addEventListener("click", function(){ modal.classList.remove("is-open"); });
+    document.getElementById("accept-edit").addEventListener("click", function(){ if(activeItem && dirty) { markChanged(activeItem); postReviewState({stage:"stage2", action:"save", item_id:itemId(activeItem), selected:activeSelected, candidate_id:activeItem.dataset.candidateId||"", editor_source_id:activeItem.dataset.editorSourceId||"", values:fieldValues()}); } modal.classList.remove("is-open"); });
+    document.addEventListener("keydown", function(event){ if(!modal.classList.contains("is-open"))return; if(event.key==="Escape"){ event.preventDefault(); modal.classList.remove("is-open"); } if(event.key==="Enter" && event.target.tagName!=="TEXTAREA"){ event.preventDefault(); document.getElementById("accept-edit").click(); } });
+    restoreState();
+  </script>
+</body>
+</html>

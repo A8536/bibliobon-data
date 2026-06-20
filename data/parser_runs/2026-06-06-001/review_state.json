@@ -1,0 +1,83 @@
+{
+  "created_at": "2026-06-06T13:59:38.307586+00:00",
+  "events": [
+    {
+      "action": "keep_new",
+      "created_at": "2026-06-06T13:59:38.307812+00:00",
+      "item_id": "stage1-item-0",
+      "stage": "stage1"
+    },
+    {
+      "action": "keep_old",
+      "created_at": "2026-06-06T13:59:45.451986+00:00",
+      "item_id": "stage1-item-0",
+      "stage": "stage1"
+    },
+    {
+      "action": "keep_new",
+      "created_at": "2026-06-06T13:59:46.223262+00:00",
+      "item_id": "stage1-item-0",
+      "stage": "stage1"
+    },
+    {
+      "action": "save",
+      "created_at": "2026-06-06T14:00:32.612446+00:00",
+      "item_id": "stage2:candidate-6e4cbdddb93c1e56:work-043751",
+      "stage": "stage2"
+    },
+    {
+      "action": "clear",
+      "created_at": "2026-06-06T14:00:33.360844+00:00",
+      "item_id": "stage2:candidate-6e4cbdddb93c1e56:work-043751",
+      "stage": "stage2"
+    },
+    {
+      "action": "save",
+      "created_at": "2026-06-06T14:00:36.904865+00:00",
+      "item_id": "stage2:candidate-6e4cbdddb93c1e56:work-043751",
+      "stage": "stage2"
+    },
+    {
+      "action": "save",
+      "created_at": "2026-06-06T14:00:41.469240+00:00",
+      "item_id": "stage2:candidate-6e4cbdddb93c1e56:work-043751",
+      "stage": "stage2"
+    }
+  ],
+  "run_id": "2026-06-06-001",
+  "stage0": {},
+  "stage1": {
+    "stage1-item-0": {
+      "candidate_id": "candidate-6e4cbdddb93c1e56",
+      "decision": "keep_new",
+      "editor_source_id": "work-043751",
+      "match_score": "1.00",
+      "selected": "new",
+      "updated_at": "2026-06-06T13:59:46.223262+00:00"
+    }
+  },
+  "stage2": {
+    "stage2:candidate-6e4cbdddb93c1e56:work-043751": {
+      "action": "save",
+      "candidate_id": "candidate-6e4cbdddb93c1e56",
+      "editor_source_id": "work-043751",
+      "selected": "old",
+      "updated_at": "2026-06-06T14:00:41.469240+00:00",
+      "values": {
+        "authors": "Миклашевский А.",
+        "date": "1895",
+        "extent": "III, 729 с.: табл.",
+        "notes": " ",
+        "place": "М.",
+        "publisher": "Университетская тип.",
+        "responsibility": "",
+        "sourceType": "",
+        "subtitle": "",
+        "title": "Деньги. Опыт изучения основных положений экономической теории классической школы в связи с историей денежного вопроса"
+      }
+    }
+  },
+  "stage3": {},
+  "stage_authors": {},
+  "updated_at": "2026-06-06T14:00:41.469258+00:00"
+}

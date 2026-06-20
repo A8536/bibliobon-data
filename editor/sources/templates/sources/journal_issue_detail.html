@@ -1,0 +1,96 @@
+{% extends "sources/base.html" %}
+
+{% block title %}{{ issue_label }} · Bibliobon{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'sources:journal_detail' journal.pk %}">К журналу</a></p>
+
+<div class="detail-title">
+  <div>
+    <h1>{{ issue_label }}</h1>
+    <p class="muted">Выпуск журнала · {{ article_count }} ст.</p>
+  </div>
+  <div class="actions">
+    <a href="{% url 'sources:issue_convert_to_collection' issue.pk %}">Преобразовать выпуск в сборник</a>
+    <a href="{% url 'admin:sources_journalissue_change' issue.pk %}">Редактировать выпуск</a>
+    <a href="{% url 'sources:work_list' %}?journal={{ journal.pk }}">Все статьи журнала</a>
+  </div>
+</div>
+
+{% if warnings %}
+  <section class="panel">
+    <h2>На что обратить внимание</h2>
+    <ul>
+      {% for warning in warnings %}
+        <li><span class="status-badge warn">{{ warning }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
+<section class="panel">
+  <h2>Сведения о выпуске</h2>
+  <table>
+    <tbody>
+      <tr>
+        <th>Журнал</th>
+        <td><a href="{% url 'sources:journal_detail' journal.pk %}">{{ journal.title }}</a></td>
+      </tr>
+      <tr>
+        <th>Год</th>
+        <td>{{ issue.year|default:issue.publication_date|default:"-" }}</td>
+      </tr>
+      <tr>
+        <th>Номер</th>
+        <td>{{ issue.issue_number|default:"-" }}</td>
+      </tr>
+      <tr>
+        <th>Том / часть</th>
+        <td>{{ issue.volume|default:issue.part_number|default:"-" }}</td>
+      </tr>
+      <tr>
+        <th>Место издания</th>
+        <td>{{ issue.publication_place|default:"-" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Статьи выпуска</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Статья</th>
+        <th>Страницы</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+        <tr>
+          <td>
+            <strong>{{ article.work.title }}</strong>
+            <small class="muted mono">{{ article.work.work_id }}</small>
+          </td>
+          <td>{{ article.pages_raw|default:article.pages|default:"-" }}</td>
+          <td class="row-actions">
+            <a href="{% url 'sources:work_relations' article.work.pk %}">Связи</a>
+            <a href="{% url 'sources:work_inspect' article.work.pk %}">Проверить</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="3">В выпуске нет статей.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>Действия с выпуском</h2>
+  <p class="muted">Если выпуск на самом деле является сборником, сначала откройте план преобразования. Запись в базу произойдёт только после отдельного подтверждения на следующей странице.</p>
+  <div class="actions">
+    <a href="{% url 'sources:issue_convert_to_collection' issue.pk %}">Преобразовать выпуск в сборник</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Новый импорт{% endblock %}
+
+{% block content %}
+<h1>Новый импорт</h1>
+
+<form class="panel parser-input-form" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label>
+    Название импорта
+    <input name="title" placeholder="Например: Баранов 2021, новые записи">
+  </label>
+  <label>
+    Источник
+    <input name="source_name" placeholder="Название файла, книги, письма или другого источника">
+  </label>
+  <label>
+    Тип источника
+    <select name="source_type">
+      {% for value,label in source_types %}
+        <option value="{{ value }}">{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>
+    Исходные библиографические строки
+    <textarea name="raw_input" rows="14" placeholder="Одна запись с новой строки или нумерованный список"></textarea>
+  </label>
+  <label>
+    Или загрузить .txt файл
+    <input type="file" name="source_file" accept=".txt,text/plain">
+  </label>
+  <label>
+    Комментарий
+    <textarea name="notes" rows="3"></textarea>
+  </label>
+  <div class="actions">
+    <button type="submit" name="parse_now" value="1">Создать и запустить парсер</button>
+    <button type="submit" name="parse_now" value="0">Создать без разбора</button>
+    <a href="{% url 'sources:import_batch_list' %}">Отмена</a>
+  </div>
+</form>
+{% endblock %}

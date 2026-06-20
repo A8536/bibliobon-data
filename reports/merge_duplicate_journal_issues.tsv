@@ -1,0 +1,20 @@
+status	key	issue_ids	article_counts	conflicts
+conflict	journal-002508 | 2007 | 11 | 	journal-issue-010379; journal-issue-010404	1; 1	gross_number: 52 | 53
+conflict	journal-002508 | 2009 | 9 | 	journal-issue-010384; journal-issue-010390	1; 1	gross_number: 69 | 70
+conflict	journal-002513 | 1997 | 1 | 	journal-issue-010482; journal-issue-010490	1; 1	gross_number: 21 | 9
+conflict	journal-002520 | 1998 | 15 | 	journal-issue-010528; journal-issue-010529	1; 3	gross_number: 17 | 17. Октябрь
+conflict	journal-002523 | 2007 | 5–7 | 	journal-issue-010551; journal-issue-010564	2; 1	gross_number: 63–65 | 63–67
+conflict	journal-002523 | 2000 | 6 | 	journal-issue-010556; journal-issue-010605	1; 1	gross_number: 22 | 22. С. 2
+conflict	journal-002523 | 2009 | 1 | 	journal-issue-010576; journal-issue-010614	2; 2	gross_number: 80–83 | 92–94; publication_details: — 2009. — № 1 (80–83). — С. 22–23. | — 2009–2012. — № 1 (92–94). — С. 19.
+conflict	journal-002523 | 2004 | 2 | 	journal-issue-010586; journal-issue-010590	1; 2	gross_number: 28 | 43
+conflict	journal-002538 | 2018 | 2 | 	journal-issue-010802; journal-issue-010828; journal-issue-010829; journal-issue-010919	1; 1; 1; 4	gross_number: 106 | 108
+conflict	journal-002538 | 2019 | 3 | 	journal-issue-010806; journal-issue-010834; journal-issue-010884	1; 2; 7	publication_details: — 2019. — № 3 (112). — С. [2]. | — 2019. — № 3. — С. 26–28.
+conflict	journal-002538 | 2019 | 4 | 	journal-issue-010807; journal-issue-010831; journal-issue-010887	1; 2; 5	publication_details: — 2019. — № 4 (113). — С. [17]. | — 2019. — № 4. — С. 18–20.
+conflict	journal-002538 | 2018 | 1 | 	journal-issue-010809; journal-issue-010917	2; 3	publication_details: — 2018. — № 1 (105). — С. 20–21. | — 2018. — № 1. — С. 14–18.
+conflict	journal-002538 | 2020 | 1 | 	journal-issue-010810; journal-issue-010907	3; 4	publication_details: — 2020. — № 1 (115). — С. 17 — 19. | — 2020. — № 1. — С. 20–21.
+conflict	journal-002538 | 2020 | 4 | 	journal-issue-010815; journal-issue-010835	3; 3	publication_details: — 2020. — № 4 (118). — С. 18 — [19]. | — 2020. — № 4. — С. 17.
+conflict	journal-002538 | 2020 | 3 | 	journal-issue-010836; journal-issue-010885	3; 7	publication_details: — 2020. — № 3 (117). — С. [8–9]. | — 2020. — № 3. — С. 27.
+conflict	journal-002538 | 2020 | 2 | 	journal-issue-010837; journal-issue-010918	2; 8	publication_details: — 2020. — № 2 (116). — С. 39. | — 2020. — № 2. — С. 16–26.
+conflict	journal-002538 | 2021 | 4 | 	journal-issue-010838; journal-issue-010847	2; 6	publication_details: — 2021. — № 4 (122). — С. 18 — 20. | — 2021. — № 4. — С. 22–24.
+conflict	journal-002538 | 2021 | 1 | 	journal-issue-010839; journal-issue-010920	2; 5	publication_details: — 2021. — № 1 (119). — С. [10 — 13]. | — 2021. — № 1. — С. 14–18.
+conflict	journal-002572 | 2018 | 13 | 	journal-issue-011273; journal-issue-011279	1; 1	gross_number: 261 | 265

@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-06-06T13:30:03.424208+00:00",
+  "generator": "editor.sources.export_site_artifact",
+  "contract_version": "0.3.0",
+  "artifact_schema_version": 3,
+  "files": {
+    "bibliobon.sqlite": {
+      "path": "data/bibliobon.sqlite",
+      "bytes": 6004736,
+      "sha256": "75a0b16c0d16dd49407dc3acc188c4400443db344932097c6dc7711ad1cad0c4"
+    },
+    "site_contract.json": {
+      "path": "data/site_contract.json",
+      "bytes": 4990,
+      "sha256": "20e8520c111a366abb6393e2ea8f3c7e15505aa9741dd03047e4b65515cd0c5c"
+    }
+  },
+  "counts": {
+    "languages": 1,
+    "sections": 40,
+    "tags": 295,
+    "authors": 1552,
+    "sources": 5735,
+    "source_authors": 5025,
+    "source_tags": 2999,
+    "periodicals": 261,
+    "issues": 1975,
+    "article_placements": 4529,
+    "source_groups": 9,
+    "source_group_items": 93
+  },
+  "backups": [
+    "/Users/oleg/Projects/data/bibliobon-data/data/backups/bibliobon.before-site-artifact-export.20260606-133002.sqlite",
+    "/Users/oleg/Projects/data/bibliobon-data/data/backups/site_contract.before-site-artifact-export.20260606-133002.json",
+    "/Users/oleg/Projects/data/bibliobon-data/data/backups/build_manifest.before-site-artifact-export.20260606-133002.json"
+  ]
+}

@@ -1,0 +1,135 @@
+{% extends "sources/base.html" %}
+
+{% block title %}Сервис · Bibliobon editor{% endblock %}
+
+{% block content %}
+<h1>Сервис</h1>
+
+<section class="panel">
+  <h2>Состояние</h2>
+  <table>
+    <tbody>
+      <tr>
+        <th>Google Sheet ID</th>
+        <td>
+          <span class="mono">{{ spreadsheet_id|default:"не задан" }}</span>
+          {% if spreadsheet_url %}<a href="{{ spreadsheet_url }}" target="_blank" rel="noopener">Открыть</a>{% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>JSON-ключ</th>
+        <td>
+          <span class="mono">{{ credentials_path|default:"не задан" }}</span>
+          {% if credentials_exists %}
+            <span class="status-badge ok">найден</span>
+          {% else %}
+            <span class="status-badge warn">не найден</span>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>Дубли выпусков</th>
+        <td>{{ duplicate_safe_groups }} можно слить автоматически; {{ duplicate_conflict_groups }} требуют проверки.</td>
+      </tr>
+      <tr>
+        <th>Пустые контейнеры</th>
+        <td>{{ empty_issue_count }} выпусков; {{ empty_journal_count }} журналов; {{ empty_collection_count }} сборников.</td>
+      </tr>
+      <tr>
+        <th>Авторы без связей</th>
+        <td>{{ unused_author_count }}</td>
+      </tr>
+      <tr>
+        <th>Дублирующие поля</th>
+        <td>{{ redundant_total }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="sync-grid service-grid">
+  <section class="panel sync-panel">
+    <h2>Google Sheets</h2>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="export">Экспортировать</button>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="dry_run_import">Проверить импорт</button>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <button class="danger-button" type="submit" name="action" value="import">Импортировать</button>
+    </form>
+  </section>
+
+  <section class="panel sync-panel">
+    <h2>Дубли выпусков</h2>
+    <p>Сливает только группы с одинаковыми journal_id, годом, номером и томом без конфликтов в важных полях.</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="dry_run_merge_duplicate_issues">Проверить</button>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <button class="danger-button" type="submit" name="action" value="merge_duplicate_issues">Слить безопасные дубли</button>
+    </form>
+  </section>
+
+  <section class="panel sync-panel">
+    <h2>Пустые журналы и сборники</h2>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="dry_run_cleanup_empty_containers">Проверить</button>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <button class="danger-button" type="submit" name="action" value="cleanup_empty_containers">Очистить</button>
+    </form>
+  </section>
+
+  <section class="panel sync-panel">
+    <h2>Авторы без записей</h2>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="dry_run_cleanup_unused_authors">Проверить</button>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <button class="danger-button" type="submit" name="action" value="cleanup_unused_authors">Удалить</button>
+    </form>
+  </section>
+
+  <section class="panel sync-panel">
+    <h2>Объединить авторов</h2>
+    <p>Переносит связи с дублей на целевого автора, сохраняет варианты имени в aliases и удаляет дубли.</p>
+    <form method="post">
+      {% csrf_token %}
+      <label>
+        Целевой author_id
+        <input type="text" name="target_author_id" placeholder="author-000001">
+      </label>
+      <label>
+        author_id дублей
+        <textarea name="source_author_ids" rows="4" placeholder="author-000002&#10;author-000003"></textarea>
+      </label>
+      <button type="submit" name="action" value="dry_run_merge_authors">Проверить</button>
+      <button class="danger-button" type="submit" name="action" value="merge_authors">Объединить</button>
+    </form>
+  </section>
+
+  <section class="panel sync-panel">
+    <h2>Дублирующие поля статей</h2>
+    <p>Очищает поля статьи, которые совпадают с данными выпуска или сборника.</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="dry_run_cleanup_redundant_fields">Проверить</button>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <button class="danger-button" type="submit" name="action" value="cleanup_redundant_fields">Очистить</button>
+    </form>
+  </section>
+</div>
+{% endblock %}
