@@ -356,6 +356,19 @@ def verify_with_retries(raw_input: str, max_attempts: int = MAX_ATTEMPTS) -> tup
     raise RuntimeError("; ".join(errors))
 
 
+def is_quota_error(error_text: str) -> bool:
+    markers = [
+        "quota",
+        "exceeded your current quota",
+        "resource_exhausted",
+        "rate limit",
+        "rate_limit",
+        "429",
+    ]
+    lower_text = error_text.lower()
+    return any(marker in lower_text for marker in markers)
+
+
 print("Загрузите один входной файл с книгами: .txt, .csv или .jsonl")
 uploaded = files.upload()
 if len(uploaded) != 1:
@@ -515,6 +528,25 @@ for index, source in enumerate(records, start=1):
     print(f"{index}/{len(records)} source_number={record.get('source_number')} {record['status']} attempts={record['attempt_count']}")
     if record["status"] == "error":
         print("  error=", record.get("error", "")[:1000])
+        if is_quota_error(record.get("error", "")):
+            print("  quota error detected; stopping and saving current results")
+            for skipped_source in records[index:]:
+                output_records.append(
+                    {
+                        "source_number": skipped_source.get("source_number"),
+                        "raw_input": skipped_source["raw_input"],
+                        "prompt_version": PROMPT_VERSION,
+                        "model": MODEL_ID,
+                        "status": "skipped",
+                        "attempt_count": 0,
+                        "attempt_errors": [],
+                        "error": "Skipped after quota/rate-limit error on a previous record.",
+                        "result": [],
+                        "grounding_chunks": [],
+                        "raw_model_text": "",
+                    }
+                )
+            break
     if index < len(records) and SLEEP_SECONDS:
         time.sleep(SLEEP_SECONDS)
 
@@ -529,6 +561,7 @@ manifest = {
     "record_count": len(output_records),
     "ok_count": sum(1 for record in output_records if record["status"] == "ok"),
     "error_count": sum(1 for record in output_records if record["status"] == "error"),
+    "skipped_count": sum(1 for record in output_records if record["status"] == "skipped"),
     "sleep_seconds": SLEEP_SECONDS,
     "max_attempts": MAX_ATTEMPTS,
     "retry_sleep_seconds": RETRY_SLEEP_SECONDS,
