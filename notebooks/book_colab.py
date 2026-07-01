@@ -49,6 +49,46 @@ client = genai.Client(api_key=api_key)
 print("Gemini client configured")
 
 # %%
+import csv
+import getpass
+import hashlib
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+from pathlib import Path
+from typing import Any
+
+try:
+    import pandas as pd
+    from google import genai
+    from google.genai import types
+    from google.colab import files
+except ModuleNotFoundError:
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "google-genai", "pandas"], check=True)
+    import pandas as pd
+    from google import genai
+    from google.genai import types
+    from google.colab import files
+
+MODEL_ID = globals().get("MODEL_ID", "gemini-2.5-flash")
+PROMPT_VERSION = "book-verification-0.4-colab"
+OUTPUT_DIR = Path("/content/book_verification_results")
+SLEEP_SECONDS = globals().get("SLEEP_SECONDS", 1.0)
+MAX_ATTEMPTS = globals().get("MAX_ATTEMPTS", 3)
+RETRY_SLEEP_SECONDS = globals().get("RETRY_SLEEP_SECONDS", 10.0)
+
+if "client" not in globals():
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        api_key = getpass.getpass("GEMINI_API_KEY: ").strip()
+    os.environ["GEMINI_API_KEY"] = api_key
+    client = genai.Client(api_key=api_key)
+    print("Gemini client configured")
+
 EXPECTED_FIELDS = [
     "raw_author_string",
     "book_title",
