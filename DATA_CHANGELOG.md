@@ -184,6 +184,36 @@ Behavior:
 - the key file may contain either `GEMINI_API_KEY=...` or just the raw key;
 - if the file is missing, the notebook falls back to the hidden manual prompt.
 
+## 2026-07-02.03
+
+Reworked `notebooks/book_colab.py` from a book-only verifier into a
+single-cell mixed bibliography verifier.
+
+Changes:
+
+- replaced the book-only prompt with a universal prompt for monographs,
+  multivolume parts, journal articles, collection articles, book chapters,
+  conference materials, newspaper articles, electronic resources, and unknown
+  records;
+- Gemini now returns a root JSON array of importable objects with
+  `record_type`, `source`, and optional `host`;
+- source fields use database-facing names such as `title`, `title_remainder`,
+  `publication_place`, `publication_date`, `extent`,
+  `citation_gost_2018_full`, and `citation_gost_2003_short`;
+- article/chapter outputs include article fields plus `host_*` columns for the
+  publication source;
+- output files were renamed to `verified_bibliography.jsonl` and
+  `verified_bibliography.tsv`;
+- the generated Colab notebook now contains one code cell instead of separate
+  setup/work cells.
+
+Validation:
+
+- regenerated `notebooks/book_colab.ipynb`;
+- `notebooks/book_colab.py` compiles;
+- smoke-tested fake monograph and journal-article responses and confirmed the
+  mixed TSV output shape.
+
 No database schema, editor database, public-site code, or site export contract
 was changed.
 

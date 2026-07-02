@@ -1,7 +1,7 @@
 # Colab Notebooks
 
-`book_colab.py` is the source-of-truth file for the ordinary book verification
-Colab workflow. It uses percent-cell markers:
+`book_colab.py` is the source-of-truth file for the mixed bibliography
+verification Colab workflow. It uses percent-cell markers:
 
 ```python
 # %% [markdown]
@@ -34,6 +34,14 @@ The notebook saves the current JSONL/TSV/grounding/manifest/zip outputs after
 each processed record. If the Colab session disconnects, reopen the notebook,
 upload the same input file, and run again. Rows already saved with status `ok`
 are skipped and processing resumes from the remaining rows.
+
+Current output files:
+
+- `verified_bibliography.jsonl`;
+- `verified_bibliography.tsv`;
+- `grounding_sources.tsv`;
+- `run_manifest.json`;
+- `bibliography_verification_results.zip`.
 
 ## API Key From Drive
 
