@@ -14,39 +14,7 @@
 # - `book_verification_results.zip`
 
 # %%
-import subprocess
-import sys
-subprocess.run([sys.executable, "-m", "pip", "install", "-q", "google-genai", "pandas"], check=True)
-
-import csv
-import getpass
-import hashlib
-import json
-import os
-import re
-import shutil
-import time
-from pathlib import Path
-from typing import Any
-
-import pandas as pd
-from google import genai
-from google.genai import types
-from google.colab import drive, files
-
-MODEL_ID = "gemini-2.5-flash"
-PROMPT_VERSION = "book-verification-0.3-colab"
-OUTPUT_DIR = Path("/content/book_verification_results")
-SLEEP_SECONDS = 1.0
-MAX_ATTEMPTS = 3
-RETRY_SLEEP_SECONDS = 10.0
-CHECKPOINT_EVERY = 20
-SAVE_AFTER_EVERY_RECORD = True
-USE_GOOGLE_DRIVE_CHECKPOINT = True
-DRIVE_CHECKPOINT_ROOT = Path("/content/drive/MyDrive/bibliobon_colab_checkpoints")
-DRIVE_API_KEY_PATH = Path("/content/drive/MyDrive/bibliobon_colab_secrets/gemini_api_key.env")
-
-print("Dependencies installed. Run the next cell to load the API key and start processing.")
+print("Setup cell complete. Run the next cell to install/load dependencies, mount Drive, and start processing.")
 
 # %%
 import csv
