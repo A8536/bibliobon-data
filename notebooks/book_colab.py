@@ -46,12 +46,7 @@ USE_GOOGLE_DRIVE_CHECKPOINT = True
 DRIVE_CHECKPOINT_ROOT = Path("/content/drive/MyDrive/bibliobon_colab_checkpoints")
 DRIVE_API_KEY_PATH = Path("/content/drive/MyDrive/bibliobon_colab_secrets/gemini_api_key.env")
 
-api_key = os.environ.get("GEMINI_API_KEY")
-if not api_key:
-    api_key = getpass.getpass("GEMINI_API_KEY: ").strip()
-os.environ["GEMINI_API_KEY"] = api_key
-client = genai.Client(api_key=api_key)
-print("Gemini client configured")
+print("Dependencies installed. Run the next cell to load the API key and start processing.")
 
 # %%
 import csv
@@ -108,6 +103,7 @@ def read_gemini_api_key_from_file(path: Path) -> str:
 def ensure_drive_mounted() -> bool:
     try:
         drive.mount("/content/drive", force_remount=False)
+        print("Google Drive mounted.")
         return True
     except Exception as exc:
         print(f"Google Drive mount failed: {exc}")
@@ -116,9 +112,12 @@ def ensure_drive_mounted() -> bool:
 if "client" not in globals():
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key and ensure_drive_mounted():
+        print(f"Looking for GEMINI_API_KEY at {DRIVE_API_KEY_PATH}")
         api_key = read_gemini_api_key_from_file(DRIVE_API_KEY_PATH)
         if api_key:
             print(f"GEMINI_API_KEY loaded from {DRIVE_API_KEY_PATH}")
+        else:
+            print("GEMINI_API_KEY file was not found or was empty.")
     if not api_key:
         api_key = getpass.getpass("GEMINI_API_KEY: ").strip()
     os.environ["GEMINI_API_KEY"] = api_key
