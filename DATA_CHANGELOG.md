@@ -171,6 +171,19 @@ Validation:
 - smoke-tested a simulated disconnect after the first row and confirmed the
   second run resumed from the checkpoint.
 
+## 2026-07-02.02
+
+Added Google Drive API key loading to the ordinary-book Colab workflow.
+
+Behavior:
+
+- `notebooks/book_colab.py` first checks environment variable
+  `GEMINI_API_KEY`;
+- if missing, it mounts Google Drive and reads
+  `MyDrive/bibliobon_colab_secrets/gemini_api_key.env`;
+- the key file may contain either `GEMINI_API_KEY=...` or just the raw key;
+- if the file is missing, the notebook falls back to the hidden manual prompt.
+
 No database schema, editor database, public-site code, or site export contract
 was changed.
 

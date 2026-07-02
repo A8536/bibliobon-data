@@ -44,6 +44,7 @@ CHECKPOINT_EVERY = 20
 SAVE_AFTER_EVERY_RECORD = True
 USE_GOOGLE_DRIVE_CHECKPOINT = True
 DRIVE_CHECKPOINT_ROOT = Path("/content/drive/MyDrive/bibliobon_colab_checkpoints")
+DRIVE_API_KEY_PATH = Path("/content/drive/MyDrive/bibliobon_colab_secrets/gemini_api_key.env")
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -88,9 +89,36 @@ CHECKPOINT_EVERY = globals().get("CHECKPOINT_EVERY", 20)
 SAVE_AFTER_EVERY_RECORD = globals().get("SAVE_AFTER_EVERY_RECORD", True)
 USE_GOOGLE_DRIVE_CHECKPOINT = globals().get("USE_GOOGLE_DRIVE_CHECKPOINT", True)
 DRIVE_CHECKPOINT_ROOT = Path(globals().get("DRIVE_CHECKPOINT_ROOT", "/content/drive/MyDrive/bibliobon_colab_checkpoints"))
+DRIVE_API_KEY_PATH = Path(globals().get("DRIVE_API_KEY_PATH", "/content/drive/MyDrive/bibliobon_colab_secrets/gemini_api_key.env"))
+
+
+def read_gemini_api_key_from_file(path: Path) -> str:
+    if not path.exists():
+        return ""
+    text = path.read_text(encoding="utf-8").strip()
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("GEMINI_API_KEY="):
+            return line.split("=", 1)[1].strip().strip("'\"")
+    return text.strip().strip("'\"")
+
+
+def ensure_drive_mounted() -> bool:
+    try:
+        drive.mount("/content/drive", force_remount=False)
+        return True
+    except Exception as exc:
+        print(f"Google Drive mount failed: {exc}")
+        return False
 
 if "client" not in globals():
     api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key and ensure_drive_mounted():
+        api_key = read_gemini_api_key_from_file(DRIVE_API_KEY_PATH)
+        if api_key:
+            print(f"GEMINI_API_KEY loaded from {DRIVE_API_KEY_PATH}")
     if not api_key:
         api_key = getpass.getpass("GEMINI_API_KEY: ").strip()
     os.environ["GEMINI_API_KEY"] = api_key
@@ -553,13 +581,11 @@ def save_checkpoint(
 def mount_drive_for_checkpoints() -> Path | None:
     if not USE_GOOGLE_DRIVE_CHECKPOINT:
         return None
-    try:
-        drive.mount("/content/drive", force_remount=False)
+    if ensure_drive_mounted():
         DRIVE_CHECKPOINT_ROOT.mkdir(parents=True, exist_ok=True)
         return DRIVE_CHECKPOINT_ROOT
-    except Exception as exc:
-        print(f"Drive checkpoint disabled: {exc}")
-        return None
+    print("Drive checkpoint disabled.")
+    return None
 
 
 def load_checkpoint_records(checkpoint_dir: Path | None) -> list[dict[str, Any]]:

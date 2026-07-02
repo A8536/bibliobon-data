@@ -34,3 +34,20 @@ The notebook saves the current JSONL/TSV/grounding/manifest/zip outputs after
 each processed record. If the Colab session disconnects, reopen the notebook,
 upload the same input file, and run again. Rows already saved with status `ok`
 are skipped and processing resumes from the remaining rows.
+
+## API Key From Drive
+
+The notebook can read `GEMINI_API_KEY` from Google Drive. Create this file:
+
+```text
+MyDrive/bibliobon_colab_secrets/gemini_api_key.env
+```
+
+Supported contents:
+
+```text
+GEMINI_API_KEY=your_key_here
+```
+
+or just the raw key on the first non-empty line. If the file is missing, the
+notebook falls back to a hidden `getpass` prompt.
