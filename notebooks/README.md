@@ -21,3 +21,16 @@ python3 scripts/percent_py_to_ipynb.py \
 
 Open the generated `.ipynb` in Google Colab. Keep both files in sync when
 committing changes: review/edit the `.py`, regenerate the `.ipynb`, then push.
+
+## Checkpoints
+
+`book_colab.py` writes checkpoints to Google Drive by default:
+
+```text
+MyDrive/bibliobon_colab_checkpoints/<input-file-stem>/
+```
+
+The notebook saves the current JSONL/TSV/grounding/manifest/zip outputs after
+each processed record. If the Colab session disconnects, reopen the notebook,
+upload the same input file, and run again. Rows already saved with status `ok`
+are skipped and processing resumes from the remaining rows.

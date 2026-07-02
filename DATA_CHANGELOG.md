@@ -1,5 +1,249 @@
 # Data Changelog
 
+## 2026-06-27.04
+
+Started the PSZRI law verification workflow design.
+
+Workflow decisions:
+
+- new law records verified by Gemini with Google Search grounding will first be
+  written to staging files, not directly to `data/editor.sqlite`;
+- input batches should live under
+  `source/incoming/law_verification/<batch>/original/laws.txt`;
+- verification outputs should live under `data/verification_runs/<run_id>/`;
+- Gemini output should include both ready citation strings and structured
+  fields for later canonical `Source` import;
+- grounding chunks from the Gemini response must be extracted into reviewable
+  output so editors can see which sites supported the verification.
+
+Added:
+
+- local ignored secret placeholder `secrets/gemini_api_key.env`;
+- `source/incoming/law_verification/README.md`;
+- `data/verification_runs/README.md`;
+- `scripts/verify_laws_with_gemini.py`, a staging-only CLI that reads
+  `.txt`/`.csv`/`.jsonl`, supports mock runs, calls Gemini with Google Search
+  grounding, and writes JSONL/CSV/TSV/manifest outputs under
+  `data/verification_runs/<run_id>/`;
+- explicit staging fields for optional `Собрание узаконений` references such as
+  `СУ-1875, № 51, от 20 июня, ст. 581`;
+- a single-file `--input` workflow: one run reads one `.txt`/`.csv`/`.jsonl`
+  file that can contain many law records;
+- prompt version `pszri-law-verification-0.2`, with strict `СЗ`/`СУ`
+  expansion and citation hierarchy rules for periodic legal registries;
+- prompt/config version `pszri-law-verification-0.3`, removing
+  `response_mime_type="application/json"` because Gemini Google Search
+  grounding currently rejects tool use combined with JSON response MIME type;
+- fatal API errors such as unsupported API location now stop the run after the
+  first failed record and mark the remaining records as skipped;
+- added `notebooks/pszri_law_verification_colab.ipynb`, a Google Colab version
+  of the PSZRI law verification workflow with package installation, API key
+  input, one-file upload, Gemini processing, and zipped result download.
+
+## 2026-06-28.01
+
+Reviewed and corrected `notebooks/book_colab.ipynb`, the Colab workflow for
+ordinary book bibliography verification.
+
+Fixes:
+
+- removed leftover PSZRI/law wording from the book prompt;
+- renamed output artifacts from `verified_laws.*` to `verified_books.*`;
+- changed generated record ids from `law-*` to `book-*`;
+- added `MAX_ATTEMPTS = 3` and retry logic so API/model/JSON parsing failures
+  are retried twice before a record is marked `error`;
+- added `attempt_count` and `attempt_errors` to JSONL/CSV outputs;
+- cleared stale notebook outputs from a previous mixed law/book run.
+
+Validation:
+
+- notebook JSON parses successfully;
+- code cells compile after ignoring Colab shell magic;
+- a local smoke test with a fake Gemini response created
+  `verified_books.jsonl`, `verified_books.csv`, `grounding_sources.tsv`, and
+  `run_manifest.json` with the expected columns.
+
+## 2026-06-28.02
+
+Updated `notebooks/book_colab.ipynb` table output to match editor database
+field names.
+
+Changes:
+
+- changed review/import table output from `verified_books.csv` to
+  tab-delimited `verified_books.tsv`;
+- mapped Gemini book fields to database-facing names:
+  `author`, `title`, `title_remainder`, `publication_place`,
+  `publication_date`, `inferred_year`, `extent`, `isbn`,
+  `citation_gost_2018_full`, and `citation_gost_2003_short`;
+- converted `publication_year` to `inferred_year` only when it is exactly a
+  four-digit year;
+- converted numeric `total_pages` to `extent` as `N с.`;
+- added TSV service columns `work_id`, `source_number`, `row_type`, and
+  `editor_note`;
+- removed technical columns `record_id`, `source_file`, `source_line`, and
+  `grounding_uris` from the TSV output;
+- changed `grounding_sources.tsv` to link by `source_number` instead of
+  internal record id.
+
+Validation:
+
+- notebook JSON parses successfully;
+- code cells compile after ignoring Colab shell magic;
+- a local smoke test confirmed the TSV columns and field conversions.
+
+## 2026-07-01.01
+
+Moved the ordinary-book Colab workflow to a text-first editing process.
+
+Added:
+
+- `notebooks/book_colab.py` as the source-of-truth percent-cell notebook;
+- `scripts/percent_py_to_ipynb.py` to regenerate a runnable `.ipynb` from the
+  text `.py` source;
+- `notebooks/README.md` documenting the edit/regenerate workflow.
+
+Workflow:
+
+```bash
+python3 scripts/percent_py_to_ipynb.py \
+  notebooks/book_colab.py \
+  notebooks/book_colab.ipynb
+```
+
+Validation:
+
+- fetched `origin/main`; the remote tree currently does not contain
+  `notebooks/book_colab.ipynb`, so there was no GitHub notebook version to
+  compare in this local remote;
+- `notebooks/book_colab.py` and `scripts/percent_py_to_ipynb.py` compile;
+- regenerated `notebooks/book_colab.ipynb` from the `.py` source;
+- smoke-tested the generated TSV output shape.
+
+## 2026-07-01.02
+
+Reviewed uploaded `notebooks/book_colab-2.py` against the text-first
+`notebooks/book_colab.py` workflow and ported the useful changes.
+
+Accepted changes:
+
+- Gemini now returns a root JSON array of book objects, even for a single book;
+- multivolume input rows can split into several independent TSV rows, one per
+  confirmed volume;
+- prompt now includes explicit rules for "склеенные" multivolume records;
+- model field `author_last_name` was replaced by `raw_author_string`, which
+  still maps to TSV/database-facing `author`;
+- `verified_books.tsv` is flattened from one input row to one or more import
+  rows;
+- `grounding_sources.tsv` includes `volume_context` so sources can be reviewed
+  against the generated volume rows.
+
+Rejected cleanup:
+
+- did not keep `book_colab-2.py` because it was a Colab export with `!pip`
+  syntax and a broken indentation block, not a valid source `.py` file.
+
+Validation:
+
+- `notebooks/book_colab.py` compiles;
+- regenerated `notebooks/book_colab.ipynb`;
+- smoke-tested a two-volume fake Gemini response and confirmed two TSV import
+  rows plus `volume_context` in `grounding_sources.tsv`.
+
+## 2026-07-02.01
+
+Added checkpoint/resume support to the ordinary-book Colab workflow.
+
+Behavior:
+
+- `notebooks/book_colab.py` mounts Google Drive by default and writes
+  checkpoints under
+  `MyDrive/bibliobon_colab_checkpoints/<input-file-stem>/`;
+- current JSONL/TSV/grounding/manifest outputs and zip archive are saved after
+  each processed record by default;
+- if a Colab session disconnects, rerunning the notebook with the same input
+  file loads saved `ok` rows and continues from the remaining rows;
+- manifest now includes checkpoint metadata and `run_status`.
+
+Validation:
+
+- regenerated `notebooks/book_colab.ipynb`;
+- smoke-tested a simulated disconnect after the first row and confirmed the
+  second run resumed from the checkpoint.
+
+No database schema, editor database, public-site code, or site export contract
+was changed.
+
+## 2026-06-27.03
+
+Added the first source-first citation review queue.
+
+Editor UI:
+
+- added staff-only page `/sources/citations/`;
+- default queue shows `Source` records missing at least one stored citation
+  text field;
+- added filters for query, source type, record subtype, citation status, and
+  missing citation variant;
+- rows show filled/empty badges for `citation_gost_2018_full`,
+  `citation_gost_2003_short`, `citation_host_full`, and
+  `citation_host_short`;
+- rows link to the single-source citation editor and, when available, the
+  linked legacy work inspect page;
+- added queue links from the shared editor navigation, work list page, and
+  single-source citation editor.
+
+No schema changes, citation generation, or public-site changes were made.
+
+## 2026-06-27.02
+
+Added the first source-first editor UI for stored citation variants.
+
+Editor UI:
+
+- added staff-only page `/sources/<source_id>/citations/`;
+- page shows `Source` identity, linked legacy `Work`, citation-oriented
+  structural context, current helper previews, and a form for the six stored
+  citation fields;
+- saving updates only `Source.citation_gost_2018_full`,
+  `Source.citation_gost_2003_short`, `Source.citation_host_full`,
+  `Source.citation_host_short`, `Source.citation_status`, and
+  `Source.citation_note`;
+- linked existing work inspect/list pages to the new page as `Библиография`.
+
+No public-site code or citation generation was changed.
+
+## 2026-06-27.01
+
+Implemented the first source-first stored citation block.
+
+Model changes:
+
+- added citation fields to canonical `Source` only:
+  `citation_gost_2018_full`, `citation_gost_2003_short`,
+  `citation_host_full`, `citation_host_short`, `citation_status`,
+  `citation_note`;
+- did not add these fields to legacy `Work`;
+- existing rows migrate with blank citation strings and blank citation status.
+
+Helper/API changes:
+
+- added `editor/sources/citations.py` with `standalone_citation()`,
+  `host_citation()`, and `citation_status_label()`;
+- helpers prefer reviewed stored citation strings and fall back conservatively
+  to existing raw/title text without generating ГОСТ records.
+
+Export contract:
+
+- bumped `site_contract.json` to contract version `0.6.0` and artifact schema
+  version `6`;
+- `sources` now exports all six `citation_*` fields;
+- structured fields remain canonical for search, matching, relations, imports,
+  diagnostics, and validation;
+- stored citation fields are preferred public display strings when filled;
+- `citation_host_full` and `citation_host_short` are for using a `Source` as a
+  parent/container reference after `//` in article citations.
+
 ## 2026-05-27.1
 
 Added first staging-only bibliography parser iteration:
@@ -1804,3 +2048,238 @@ Also fixed import comparison and parser edge cases found in import batch 32:
   `edition_statement`;
 - publication place, publisher, and year continue to parse after edition
   segments.
+
+## 2026-06-21.01
+
+Added site artifact export to the editor service page.
+
+The `/service/` page now includes an "Экспорт для основного сайта" action that
+runs:
+
+```bash
+python3 editor/manage.py export_site_artifact
+```
+
+It rebuilds target tables by default and writes:
+
+```text
+data/bibliobon.sqlite
+data/site_contract.json
+data/build_manifest.json
+```
+
+Checks:
+
+- `python3 editor/manage.py check` passes;
+- Django test client returns `200` for `/service/`;
+- the rendered service page contains the `export_site_artifact` action.
+
+## 2026-06-22.01
+
+Clarified the future public-site mapping for editorial update timestamps.
+
+The canonical/editor field remains:
+
+```text
+sources.updated_at
+```
+
+This timestamp means "when the bibliographic record was last changed in the
+editorial data layer". The public Django site should not import it into the
+technical model field `updated_at`, because that field is maintained by Django
+and reflects when the site database row was last saved/imported.
+
+Future site contract/importer work should expose it through a separate
+public-site field, for example:
+
+```text
+catalog_work.bibliography_updated_at
+```
+
+Updated:
+
+- `docs/FIELD_CONTRACT.md`;
+- `docs/DATA_MODEL.md`.
+
+## 2026-06-27.01
+
+Architectural decision: `Source` is now the canonical active bibliography record
+model. `Work` remains only as a legacy compatibility layer while older tools are
+being migrated.
+
+Rules from this point forward:
+
+- add new bibliographic fields to `Source`, not `Work`;
+- build new editor screens and workflows source-first;
+- migrate import matching/apply behavior from `Work` to `Source`;
+- use compatibility sync only where required by older pages;
+- do not duplicate new long-term fields between `Work` and `Source`;
+- remove/archive `Work` only after import, editor UI, Google Sheets sync,
+  diagnostics, and export all operate on `Source`.
+
+Planned citation fields for `Source`:
+
+```text
+citation_gost_2018_full
+citation_gost_2003_short
+citation_host_full
+citation_host_short
+citation_status
+citation_note
+```
+
+These stored citation variants will become the preferred public display strings
+once reviewed. Structured fields remain necessary for search, relations,
+imports, matching, diagnostics, and future regeneration.
+
+## 2026-06-25.01
+
+Added `record_subtype` for standalone dissertation records.
+
+Model changes:
+
+- added `Work.record_subtype`;
+- added `Source.record_subtype`;
+- current supported value is `dissertation`, covering both dissertations and
+  dissertation abstracts;
+- structural type is unchanged: dissertations remain
+  `Work.work_type=book` and `Source.source_type=monograph`;
+- existing records default to blank subtype and were not mass-classified.
+
+Import workflow:
+
+- obvious standalone dissertation/abstract records containing markers such as
+  `дис.`, `дисс.`, `диссертация`, `автореф.`, `автореферат`, or degree markers
+  are classified as `record_subtype=dissertation`;
+- article records with `//` are not reclassified as dissertations by this
+  marker pass.
+
+Export contract:
+
+- bumped `site_contract.json` to contract version `0.5.0` and artifact schema
+  version `5`;
+- `sources` now exports `record_subtype`.
+
+Backups created:
+
+```text
+data/backups/editor.before-record-subtype-dissertation.20260625-165125.sqlite
+data/backups/editor.before-target-conversion.20260625-135243.sqlite
+data/backups/bibliobon.before-site-artifact-export.20260625-135254.sqlite
+data/backups/site_contract.before-site-artifact-export.20260625-135254.json
+data/backups/build_manifest.before-site-artifact-export.20260625-135254.json
+```
+
+Checks:
+
+- `python3 editor/manage.py test sources.tests` passes;
+- `python3 editor/manage.py check` passes;
+- `python3 editor/manage.py makemigrations --check --dry-run` reports no
+  changes;
+- `python3 editor/manage.py export_site_artifact` writes the updated artifact.
+
+## 2026-06-24.01
+
+Introduced a backward-compatible newspaper placement model in the editor data
+layer and site artifact contract.
+
+Model changes:
+
+- added `Periodical.kind` with values:
+  `journal`, `newspaper`, `bulletin`, `almanac`, `other`;
+- made `ArticlePlacement.issue` nullable;
+- added `ArticlePlacement.periodical` for direct placement under a serial title;
+- added placement-level `year`, `publication_date`, and `issue_number`;
+- added model validation that each placement has at least one of `issue` or
+  `periodical`, and that `periodical` matches `issue.periodical` when both are
+  present.
+
+Data backfill:
+
+- existing issue-based article placements keep their `issue_id`;
+- placements whose issue has a periodical now also have
+  `article_placements.periodical_id`;
+- `Тамбовские губернские ведомости`
+  (`source_django_id=2425`, `periodical_id=journal-002425`) is marked as
+  `kind=newspaper`;
+- existing six placements for that newspaper remain issue-based and also have
+  the direct periodical link.
+
+Export contract changes:
+
+- bumped `site_contract.json` to contract version `0.4.0` and artifact schema
+  version `4`;
+- `periodicals` now exports `kind`;
+- `article_placements` now exports `periodical_id`, nullable `issue_id`, `year`,
+  `publication_date`, and `issue_number`.
+
+Semantics:
+
+- journal article placement: `periodical_id + issue_id`;
+- newspaper article without stored issue:
+  `periodical_id`, `issue_id = NULL`, placement-level
+  `year/publication_date/issue_number/pages_raw`;
+- current public-site importer can continue using `issue_id` until it is updated
+  for the `0.4.0` contract.
+
+Backups created:
+
+```text
+data/backups/editor.before-newspaper-placement-model.20260624-005300.sqlite
+data/backups/editor.before-target-conversion.20260623-215540.sqlite
+data/backups/bibliobon.before-site-artifact-export.20260623-215550.sqlite
+data/backups/site_contract.before-site-artifact-export.20260623-215550.json
+data/backups/build_manifest.before-site-artifact-export.20260623-215550.json
+```
+
+Checks:
+
+- `python3 editor/manage.py test sources.tests` passes;
+- `python3 editor/manage.py check` passes;
+- `python3 editor/manage.py makemigrations --check --dry-run` reports no
+  changes;
+- `python3 editor/manage.py export_site_artifact` writes the updated artifact.
+
+## 2026-06-23.01
+
+Rebuilt the public-site export artifact after applying the editor-approved tag
+tree.
+
+Generated:
+
+```text
+data/bibliobon.sqlite
+data/site_contract.json
+data/build_manifest.json
+```
+
+Current exported tag counts:
+
+```text
+tags: 310
+tags with parent_id: 246
+source_tags: 3000
+```
+
+Contract decision:
+
+- `tags.parent_id` is now an active navigation tree for tag browsing, not merely
+  a possible future hierarchy field;
+- top-level navigation roots currently include `География`, `Типы`, and `Темы`
+  in the exported data; `Исторический период` remains an accepted root for the
+  tag-tree workflow and will appear when approved/applied rows require it;
+- parent/root tags may be navigational nodes without direct source assignments.
+
+Backups created by export:
+
+```text
+data/backups/editor.before-target-conversion.20260623-140409.sqlite
+data/backups/bibliobon.before-site-artifact-export.20260623-140419.sqlite
+data/backups/site_contract.before-site-artifact-export.20260623-140419.json
+data/backups/build_manifest.before-site-artifact-export.20260623-140419.json
+```
+
+Updated:
+
+- `docs/FIELD_CONTRACT.md`;
+- `docs/DATA_MODEL.md`.

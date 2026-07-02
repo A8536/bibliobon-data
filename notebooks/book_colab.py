@@ -32,7 +32,7 @@ from typing import Any
 import pandas as pd
 from google import genai
 from google.genai import types
-from google.colab import files
+from google.colab import drive, files
 
 MODEL_ID = "gemini-2.5-flash"
 PROMPT_VERSION = "book-verification-0.3-colab"
@@ -40,6 +40,10 @@ OUTPUT_DIR = Path("/content/book_verification_results")
 SLEEP_SECONDS = 1.0
 MAX_ATTEMPTS = 3
 RETRY_SLEEP_SECONDS = 10.0
+CHECKPOINT_EVERY = 20
+SAVE_AFTER_EVERY_RECORD = True
+USE_GOOGLE_DRIVE_CHECKPOINT = True
+DRIVE_CHECKPOINT_ROOT = Path("/content/drive/MyDrive/bibliobon_colab_checkpoints")
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -66,13 +70,13 @@ try:
     import pandas as pd
     from google import genai
     from google.genai import types
-    from google.colab import files
+    from google.colab import drive, files
 except ModuleNotFoundError:
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "google-genai", "pandas"], check=True)
     import pandas as pd
     from google import genai
     from google.genai import types
-    from google.colab import files
+    from google.colab import drive, files
 
 MODEL_ID = globals().get("MODEL_ID", "gemini-2.5-flash")
 PROMPT_VERSION = "book-verification-0.4-colab"
@@ -80,6 +84,10 @@ OUTPUT_DIR = Path("/content/book_verification_results")
 SLEEP_SECONDS = globals().get("SLEEP_SECONDS", 1.0)
 MAX_ATTEMPTS = globals().get("MAX_ATTEMPTS", 3)
 RETRY_SLEEP_SECONDS = globals().get("RETRY_SLEEP_SECONDS", 10.0)
+CHECKPOINT_EVERY = globals().get("CHECKPOINT_EVERY", 20)
+SAVE_AFTER_EVERY_RECORD = globals().get("SAVE_AFTER_EVERY_RECORD", True)
+USE_GOOGLE_DRIVE_CHECKPOINT = globals().get("USE_GOOGLE_DRIVE_CHECKPOINT", True)
+DRIVE_CHECKPOINT_ROOT = Path(globals().get("DRIVE_CHECKPOINT_ROOT", "/content/drive/MyDrive/bibliobon_colab_checkpoints"))
 
 if "client" not in globals():
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -492,14 +500,115 @@ def write_outputs(output_dir: Path, output_records: list[dict[str, Any]], manife
         encoding="utf-8",
     )
 
+
+def build_manifest(
+    run_id: str,
+    started_at: str,
+    input_path: Path,
+    output_dir: Path,
+    output_records: list[dict[str, Any]],
+    checkpoint_dir: Path | None,
+    run_status: str,
+) -> dict[str, Any]:
+    return {
+        "run_id": run_id,
+        "started_at": started_at,
+        "finished_at": now_stamp(),
+        "input_path": str(input_path),
+        "output_dir": str(output_dir),
+        "checkpoint_dir": str(checkpoint_dir) if checkpoint_dir else "",
+        "run_status": run_status,
+        "prompt_version": PROMPT_VERSION,
+        "model": MODEL_ID,
+        "record_count": len(output_records),
+        "ok_count": sum(1 for record in output_records if record["status"] == "ok"),
+        "error_count": sum(1 for record in output_records if record["status"] == "error"),
+        "skipped_count": sum(1 for record in output_records if record["status"] == "skipped"),
+        "sleep_seconds": SLEEP_SECONDS,
+        "max_attempts": MAX_ATTEMPTS,
+        "retry_sleep_seconds": RETRY_SLEEP_SECONDS,
+        "checkpoint_every": CHECKPOINT_EVERY,
+        "save_after_every_record": SAVE_AFTER_EVERY_RECORD,
+    }
+
+
+def zip_outputs(output_dir: Path, zip_base_path: Path) -> Path:
+    if zip_base_path.with_suffix(".zip").exists():
+        zip_base_path.with_suffix(".zip").unlink()
+    return Path(shutil.make_archive(str(zip_base_path), "zip", output_dir))
+
+
+def save_checkpoint(
+    output_records: list[dict[str, Any]],
+    manifest: dict[str, Any],
+    checkpoint_dir: Path | None,
+) -> None:
+    write_outputs(OUTPUT_DIR, output_records, manifest)
+    zip_outputs(OUTPUT_DIR, OUTPUT_DIR.parent / "book_verification_results")
+    if checkpoint_dir:
+        write_outputs(checkpoint_dir, output_records, manifest)
+        zip_outputs(checkpoint_dir, checkpoint_dir / "book_verification_results")
+
+
+def mount_drive_for_checkpoints() -> Path | None:
+    if not USE_GOOGLE_DRIVE_CHECKPOINT:
+        return None
+    try:
+        drive.mount("/content/drive", force_remount=False)
+        DRIVE_CHECKPOINT_ROOT.mkdir(parents=True, exist_ok=True)
+        return DRIVE_CHECKPOINT_ROOT
+    except Exception as exc:
+        print(f"Drive checkpoint disabled: {exc}")
+        return None
+
+
+def load_checkpoint_records(checkpoint_dir: Path | None) -> list[dict[str, Any]]:
+    if not checkpoint_dir:
+        return []
+    path = checkpoint_dir / "verified_books.jsonl"
+    if not path.exists():
+        return []
+    records = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            records.append(json.loads(line))
+    return records
+
+
+def checkpoint_should_save(processed_count: int) -> bool:
+    if SAVE_AFTER_EVERY_RECORD:
+        return True
+    return CHECKPOINT_EVERY > 0 and processed_count % CHECKPOINT_EVERY == 0
+
 RUN_ID = Path(input_name).stem + "-" + now_stamp()
 if OUTPUT_DIR.exists():
     shutil.rmtree(OUTPUT_DIR)
 
-output_records = []
+checkpoint_root = mount_drive_for_checkpoints()
+checkpoint_dir = checkpoint_root / Path(input_name).stem if checkpoint_root else None
+if checkpoint_dir:
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    print(f"checkpoint_dir={checkpoint_dir}")
+
+checkpoint_records = load_checkpoint_records(checkpoint_dir)
+done_records = {
+    str(record.get("source_number")): record
+    for record in checkpoint_records
+    if record.get("status") == "ok" and record.get("source_number") is not None
+}
+if done_records:
+    print(f"resume: loaded {len(done_records)} completed records from checkpoint")
+
+output_records = list(done_records.values())
 started_at = now_stamp()
+stopped_early = False
 
 for index, source in enumerate(records, start=1):
+    source_number_key = str(source.get("source_number"))
+    if source_number_key in done_records:
+        print(f"{index}/{len(records)} source_number={source.get('source_number')} already done; skipping")
+        continue
+
     record = {
         "source_number": source.get("source_number"),
         "raw_input": source["raw_input"],
@@ -546,30 +655,38 @@ for index, source in enumerate(records, start=1):
                         "raw_model_text": "",
                     }
                 )
+            stopped_early = True
             break
+    current_manifest = build_manifest(
+        RUN_ID,
+        started_at,
+        input_path,
+        OUTPUT_DIR,
+        output_records,
+        checkpoint_dir,
+        "running",
+    )
+    if checkpoint_should_save(len(output_records)):
+        save_checkpoint(output_records, current_manifest, checkpoint_dir)
+        print(f"  checkpoint saved: records={len(output_records)}")
     if index < len(records) and SLEEP_SECONDS:
         time.sleep(SLEEP_SECONDS)
 
-manifest = {
-    "run_id": RUN_ID,
-    "started_at": started_at,
-    "finished_at": now_stamp(),
-    "input_path": str(input_path),
-    "output_dir": str(OUTPUT_DIR),
-    "prompt_version": PROMPT_VERSION,
-    "model": MODEL_ID,
-    "record_count": len(output_records),
-    "ok_count": sum(1 for record in output_records if record["status"] == "ok"),
-    "error_count": sum(1 for record in output_records if record["status"] == "error"),
-    "skipped_count": sum(1 for record in output_records if record["status"] == "skipped"),
-    "sleep_seconds": SLEEP_SECONDS,
-    "max_attempts": MAX_ATTEMPTS,
-    "retry_sleep_seconds": RETRY_SLEEP_SECONDS,
-}
-write_outputs(OUTPUT_DIR, output_records, manifest)
+manifest = build_manifest(
+    RUN_ID,
+    started_at,
+    input_path,
+    OUTPUT_DIR,
+    output_records,
+    checkpoint_dir,
+    "stopped" if stopped_early else "complete",
+)
+save_checkpoint(output_records, manifest, checkpoint_dir)
 print(f"output_dir={OUTPUT_DIR}")
+if checkpoint_dir:
+    print(f"checkpoint_dir={checkpoint_dir}")
 print(json.dumps(manifest, ensure_ascii=False, indent=2))
 
-zip_path = shutil.make_archive("/content/book_verification_results", "zip", OUTPUT_DIR)
+zip_path = zip_outputs(OUTPUT_DIR, OUTPUT_DIR.parent / "book_verification_results")
 print(zip_path)
 files.download(zip_path)
