@@ -1,5 +1,22 @@
 # Data Changelog
 
+## 2026-07-04.01
+
+Updated the mixed bibliography Colab prompt for legal documents.
+
+Changes:
+
+- added `record_type="legal_document"` for laws, statutes, decrees, and other
+  official legal acts;
+- added `host_type="legal_collection"` for publication sources such as PSZRI
+  volumes and SU/SZ issues;
+- clarified that source titles for laws should contain the law title, while
+  multivolume records keep the general series title in `source.title`;
+- clarified full and short GOST citation descriptions for books, specific
+  volumes, articles, chapters, and laws;
+- added a PSZRI/SU example for the 10 June 1900 Stamp Duty Statute, including
+  the full and short citation patterns.
+
 ## 2026-06-27.04
 
 Started the PSZRI law verification workflow design.
