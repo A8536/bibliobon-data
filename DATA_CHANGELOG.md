@@ -1,5 +1,22 @@
 # Data Changelog
 
+## 2026-07-06.01
+
+Added an experimental Colab workflow for explicit web-evidence bibliography
+verification.
+
+Workflow decisions:
+
+- the new notebook does not use Gemini Google Search grounding;
+- Python collects search snippets and fetched page text first, then passes that
+  explicit evidence to Gemini;
+- Gemini is instructed to use only the raw input and collected evidence, and to
+  leave unverified facts empty with warnings;
+- outputs include `search_evidence.tsv` so editors can inspect the exact
+  URLs/snippets/page fragments used for each row;
+- Google HTML search is attempted as an experiment, with DuckDuckGo HTML as a
+  free fallback because Colab IPs may receive CAPTCHA or traffic blocks.
+
 ## 2026-07-04.01
 
 Updated the mixed bibliography Colab prompt for legal documents.
