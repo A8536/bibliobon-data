@@ -1,5 +1,22 @@
 # Data Changelog
 
+## 2026-07-06.02
+
+Updated the experimental web-evidence Colab workflow to version
+`mixed-bibliography-web-evidence-0.2-colab`.
+
+Changes:
+
+- rewrote the system prompt as a stricter rule-based GOST prompt;
+- added formula-level rules for `source.citation_gost_2018_full` and
+  `source.citation_gost_2003_short`;
+- added explicit confidence rules for verified pages/volume versus
+  `[страницы уточняются]` and `[объем не установлен]` markers;
+- strengthened PSZRI/SU/SZ legal citation rules, including full and short
+  citation compression rules;
+- changed search query generation for legal records so PSZRI/SU archival
+  markers are searched before the full noisy raw input.
+
 ## 2026-07-06.01
 
 Added an experimental Colab workflow for explicit web-evidence bibliography
